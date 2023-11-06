@@ -10,10 +10,10 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    @IBOutlet var tableView: UITableView!
-    @IBOutlet weak var navbar: UINavigationBar!
+    @IBOutlet private var tableView: UITableView!
+    @IBOutlet private var navbar: UINavigationBar!
     
-    var users = [User]()
+    private var users = [User]()
     
     fileprivate func handleNavBar() {
         navbar.translatesAutoresizingMaskIntoConstraints = false
@@ -65,7 +65,7 @@ extension ViewController: UITableViewDataSource {
         return users.count
     }
     
-    fileprivate func handleImageViewContent(_ indexPath: IndexPath, _ cell: UserCell) {
+    private func handleImageViewContent(_ indexPath: IndexPath, _ cell: UserCell) {
         
         let apiData = users[indexPath.row]
         let string = apiData.picture.medium
@@ -76,7 +76,7 @@ extension ViewController: UITableViewDataSource {
         cell.pictureLabel.layer.masksToBounds = true
     }
     
-    fileprivate func handleUsersTimeFormat(_ hours: Double, _ minutes: Double, _ cell: UserCell) {
+    private func handleUsersTimeFormat(_ hours: Double, _ minutes: Double, _ cell: UserCell) {
         let userTimeHours = hours + (minutes / 60)
         let currentTime = Date()
         let userTimeZone = TimeZone(secondsFromGMT: Int(userTimeHours * 3600))
