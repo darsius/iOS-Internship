@@ -8,7 +8,7 @@
 import UIKit
 
 
-class ViewController: UIViewController {
+class UsersViewController: UIViewController {
 
     @IBOutlet private var tableView: UITableView!
     @IBOutlet private var navbar: UINavigationBar!
@@ -54,19 +54,19 @@ class ViewController: UIViewController {
 }
 
 
-extension ViewController: UITableViewDelegate {
+extension UsersViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("You tapped me")
     }
 }
 
 
-extension ViewController: UITableViewDataSource {
+extension UsersViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return users.count
     }
     
-    private func handleImageViewContent(_ indexPath: IndexPath, _ cell: UserCell) {
+    private func handleImageViewContent(_ indexPath: IndexPath, _ cell: UsersTableViewCellController) {
         
         let apiData = users[indexPath.row]
         let string = apiData.picture.medium
@@ -77,7 +77,7 @@ extension ViewController: UITableViewDataSource {
         cell.pictureLabel.layer.masksToBounds = true
     }
     
-    private func handleUsersTimeFormat(_ hours: Double, _ minutes: Double, _ cell: UserCell) {
+    private func handleUsersTimeFormat(_ hours: Double, _ minutes: Double, _ cell: UsersTableViewCellController) {
         let userTimeHours = hours + (minutes / 60)
         let currentTime = Date()
         let userTimeZone = TimeZone(secondsFromGMT: Int(userTimeHours * 3600))
@@ -93,7 +93,7 @@ extension ViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        let cell: UserCell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! UserCell
+        let cell: UsersTableViewCellController = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! UsersTableViewCellController
         
         cell.nameLabel.text = users[indexPath.row].name.first + " " + users[indexPath.row].name.last
         cell.emailLabel.text = users[indexPath.row].email
@@ -113,28 +113,5 @@ extension ViewController: UITableViewDataSource {
         handleImageViewContent(indexPath, cell)
         
         return cell
-    }
-}
-
-
-extension UIImageView {
-    func downloaded(from url: URL, contentMode mode: ContentMode = .scaleToFill) {
-        contentMode = mode
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            guard
-                let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200,
-                let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
-                let data = data, error == nil,
-                let image = UIImage(data: data)
-            else{return}
-            DispatchQueue.main.async() { [weak self] in
-                self?.image = image
-            }
-        }.resume()
-    }
-    
-    func downloaded(from link: String, contentMode mode: ContentMode = .scaleToFill) {
-        guard let url = URL(string: link) else {return}
-        downloaded(from: url, contentMode: mode)
     }
 }

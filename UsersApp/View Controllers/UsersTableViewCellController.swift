@@ -7,12 +7,12 @@
 
 import UIKit
 
-class UserCell: UITableViewCell {
+class UsersTableViewCellController: UITableViewCell {
 
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var emailLabel: UILabel!
     @IBOutlet var timeLabel: UILabel!
-    @IBOutlet weak var pictureLabel: UIImageView!
+    @IBOutlet var pictureLabel: UIImageView!
     
     
     override func awakeFromNib() {
