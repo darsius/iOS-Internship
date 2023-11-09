@@ -15,7 +15,7 @@ class ViewController: UIViewController {
     
     private var users = [User]()
     
-    fileprivate func handleNavBar() {
+    private func handleNavBar() {
         navbar.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             navbar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -25,10 +25,11 @@ class ViewController: UIViewController {
         ])
     }
     
-    fileprivate func handleTableView() {
+    private func handleTableView() {
         tableView.delegate = self
         tableView.dataSource = self
         
+        //todo
         tableView.contentInset = UIEdgeInsets(
             top: 45,left: 0,bottom: 0,right: 0);
         tableView.translatesAutoresizingMaskIntoConstraints = false

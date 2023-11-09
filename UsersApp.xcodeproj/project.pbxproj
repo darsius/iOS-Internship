@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		E437C2612ACCCD4B00DD8950 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = E437C2602ACCCD4B00DD8950 /* Model.swift */; };
 		E437C2632ACCCF3800DD8950 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E437C2622ACCCF3800DD8950 /* NetworkManager.swift */; };
-		E437C2652ACCD06000DD8950 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E437C2642ACCD06000DD8950 /* Extensions.swift */; };
 		E4C4A4F22AC5CB6E00BAA03A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C4A4F12AC5CB6E00BAA03A /* AppDelegate.swift */; };
 		E4C4A4F42AC5CB6E00BAA03A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C4A4F32AC5CB6E00BAA03A /* SceneDelegate.swift */; };
 		E4C4A4F62AC5CB6E00BAA03A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C4A4F52AC5CB6E00BAA03A /* ViewController.swift */; };
@@ -22,7 +21,6 @@
 /* Begin PBXFileReference section */
 		E437C2602ACCCD4B00DD8950 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		E437C2622ACCCF3800DD8950 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
-		E437C2642ACCD06000DD8950 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		E4C4A4EE2AC5CB6E00BAA03A /* Assignment1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Assignment1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4C4A4F12AC5CB6E00BAA03A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E4C4A4F32AC5CB6E00BAA03A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -67,7 +65,6 @@
 				E4C4A4F12AC5CB6E00BAA03A /* AppDelegate.swift */,
 				E4C4A4F32AC5CB6E00BAA03A /* SceneDelegate.swift */,
 				E4C4A4F52AC5CB6E00BAA03A /* ViewController.swift */,
-				E437C2642ACCD06000DD8950 /* Extensions.swift */,
 				E437C2622ACCCF3800DD8950 /* NetworkManager.swift */,
 				E437C2602ACCCD4B00DD8950 /* Model.swift */,
 				E4C4A4F72AC5CB6E00BAA03A /* Main.storyboard */,
@@ -156,7 +153,6 @@
 				E4C4A4F62AC5CB6E00BAA03A /* ViewController.swift in Sources */,
 				E4C4A4F22AC5CB6E00BAA03A /* AppDelegate.swift in Sources */,
 				E4C4A4F42AC5CB6E00BAA03A /* SceneDelegate.swift in Sources */,
-				E437C2652ACCD06000DD8950 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
