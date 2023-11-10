@@ -75,10 +75,9 @@ extension UsersViewController: UITableViewDataSource {
     private func handleImageViewContent(_ indexPath: IndexPath, _ cell: UsersTableViewCellController) {
         
         let apiData = users[indexPath.row]
-        let string = apiData.picture.medium
-        let url = URL(string: string)
-        cell.pictureLabel.downloaded(from: url!, contentMode: .scaleToFill)
+        let stringUrl = apiData.picture.medium
         
+        cell.pictureLabel.downloaded(from: stringUrl, contentMode: .scaleToFill)
         cell.pictureLabel.layer.cornerRadius = cell.pictureLabel.frame.size.height / 2
         cell.pictureLabel.layer.masksToBounds = true
     }
