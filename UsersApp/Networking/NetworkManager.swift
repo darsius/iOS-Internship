@@ -7,32 +7,30 @@
 
 import Foundation
 
-class NetworkManager {
-    static let shared = NetworkManager()
-    
-    func fetch(completion: @escaping ([User]) -> ()){
-        let url = "https://randomuser.me/api/?results=100&seed=abc"
-        let task = URLSession.shared.dataTask(with: URL(string: url)!,
-                                   completionHandler: { data, response, error in
-            
-            guard let data = data, error == nil else {
-                print("somethig went wrong")
-                return
-            }
-            
-            var result: Response?
-            do {
-                result = try JSONDecoder().decode(Response.self, from: data)
-                completion(result!.results)
-            } catch {
-                print("failed to convert \(error)")
-            }
-            
-            guard result != nil else {
-                return
-            }
 
-        })
-        task.resume()
+class NetworkManager {
+    let networError = NetworkError.self
+    
+    func getUser() async throws -> [User] {
+        let endpoint = "https://randomuser.me/api/?results=100&seed=abc"
+        
+        guard let url = URL(string: endpoint) else {
+            throw networError.invalidUrl
+        }
+        
+        let (data, response) = try await URLSession.shared.data(from: url)
+        
+        guard let response = response as? HTTPURLResponse,
+                response.statusCode == 200 else {
+            throw networError.invalidReponse
+        }
+        
+        do {
+            let decoder = JSONDecoder()
+            let result = try decoder.decode(UserListResponse.self, from: data)
+            return result.results
+        } catch {
+            throw networError.invalidData
+        }
     }
 }

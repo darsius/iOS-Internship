@@ -7,8 +7,8 @@
 
 import UIKit
 
-class UsersTableViewCellController: UITableViewCell {
 
+class UsersTableViewCellController: UITableViewCell {
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var emailLabel: UILabel!
     @IBOutlet var timeLabel: UILabel!

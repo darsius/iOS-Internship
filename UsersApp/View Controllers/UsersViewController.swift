@@ -13,7 +13,17 @@ class UsersViewController: UIViewController {
     @IBOutlet private var tableView: UITableView!
     @IBOutlet private var navbar: UINavigationBar!
     
-    private var users = [User]()
+    private var users: [User] = []
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        fetchUsers()
+        
+        handleTableView()
+
+        handleNavBar()
+    }
     
     private func handleNavBar() {
         navbar.translatesAutoresizingMaskIntoConstraints = false
@@ -36,30 +46,26 @@ class UsersViewController: UIViewController {
         tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 60).isActive = true
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
+    private func fetchUsers() {
         let networkManager = NetworkManager()
-        networkManager.fetch(completion: {data in
-            self.users = data
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
+        Task {
+            do {
+                self.users = try await networkManager.getUser()
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            } catch {
+                print("Error! Can't fetch the users.")
             }
-        })
-        
-        handleTableView()
-
-        handleNavBar()
+        }
     }
 }
-
 
 extension UsersViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("You tapped me")
     }
 }
-
 
 extension UsersViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

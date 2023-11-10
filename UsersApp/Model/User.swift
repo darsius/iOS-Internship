@@ -8,7 +8,7 @@
 import Foundation
 
 
-struct Response: Codable {
+struct UserListResponse: Codable {
     var results: [User]
 }
 
