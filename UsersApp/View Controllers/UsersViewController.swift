@@ -96,7 +96,7 @@ extension UsersViewController: UITableViewDataSource {
         cell.timeLabel.text = userLocalTime
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    internal func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         let cell: UsersTableViewCellController = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! UsersTableViewCellController
         
