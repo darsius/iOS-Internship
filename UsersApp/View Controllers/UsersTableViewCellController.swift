@@ -12,7 +12,7 @@ class UsersTableViewCellController: UITableViewCell {
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var emailLabel: UILabel!
     @IBOutlet var timeLabel: UILabel!
-    @IBOutlet var pictureLabel: UIImageView!
+    @IBOutlet var userImage: UIImageView!
     
     
     override func awakeFromNib() {

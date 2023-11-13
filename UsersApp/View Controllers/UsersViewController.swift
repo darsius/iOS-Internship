@@ -11,7 +11,6 @@ import UIKit
 class UsersViewController: UIViewController {
 
     @IBOutlet private var tableView: UITableView!
-    @IBOutlet private var navbar: UINavigationBar!
     
     private var users: [User] = []
     
@@ -21,29 +20,11 @@ class UsersViewController: UIViewController {
         fetchUsers()
         
         handleTableView()
-
-        handleNavBar()
-    }
-    
-    private func handleNavBar() {
-        navbar.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            navbar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            navbar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            navbar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            navbar.bottomAnchor.constraint(equalTo: tableView.topAnchor)
-        ])
     }
     
     private func handleTableView() {
         tableView.delegate = self
         tableView.dataSource = self
-        
-        //todo
-        tableView.contentInset = UIEdgeInsets(
-            top: 45,left: 0,bottom: 0,right: 0);
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 60).isActive = true
     }
     
     private func fetchUsers() {
@@ -72,14 +53,14 @@ extension UsersViewController: UITableViewDataSource {
         return users.count
     }
     
-    private func handleImageViewContent(_ indexPath: IndexPath, _ cell: UsersTableViewCellController) {
+    private func handleImageViewContent(_ indexPath: IndexPath, _ userCell: UsersTableViewCellController) {
         
         let apiData = users[indexPath.row]
         let stringUrl = apiData.picture.medium
         
-        cell.pictureLabel.downloaded(from: stringUrl, contentMode: .scaleToFill)
-        cell.pictureLabel.layer.cornerRadius = cell.pictureLabel.frame.size.height / 2
-        cell.pictureLabel.layer.masksToBounds = true
+        userCell.userImage.downloaded(from: stringUrl, contentMode: .scaleToFill)
+        userCell.userImage.layer.cornerRadius = userCell.userImage.frame.size.height / 2
+        userCell.userImage.layer.masksToBounds = true
     }
     
     private func handleUsersTimeFormat(_ hours: Double, _ minutes: Double, _ cell: UsersTableViewCellController) {
@@ -96,12 +77,12 @@ extension UsersViewController: UITableViewDataSource {
         cell.timeLabel.text = userLocalTime
     }
     
-    internal func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        let cell: UsersTableViewCellController = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! UsersTableViewCellController
+        let userCell: UsersTableViewCellController = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath) as! UsersTableViewCellController
         
-        cell.nameLabel.text = users[indexPath.row].name.first + " " + users[indexPath.row].name.last
-        cell.emailLabel.text = users[indexPath.row].email
+        userCell.nameLabel.text = users[indexPath.row].name.first + " " + users[indexPath.row].name.last
+        userCell.emailLabel.text = users[indexPath.row].email
         
         
         let userTime = users[indexPath.row].location.timezone.offset
@@ -113,10 +94,10 @@ extension UsersViewController: UITableViewDataSource {
         else {
             fatalError("invalid time as string")
         }
-        handleUsersTimeFormat(hours, minutes, cell)
+        handleUsersTimeFormat(hours, minutes, userCell)
         
-        handleImageViewContent(indexPath, cell)
+        handleImageViewContent(indexPath, userCell)
         
-        return cell
+        return userCell
     }
 }

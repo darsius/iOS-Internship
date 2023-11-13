@@ -20,7 +20,7 @@ extension UIImageView {
         URLSession.shared.dataTask(with: url) { data, response, error in
             guard
                 let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200,
-                let mimeType = response?.mimeType, mimeType.hasPrefix("imagel"),
+                let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
                 let data = data, error == nil,
                 let image = UIImage(data: data)
             else{
