@@ -40,20 +40,8 @@ class UsersViewController: UIViewController {
             }
         }
     }
-}
-
-extension UsersViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("You tapped me")
-    }
-}
-
-extension UsersViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return users.count
-    }
     
-    private func handleImageViewContent(_ indexPath: IndexPath, _ userCell: UsersTableViewCellController) {
+    private func handleUsersImageViewContent(_ indexPath: IndexPath, _ userCell: UsersTableViewCellController) {
         
         let apiData = users[indexPath.row]
         let stringUrl = apiData.picture.medium
@@ -77,27 +65,44 @@ extension UsersViewController: UITableViewDataSource {
         cell.timeLabel.text = userLocalTime
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
+    private func configureUsersCell(_ tableView: UITableView, indexPath: IndexPath) -> UsersTableViewCellController {
         let userCell: UsersTableViewCellController = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath) as! UsersTableViewCellController
         
         userCell.nameLabel.text = users[indexPath.row].name.first + " " + users[indexPath.row].name.last
         userCell.emailLabel.text = users[indexPath.row].email
         
-        
         let userTime = users[indexPath.row].location.timezone.offset
         let components = userTime.split(separator: ":")
+        
         guard components.count == 2,
               let hours = Double(components[0]),
               let minutes = Double(components[1])
-                
         else {
             fatalError("invalid time as string")
         }
+        
         handleUsersTimeFormat(hours, minutes, userCell)
+        handleUsersImageViewContent(indexPath, userCell)
         
-        handleImageViewContent(indexPath, userCell)
+        return userCell
+    }
+}
+
+extension UsersViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("You tapped me")
+    }
+}
+
+extension UsersViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
+        return users.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
+        let userCell = configureUsersCell(tableView, indexPath: indexPath)
         return userCell
     }
 }
