@@ -18,13 +18,6 @@ class UsersViewController: UIViewController {
         super.viewDidLoad()
         
         fetchUsers()
-        
-        handleTableView()
-    }
-    
-    private func handleTableView() {
-        tableView.delegate = self
-        tableView.dataSource = self
     }
     
     private func fetchUsers() {
@@ -46,9 +39,9 @@ class UsersViewController: UIViewController {
         let apiData = users[indexPath.row]
         let stringUrl = apiData.picture.medium
         
-        userCell.userImage.downloaded(from: stringUrl, contentMode: .scaleToFill)
-        userCell.userImage.layer.cornerRadius = userCell.userImage.frame.size.height / 2
-        userCell.userImage.layer.masksToBounds = true
+        userCell.userImageView.downloaded(from: stringUrl, contentMode: .scaleToFill)
+        userCell.userImageView.layer.cornerRadius = userCell.userImageView.frame.size.height / 2
+        userCell.userImageView.layer.masksToBounds = true
     }
     
     private func handleUsersTimeFormat(_ hours: Double, _ minutes: Double, _ cell: UsersTableViewCellController) {

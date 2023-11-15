@@ -94,13 +94,13 @@
                                             <outlet property="emailLabel" destination="aHt-yv-L2x" id="8H3-VV-Z19"/>
                                             <outlet property="nameLabel" destination="d07-Di-CGA" id="6Yz-R8-bln"/>
                                             <outlet property="timeLabel" destination="UDp-Lw-PLR" id="YTd-Dx-T3u"/>
-                                            <outlet property="userImage" destination="L0F-qn-phK" id="ThN-4s-TIS"/>
+                                            <outlet property="userImageView" destination="L0F-qn-phK" id="ThN-4s-TIS"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
-                                    <outlet property="dataSource" destination="8bC-Xf-vdC" id="wvq-aD-eOX"/>
-                                    <outlet property="delegate" destination="8bC-Xf-vdC" id="Z8C-GU-2eD"/>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="VH1-Gu-wx8"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="oEZ-4t-d6J"/>
                                 </connections>
                             </tableView>
                         </subviews>
