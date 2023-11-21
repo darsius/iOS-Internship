@@ -8,7 +8,7 @@
 import UIKit
 
 
-class userCellView: UITableViewCell {
+class UserCellView: UITableViewCell {
 
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!

@@ -10,7 +10,7 @@ import UIKit
 
 class UsersViewController: UIViewController {
     
-    @IBOutlet weak var userCell: userCellView!
+    @IBOutlet weak var userCell: UserCellView!
     
     @IBOutlet weak var titleView: TitleView!
     
@@ -21,8 +21,8 @@ class UsersViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let nib = UINib(nibName: "userCellView", bundle: nil)
-        usersTableView.register(nib, forCellReuseIdentifier: "userCellView")
+        let nib = UINib(nibName: "UserCellView", bundle: nil)
+        usersTableView.register(nib, forCellReuseIdentifier: "UserCellView")
     
         usersTableView.delegate = self
         usersTableView.dataSource = self
@@ -43,8 +43,8 @@ class UsersViewController: UIViewController {
         }
     }
 
-    private func configureUsersCell(_ tableView: UITableView, indexPath: IndexPath) -> userCellView {
-        let userCell = tableView.dequeueReusableCell(withIdentifier: "userCellView", for: indexPath) as! userCellView
+    private func configureUsersCell(_ tableView: UITableView, indexPath: IndexPath) -> UserCellView {
+        let userCell = tableView.dequeueReusableCell(withIdentifier: "UserCellView", for: indexPath) as! UserCellView
         
         let userName = users[indexPath.row].name.first + " " + users[indexPath.row].name.last
         let userEmail = users[indexPath.row].email
