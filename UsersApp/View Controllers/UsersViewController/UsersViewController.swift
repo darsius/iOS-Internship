@@ -50,11 +50,6 @@ class UsersViewController: UIViewController {
 //    private func handleUsersImageViewContent(_ indexPath: IndexPath, _ userCell: userCell) {
 //
 //        let apiData = users[indexPath.row]
-//        let stringUrl = apiData.picture.medium
-//
-//        userCell.userImage.downloaded(from: stringUrl, contentMode: .scaleToFill)
-//        userCell.userImage.layer.cornerRadius = userCell.userImage.frame.size.height / 2
-//        userCell.userImage.layer.masksToBounds = true
 //    }
 
 //    private func handleUsersTimeFormat(_ hours: Double, _ minutes: Double, _ cell: userCell) {
@@ -74,20 +69,40 @@ class UsersViewController: UIViewController {
     private func configureUsersCell(_ tableView: UITableView, indexPath: IndexPath) -> userCell {
         let userCell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath) as! userCell
         
-        userCell.cellInit(users[indexPath.row].name.first + " " + users[indexPath.row].name.last)
-//        userCell.nameLabel.text = users[indexPath.row].name.first + " " + users[indexPath.row].name.last
-//        userCell.emailLabel.text = users[indexPath.row].email
-//
-//        let userTime = users[indexPath.row].location.timezone.offset
-//        let components = userTime.split(separator: ":")
-//
-//        guard components.count == 2,
-//              let hours = Double(components[0]),
-//              let minutes = Double(components[1])
-//        else {
-//            fatalError("invalid time as string")
-//        }
-//
+        let userName = users[indexPath.row].name.first + " " + users[indexPath.row].name.last
+        
+        let userEmail = users[indexPath.row].email
+        
+        let apiData = users[indexPath.row]
+        let image = userCell.imageInit(apiData)
+
+        let userTime = users[indexPath.row].location.timezone.offset
+        let components = userTime.split(separator: ":")
+
+        guard components.count == 2,
+              let hours = Double(components[0]),
+              let minutes = Double(components[1])
+        else {
+            fatalError("invalid time as string")
+        }
+        
+        let userTimeHours = hours + (minutes / 60)
+        let currentTime = Date()
+        let userTimeZone = TimeZone(secondsFromGMT: Int(userTimeHours * 3600))
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+        dateFormatter.timeZone = userTimeZone
+
+        let userLocalTime = dateFormatter.string(from: currentTime)
+        
+        userCell.cellInit(userName, image, userEmail, userLocalTime)
+        
+        userCell.contentView.addSubview(image)
+        
+
+//        userCell.timeLabel.text = userLocalTime
+
 //        handleUsersTimeFormat(hours, minutes, userCell)
 //        handleUsersImageViewContent(indexPath, userCell)
 
