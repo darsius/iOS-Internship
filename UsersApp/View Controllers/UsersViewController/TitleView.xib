@@ -21,15 +21,18 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hf2-mX-4aA">
                     <rect key="frame" x="0.0" y="0.0" width="393" height="60"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Users" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wj9-nb-aKM">
-                            <rect key="frame" x="171" y="26" width="61" height="29"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Users" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wj9-nb-aKM">
+                            <rect key="frame" x="164" y="20" width="65.333333333333314" height="31.333333333333329"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="26"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemYellowColor"/>
+                    <constraints>
+                        <constraint firstItem="wj9-nb-aKM" firstAttribute="centerX" secondItem="hf2-mX-4aA" secondAttribute="centerX" id="JGT-NR-l9O"/>
+                        <constraint firstItem="wj9-nb-aKM" firstAttribute="top" secondItem="hf2-mX-4aA" secondAttribute="top" constant="20" id="vT2-He-doh"/>
+                    </constraints>
                 </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>

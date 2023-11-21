@@ -21,24 +21,27 @@
                         <constraint firstAttribute="height" constant="70" id="FoK-9i-z5G"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Nume" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2MI-Eu-bAv">
-                    <rect key="frame" x="108" y="5" width="177" height="24"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                    <nil key="textColor"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t9d-qf-Tph">
+                    <rect key="frame" x="85" y="44" width="36.666666666666657" height="18"/>
+                    <constraints>
+                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="250" id="ECs-FR-T3R"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t9d-qf-Tph">
-                    <rect key="frame" x="108" y="37" width="207" height="21"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="20:20" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e2k-dP-kSb">
-                    <rect key="frame" x="345" y="25" width="39" height="17"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20:20" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e2k-dP-kSb">
+                    <rect key="frame" x="344.66666666666669" y="31.666666666666671" width="38.333333333333314" height="17"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nume" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2MI-Eu-bAv">
+                    <rect key="frame" x="85" y="10" width="52.666666666666657" height="24"/>
+                    <constraints>
+                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="250" id="uxz-1O-AqS"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -46,9 +49,15 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemIndigoColor"/>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="e2k-dP-kSb" secondAttribute="trailing" constant="10" id="2Sg-Gk-XZd"/>
+                <constraint firstItem="t9d-qf-Tph" firstAttribute="top" secondItem="2MI-Eu-bAv" secondAttribute="bottom" constant="10" id="6l3-hw-h1a"/>
                 <constraint firstItem="bTq-36-fXI" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="8Am-bJ-Ext"/>
+                <constraint firstItem="2MI-Eu-bAv" firstAttribute="leading" secondItem="bTq-36-fXI" secondAttribute="trailing" constant="5" id="8Jh-TA-Jfz"/>
+                <constraint firstItem="e2k-dP-kSb" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="FbT-o0-7Nz"/>
                 <constraint firstItem="bTq-36-fXI" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="G89-U5-Kfh"/>
                 <constraint firstAttribute="bottom" secondItem="bTq-36-fXI" secondAttribute="bottom" constant="5" id="Gfy-4B-l4U"/>
+                <constraint firstItem="t9d-qf-Tph" firstAttribute="leading" secondItem="bTq-36-fXI" secondAttribute="trailing" constant="5" id="MsO-2e-rdR"/>
+                <constraint firstItem="2MI-Eu-bAv" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="bKK-3z-r38"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
