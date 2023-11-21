@@ -35,15 +35,17 @@ class userCell: UITableViewCell {
         userImage = image
     }
     
-    func imageInit(_ apiData: User) -> UIImageView{
-        let stringUrl = apiData.picture.medium
-        
-        let imageView = UIImageView(image: UIImage(named: "im.png"))
-        imageView.downloaded(from: stringUrl, contentMode: .scaleToFill)
-        imageView.layer.cornerRadius = imageView.frame.size.height / 2
-        imageView.layer.masksToBounds = true
-
-        return imageView
-    }
+//    func imageInit(_ apiData: User) -> UIImageView{
+//        let stringUrl = apiData.picture.medium
+//
+//        let imageView = UIImageView()
+////        imageView.downloaded(from: stringUrl, contentMode: .scaleToFill)
+////        imageView.layer.cornerRadius = imageView.frame.size.height / 2
+////        imageView.layer.masksToBounds = true
+////        imageView.layer.borderWidth = 2.0
+////        imageView.layer.borderColor = UIColor.blue.cgColor
+//
+//        return imageView
+//    }
         
 }

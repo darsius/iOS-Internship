@@ -10,7 +10,6 @@ import UIKit
 
 class UsersViewController: UIViewController {
     
-    
     @IBOutlet weak var userCell: userCell!
     
     @IBOutlet weak var titleView: TitleView!
@@ -18,16 +17,12 @@ class UsersViewController: UIViewController {
     @IBOutlet weak var userTableView: UITableView!
     private var users: [User] = []
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-//        tableView.register(Cell.self, forCellReuseIdentifier: "userCell")
         
         let nib = UINib(nibName: "userCell", bundle: nil)
         userTableView.register(nib, forCellReuseIdentifier: "userCell")
-        
-//        self.userTableView.register(UITableViewCell.self, forCellReuseIdentifier: "userCell")
+    
         userTableView.delegate = self
         userTableView.dataSource = self
         fetchUsers()
@@ -47,25 +42,6 @@ class UsersViewController: UIViewController {
         }
     }
 
-//    private func handleUsersImageViewContent(_ indexPath: IndexPath, _ userCell: userCell) {
-//
-//        let apiData = users[indexPath.row]
-//    }
-
-//    private func handleUsersTimeFormat(_ hours: Double, _ minutes: Double, _ cell: userCell) {
-//        let userTimeHours = hours + (minutes / 60)
-//        let currentTime = Date()
-//        let userTimeZone = TimeZone(secondsFromGMT: Int(userTimeHours * 3600))
-//
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.dateFormat = "HH:mm"
-//        dateFormatter.timeZone = userTimeZone
-//
-//        let userLocalTime = dateFormatter.string(from: currentTime)
-//
-//        cell.timeLabel.text = userLocalTime
-//    }
-
     private func configureUsersCell(_ tableView: UITableView, indexPath: IndexPath) -> userCell {
         let userCell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath) as! userCell
         
@@ -73,9 +49,15 @@ class UsersViewController: UIViewController {
         
         let userEmail = users[indexPath.row].email
         
+        
         let apiData = users[indexPath.row]
-        let image = userCell.imageInit(apiData)
+        let stringUrl = apiData.picture.medium
+        userCell.userImage.downloaded(from: stringUrl, contentMode: .scaleToFill)
+        userCell.userImage.layer.cornerRadius = userCell.userImage.frame.size.height / 2
+        userCell.userImage.layer.masksToBounds = true
+        let imageView = userCell.userImage!
 
+        //
         let userTime = users[indexPath.row].location.timezone.offset
         let components = userTime.split(separator: ":")
 
@@ -95,15 +77,10 @@ class UsersViewController: UIViewController {
         dateFormatter.timeZone = userTimeZone
 
         let userLocalTime = dateFormatter.string(from: currentTime)
+        //
         
-        userCell.cellInit(userName, image, userEmail, userLocalTime)
+        userCell.cellInit(userName, imageView, userEmail, userLocalTime)
         
-        userCell.contentView.addSubview(image)
-        
-
-//        userCell.timeLabel.text = userLocalTime
-
-//        handleUsersTimeFormat(hours, minutes, userCell)
 //        handleUsersImageViewContent(indexPath, userCell)
 
         return userCell
