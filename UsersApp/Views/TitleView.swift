@@ -21,8 +21,14 @@ class TitleView: UIView {
         initSubView()    }
     
     private func initSubView() {
-        let xibView = Bundle.main.loadNibNamed("TitleView", owner: self, options: nil)![0] as! UIView
-        xibView.frame = self.bounds
-        addSubview(xibView)
+        guard let xibTitleView = Bundle.main.loadNibNamed("TitleView", owner: self, options: nil)?.first as? UIView else {
+            print("Error at loading TitleView!")
+            return
+        }
+
+        xibTitleView.frame = bounds
+        xibTitleView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        addSubview(xibTitleView)
+
     }
 }

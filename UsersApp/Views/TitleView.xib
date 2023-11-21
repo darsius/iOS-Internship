@@ -22,8 +22,8 @@
                     <rect key="frame" x="0.0" y="0.0" width="393" height="60"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Users" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wj9-nb-aKM">
-                            <rect key="frame" x="164" y="20" width="65.333333333333314" height="31.333333333333329"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                            <rect key="frame" x="159" y="16" width="75.333333333333314" height="36"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="30"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
@@ -31,7 +31,7 @@
                     <color key="backgroundColor" systemColor="systemYellowColor"/>
                     <constraints>
                         <constraint firstItem="wj9-nb-aKM" firstAttribute="centerX" secondItem="hf2-mX-4aA" secondAttribute="centerX" id="JGT-NR-l9O"/>
-                        <constraint firstItem="wj9-nb-aKM" firstAttribute="top" secondItem="hf2-mX-4aA" secondAttribute="top" constant="20" id="vT2-He-doh"/>
+                        <constraint firstItem="wj9-nb-aKM" firstAttribute="top" secondItem="hf2-mX-4aA" secondAttribute="top" constant="16" id="vT2-He-doh"/>
                     </constraints>
                 </view>
             </subviews>

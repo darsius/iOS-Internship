@@ -11,8 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UsersViewController" customModule="UsersApp" customModuleProvider="target">
             <connections>
                 <outlet property="titleView" destination="Ejo-lF-NsY" id="UUU-pk-qoS"/>
-                <outlet property="userCell" destination="BXI-lf-p7v" id="L47-bW-m26"/>
-                <outlet property="userTableView" destination="jLZ-fH-h80" id="Ne1-AS-9b3"/>
+                <outlet property="usersTableView" destination="jLZ-fH-h80" id="Ne1-AS-9b3"/>
                 <outlet property="view" destination="iN0-l3-epB" id="uAh-XN-EV2"/>
             </connections>
         </placeholder>
@@ -36,7 +35,7 @@
                         <outlet property="delegate" destination="iN0-l3-epB" id="xBz-vH-JYd"/>
                     </connections>
                 </tableView>
-                <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="userCell" translatesAutoresizingMaskIntoConstraints="NO" id="BXI-lf-p7v" customClass="userCell" customModule="UsersApp" customModuleProvider="target">
+                <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="userCell" translatesAutoresizingMaskIntoConstraints="NO" id="BXI-lf-p7v" customClass="userCellView" customModule="UsersApp">
                     <rect key="frame" x="0.0" y="127" width="393" height="80"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="BXI-lf-p7v" id="BIZ-lb-xwh">
