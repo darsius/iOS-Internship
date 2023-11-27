@@ -9,9 +9,7 @@ import UIKit
 
 
 class UsersViewController: UIViewController {
-    
-    @IBOutlet weak var userCell: UserCellView!
-    
+   
     @IBOutlet weak var titleView: TitleView!
     
     @IBOutlet weak var usersTableView: UITableView!

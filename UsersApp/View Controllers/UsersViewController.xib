@@ -11,7 +11,6 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UsersViewController" customModule="UsersApp" customModuleProvider="target">
             <connections>
                 <outlet property="titleView" destination="Ejo-lF-NsY" id="UUU-pk-qoS"/>
-                <outlet property="userCell" destination="BXI-lf-p7v" id="yGR-Nk-pcm"/>
                 <outlet property="usersTableView" destination="jLZ-fH-h80" id="Ne1-AS-9b3"/>
                 <outlet property="view" destination="iN0-l3-epB" id="uAh-XN-EV2"/>
             </connections>
@@ -23,7 +22,7 @@
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ejo-lF-NsY" customClass="TitleView" customModule="UsersApp" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="59" width="393" height="60"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <color key="backgroundColor" systemColor="systemOrangeColor"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="60" id="ZAh-Bh-GM5"/>
                     </constraints>
@@ -36,14 +35,6 @@
                         <outlet property="delegate" destination="iN0-l3-epB" id="xBz-vH-JYd"/>
                     </connections>
                 </tableView>
-                <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="userCell" translatesAutoresizingMaskIntoConstraints="NO" id="BXI-lf-p7v" customClass="UserCellView" customModule="UsersApp" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="127" width="393" height="80"/>
-                    <autoresizingMask key="autoresizingMask"/>
-                    <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="BXI-lf-p7v" id="BIZ-lb-xwh">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="80"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </tableViewCellContentView>
-                </tableViewCell>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemYellowColor"/>
@@ -62,6 +53,9 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemYellowColor">
             <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
