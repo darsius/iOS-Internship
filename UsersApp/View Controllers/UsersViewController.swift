@@ -9,9 +9,7 @@ import UIKit
 
 
 class UsersViewController: UIViewController {
-   
-    @IBOutlet weak var titleView: TitleView!
-    
+
     @IBOutlet weak var usersTableView: UITableView!
     
     private var users: [User] = []
