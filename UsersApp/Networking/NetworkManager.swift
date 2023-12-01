@@ -11,10 +11,19 @@ import Foundation
 class NetworkManager {
     let networError = NetworkError.self
     
-    func getUser() async throws -> [User] {
-        let endpoint = "https://randomuser.me/api/?results=100&seed=abc"
+    func getUser(endpointResult: Int, endpointSeed: String) async throws -> [User] {
         
-        guard let url = URL(string: endpoint) else {
+        var urlComponents = URLComponents(string: "https://randomuser.me/api/")
+        urlComponents?.queryItems = [
+            URLQueryItem(name: "results", value: "\(endpointResult)"),
+            URLQueryItem(name: "seed", value: endpointSeed)
+        ]
+        
+        guard endpointResult >= 1 else {
+            throw networError.invalidParameter
+        }
+
+        guard let url = urlComponents?.url else {
             throw networError.invalidUrl
         }
         

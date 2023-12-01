@@ -14,6 +14,9 @@ class UsersViewController: UIViewController {
     
     private var users: [User] = []
     
+    private var numberOfUsersDisplayed: Int = 100;
+    private var orderOfUsersDisplayed: String = "abc"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -29,7 +32,7 @@ class UsersViewController: UIViewController {
         let networkManager = NetworkManager()
         Task {
             do {
-                self.users = try await networkManager.getUser()
+                self.users = try await networkManager.getUser(endpointResult: numberOfUsersDisplayed, endpointSeed: orderOfUsersDisplayed)
                 DispatchQueue.main.async {
                     self.usersTableView.reloadData()
                 }
