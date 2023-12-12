@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="UserCellView" customModule="UsersApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="80"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bTq-36-fXI">
+                    <rect key="frame" x="10" y="5" width="70" height="70"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="70" id="A1S-xb-WsX"/>
+                        <constraint firstAttribute="height" constant="70" id="FoK-9i-z5G"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t9d-qf-Tph">
+                    <rect key="frame" x="85" y="44" width="36.666666666666657" height="18"/>
+                    <constraints>
+                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="250" id="ECs-FR-T3R"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20:20" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e2k-dP-kSb">
+                    <rect key="frame" x="344.66666666666669" y="31.666666666666671" width="38.333333333333314" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nume" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2MI-Eu-bAv">
+                    <rect key="frame" x="85" y="10" width="52.666666666666657" height="24"/>
+                    <constraints>
+                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="250" id="uxz-1O-AqS"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="e2k-dP-kSb" secondAttribute="trailing" constant="10" id="2Sg-Gk-XZd"/>
+                <constraint firstItem="t9d-qf-Tph" firstAttribute="top" secondItem="2MI-Eu-bAv" secondAttribute="bottom" constant="10" id="6l3-hw-h1a"/>
+                <constraint firstItem="bTq-36-fXI" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="8Am-bJ-Ext"/>
+                <constraint firstItem="2MI-Eu-bAv" firstAttribute="leading" secondItem="bTq-36-fXI" secondAttribute="trailing" constant="5" id="8Jh-TA-Jfz"/>
+                <constraint firstItem="e2k-dP-kSb" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="FbT-o0-7Nz"/>
+                <constraint firstItem="bTq-36-fXI" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="G89-U5-Kfh"/>
+                <constraint firstAttribute="bottom" secondItem="bTq-36-fXI" secondAttribute="bottom" constant="5" id="Gfy-4B-l4U"/>
+                <constraint firstItem="t9d-qf-Tph" firstAttribute="leading" secondItem="bTq-36-fXI" secondAttribute="trailing" constant="5" id="MsO-2e-rdR"/>
+                <constraint firstItem="2MI-Eu-bAv" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="bKK-3z-r38"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="emailLabel" destination="t9d-qf-Tph" id="8v2-2p-H4k"/>
+                <outlet property="nameLabel" destination="2MI-Eu-bAv" id="OZr-1r-TvI"/>
+                <outlet property="timeLabel" destination="e2k-dP-kSb" id="By4-zQ-K4y"/>
+                <outlet property="userImageView" destination="bTq-36-fXI" id="x5A-tz-cuv"/>
+            </connections>
+            <point key="canvasLocation" x="75.572519083969468" y="20.422535211267608"/>
+        </view>
+    </objects>
+</document>
