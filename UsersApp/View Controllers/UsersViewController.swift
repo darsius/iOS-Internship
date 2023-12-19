@@ -1,10 +1,3 @@
-//
-//  ViewController.swift
-//  Prob
-//
-//  Created by Dar Dar on 28.09.2023.
-//
-
 import UIKit
 
 
@@ -20,12 +13,23 @@ class UsersViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setUpNavBar()
+        
         let nib = UINib(nibName: "UserCellView", bundle: nil)
         usersTableView.register(nib, forCellReuseIdentifier: "UserCellView")
     
         usersTableView.delegate = self
         usersTableView.dataSource = self
         fetchUsers()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        (UIApplication.shared.delegate as! AppDelegate).restricRotation = .all
+    }
+    
+    private func setUpNavBar() {
+        let titleView = TitleView()
+        navigationItem.titleView = titleView
     }
     
     private func fetchUsers() {
@@ -59,7 +63,23 @@ class UsersViewController: UIViewController {
 
 extension UsersViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("You tapped me!")
+        
+        let detailsViewController = UserDetailsViewController()
+        
+        let selectedUser = users[indexPath.row]
+
+        let imageUrl = selectedUser.picture.large
+        detailsViewController.userImageUrl = imageUrl
+        
+        let firstName = selectedUser.name.first
+        detailsViewController.firstName = firstName
+        
+        let lastName = selectedUser.name.last
+        detailsViewController.lastName = lastName
+        
+        navigationController?.pushViewController(detailsViewController, animated: true)
+        
+        
     }
 }
 
