@@ -28,8 +28,12 @@ class UsersViewController: UIViewController {
     }
     
     private func setUpNavBar() {
-        let titleView = TitleView()
-        navigationItem.titleView = titleView
+        let titleAtributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont.systemFont(ofSize: 22)
+        ]
+
+        navigationController?.navigationBar.titleTextAttributes = titleAtributes
+        navigationItem.title = "Users"
     }
     
     private func fetchUsers() {
