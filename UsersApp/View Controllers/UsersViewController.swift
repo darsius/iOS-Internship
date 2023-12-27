@@ -23,10 +23,6 @@ class UsersViewController: UIViewController {
         fetchUsers()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        (UIApplication.shared.delegate as! AppDelegate).restricRotation = .all
-    }
-    
     private func setUpNavBar() {
         let titleAtributes: [NSAttributedString.Key: Any] = [
             .font: UIFont.systemFont(ofSize: 22)
