@@ -33,10 +33,8 @@ class UserDetailsViewController: UIViewController, UITextViewDelegate {
         if let previousText = userDefaults.value(forKey: userDefaultsKey) as? String {
             textView.text = previousText
         }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        (UIApplication.shared.delegate as! AppDelegate).restricRotation = .portrait
+        
+//        setupKeyboardHiding()
     }
     
     private func setUpImageView(with urlString: String) {
@@ -63,14 +61,6 @@ class UserDetailsViewController: UIViewController, UITextViewDelegate {
         userDefaults.setValue(textView.text, forKey: userDefaultsKey)
     }
     
-    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        if text == "\n" {
-            textView.resignFirstResponder()
-            return false
-        }
-        return true
-    }
-    
     @objc func handleTap(_ gesture: UITapGestureRecognizer) {
         textView.resignFirstResponder()
     }
@@ -82,4 +72,17 @@ class UserDetailsViewController: UIViewController, UITextViewDelegate {
         return "text_\(userId)"
     }
     
+//    private func setupKeyboardHiding() {
+//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillHideNotification, object: nil)
+//
+//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+//    }
+//
+//    @objc func keyboardWillShow(sender: Notification) {
+//        view.frame.origin.y -= 200
+//    }
+//
+//    @objc func keyboardWillHide(sender: Notification) {
+//        view.frame.origin.y = 0
+//    }
 }
