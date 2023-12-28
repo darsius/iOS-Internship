@@ -10,7 +10,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UserDetailsViewController" customModule="UsersApp" customModuleProvider="target">
             <connections>
-                <outlet property="textView" destination="gY4-kU-2c4" id="12V-q7-sPL"/>
+                <outlet property="bottomConstraint" destination="Djv-jT-0We" id="jge-cZ-EgG"/>
+                <outlet property="noteTextView" destination="gY4-kU-2c4" id="12V-q7-sPL"/>
+                <outlet property="outerDetailsStack" destination="vlz-da-hNK" id="ZVC-Hs-SpH"/>
+                <outlet property="outerStackViewTopConstraint" destination="Vea-eb-ero" id="Bwm-D3-jxO"/>
                 <outlet property="userFirstNameView" destination="qEm-RF-uQZ" id="Gdz-e7-DH2"/>
                 <outlet property="userImageView" destination="oEI-A7-rgJ" id="Wob-hE-5cS"/>
                 <outlet property="userLastNameView" destination="YX2-v1-QzV" id="0eG-VS-7ur"/>
