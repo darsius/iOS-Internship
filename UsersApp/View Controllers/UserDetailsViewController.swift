@@ -1,17 +1,21 @@
 import UIKit
 
 class UserDetailsViewController: UIViewController, UITextViewDelegate {
-    
-    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
-    @IBOutlet weak var outerStackViewTopConstraint: NSLayoutConstraint!
-    
+     
     @IBOutlet weak var outerDetailsStack: UIStackView!
     @IBOutlet weak var userImageView: UIImageView!
     @IBOutlet weak var noteTextView: UITextView!
     @IBOutlet weak var userFirstNameView: UserDetailView!
     @IBOutlet weak var userLastNameView: UserDetailView!
     
-    var outerStackViewTopConstraintConstant: CGFloat = 25.0
+    @IBOutlet weak var locationView: UIView!
+    
+    @IBOutlet weak var streetAdressLabel: UILabel!
+    @IBOutlet weak var cityLabel: UILabel!
+    @IBOutlet weak var stateLabel: UILabel!
+    @IBOutlet weak var postalCodeLabel: UILabel!
+    @IBOutlet weak var coordinatesLabel: UILabel!
+    @IBOutlet weak var timezoneLabel: UILabel!
     
     var firstNameTitle = "First Name"
     var firstName : String?
@@ -20,6 +24,15 @@ class UserDetailsViewController: UIViewController, UITextViewDelegate {
     var lastName : String?
     
     var userImageUrl: String?
+    
+    var city: String?
+    var state: String?
+    var streetAdress: String?
+    var postalCode: PostalCode?
+    var coordinates: String?
+    var timezone: String?
+    
+    var leadingSpace = "       "
     
     
     override func viewDidLoad() {
@@ -30,6 +43,7 @@ class UserDetailsViewController: UIViewController, UITextViewDelegate {
         }
         setUpFirstNameView()
         setUpLastNameView()
+        setUpLocationView()
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
         view.addGestureRecognizer(tapGesture)
@@ -69,6 +83,18 @@ class UserDetailsViewController: UIViewController, UITextViewDelegate {
     private func setUpLastNameView() {
         userLastNameView.contentViewTitle.text = lastNameTitle
         userLastNameView.contentViewSubtitle.text = lastName
+    }
+    
+    private func setUpLocationView() {
+        cityLabel.text = leadingSpace + city!
+        stateLabel.text = leadingSpace + state!
+        streetAdressLabel.text = leadingSpace + streetAdress!
+        postalCodeLabel.text = leadingSpace + (postalCode?.description ?? "00")
+        
+        
+        coordinatesLabel.text = leadingSpace + coordinates!
+//        timezoneLabel.text = leadingSpace + timezone!
+
     }
     
     //textView
