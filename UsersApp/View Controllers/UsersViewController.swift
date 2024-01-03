@@ -77,6 +77,28 @@ extension UsersViewController: UITableViewDelegate {
         let lastName = selectedUser.name.last
         detailsViewController.lastName = lastName
         
+        let city = selectedUser.location.city
+        detailsViewController.city = city
+        
+        let state = selectedUser.location.state
+        detailsViewController.state = state
+        
+        let streetAdress = selectedUser.location.street.name + " " +
+            String(selectedUser.location.street.number)
+        detailsViewController.streetAdress = streetAdress
+        
+        let postalCode = selectedUser.location.postcode
+        print(postalCode)
+        detailsViewController.postalCode = postalCode
+        
+        let coordinates = selectedUser.location.coordinates.latitude + " " + selectedUser.location.coordinates.longitude
+        detailsViewController.coordinates = coordinates
+        
+        let timezone = selectedUser.location.timezone.offset + " " + selectedUser.location.timezone.description
+        detailsViewController.coordinates = timezone
+
+        
+        
         navigationController?.pushViewController(detailsViewController, animated: true)
         
         
