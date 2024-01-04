@@ -88,15 +88,36 @@ extension UsersViewController: UITableViewDelegate {
         detailsViewController.streetAdress = streetAdress
         
         let postalCode = selectedUser.location.postcode
-        print(postalCode)
         detailsViewController.postalCode = postalCode
         
-        let coordinates = selectedUser.location.coordinates.latitude + " " + selectedUser.location.coordinates.longitude
-        detailsViewController.coordinates = coordinates
+        let coordinatesLatitude = selectedUser.location.coordinates.latitude
+        let coordinatesLongitude = selectedUser.location.coordinates.longitude
+        detailsViewController.coordinatesLatitude = coordinatesLatitude
+        detailsViewController.coordinatesLongitude = coordinatesLongitude
         
-        let timezone = selectedUser.location.timezone.offset + " " + selectedUser.location.timezone.description
-        detailsViewController.coordinates = timezone
+        let timezoneOffset = selectedUser.location.timezone.offset
+        let timezoneDescription =
+            selectedUser.location.timezone.description
+        
+        detailsViewController.timezoneOffset = timezoneOffset
+        detailsViewController.timezoneDescription = timezoneDescription
 
+        let dobDate = selectedUser.dob?.date
+        let dobAge = selectedUser.dob?.age
+        
+        detailsViewController.dobDate = dobDate
+        detailsViewController.dobAge = dobAge
+
+        let registeredDate = selectedUser.registered.date
+        let registeredAge = selectedUser.registered.age
+        
+        detailsViewController.registeredDate = registeredDate
+        detailsViewController.registeredAge = registeredAge
+        
+        let phone = selectedUser.phone
+        detailsViewController.phone = phone
+        let cellPhone = selectedUser.cell
+        detailsViewController.cell = cellPhone
         
         
         navigationController?.pushViewController(detailsViewController, animated: true)

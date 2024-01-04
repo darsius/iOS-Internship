@@ -1,7 +1,7 @@
 import UIKit
 
 class UserDetailsViewController: UIViewController, UITextViewDelegate {
-     
+    
     @IBOutlet weak var outerDetailsStack: UIStackView!
     @IBOutlet weak var userImageView: UIImageView!
     @IBOutlet weak var noteTextView: UITextView!
@@ -16,6 +16,10 @@ class UserDetailsViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var postalCodeLabel: UILabel!
     @IBOutlet weak var coordinatesLabel: UILabel!
     @IBOutlet weak var timezoneLabel: UILabel!
+    @IBOutlet weak var dobLabel: UILabel!
+    @IBOutlet weak var registeredLabel: UILabel!
+    @IBOutlet weak var phoneLabel: UILabel!
+    @IBOutlet weak var cellPhoneLabel: UILabel!
     
     var firstNameTitle = "First Name"
     var firstName : String?
@@ -29,8 +33,16 @@ class UserDetailsViewController: UIViewController, UITextViewDelegate {
     var state: String?
     var streetAdress: String?
     var postalCode: PostalCode?
-    var coordinates: String?
-    var timezone: String?
+    var coordinatesLatitude: String?
+    var coordinatesLongitude: String?
+    var timezoneOffset: String?
+    var timezoneDescription: String?
+    var dobDate: String?
+    var dobAge: Int?
+    var registeredDate: String?
+    var registeredAge: Int?
+    var phone: String?
+    var cell: String?
     
     var leadingSpace = "       "
     
@@ -44,6 +56,10 @@ class UserDetailsViewController: UIViewController, UITextViewDelegate {
         setUpFirstNameView()
         setUpLastNameView()
         setUpLocationView()
+        setUpDobView()
+        setUpRegisteredView()
+        setUpPhoneView()
+        setUpCellphoneView()
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
         view.addGestureRecognizer(tapGesture)
@@ -89,12 +105,26 @@ class UserDetailsViewController: UIViewController, UITextViewDelegate {
         cityLabel.text = leadingSpace + city!
         stateLabel.text = leadingSpace + state!
         streetAdressLabel.text = leadingSpace + streetAdress!
-        postalCodeLabel.text = leadingSpace + (postalCode?.description ?? "00")
+        postalCodeLabel.text = leadingSpace + (postalCode?.description ?? "00000")
         
+        coordinatesLabel.text = leadingSpace + "latitude: " + coordinatesLatitude! + " longitude: " + coordinatesLongitude!
         
-        coordinatesLabel.text = leadingSpace + coordinates!
-//        timezoneLabel.text = leadingSpace + timezone!
-
+        timezoneLabel.text = leadingSpace + "offset: " + timezoneOffset! + " " + timezoneDescription!
+    }
+    
+    private func setUpDobView() {
+        dobLabel.text = "Date: " + dobDate! + ", age:" + String(dobAge!)
+    }
+    private func setUpRegisteredView() {
+        registeredLabel.text = "Date: " + registeredDate! + ", age:" + String(registeredAge!)
+    }
+    
+    private func setUpPhoneView() {
+        phoneLabel.text = phone
+    }
+    
+    private func setUpCellphoneView() {
+        cellPhoneLabel.text = cell
     }
     
     //textView
