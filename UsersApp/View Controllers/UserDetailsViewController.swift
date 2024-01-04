@@ -44,7 +44,6 @@ class UserDetailsViewController: UIViewController, UITextViewDelegate {
     var phone: String?
     var cell: String?
     
-    var leadingSpace = "       "
     
     
     override func viewDidLoad() {
@@ -61,6 +60,7 @@ class UserDetailsViewController: UIViewController, UITextViewDelegate {
         setUpRegisteredView()
         setUpPhoneView()
         setUpCellphoneView()
+        displayTextViewOutline()
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
         view.addGestureRecognizer(tapGesture)
@@ -116,19 +116,19 @@ class UserDetailsViewController: UIViewController, UITextViewDelegate {
         setUpDetailView(countryView, "Country", country)
         setUpDetailView(postalCodeView, "Postal Code", postalCode?.description)
         
-        let coordinatesSubtitle = leadingSpace + "latitude: " + coordinatesLatitude! + " longitude: " + coordinatesLongitude!
+        let coordinatesSubtitle = "latitude: " + coordinatesLatitude! + "\nlongitude: " + coordinatesLongitude!
         setUpDetailView(coordinatesView, "Coordinates", coordinatesSubtitle)
         
-        let timezoneSubtitle = leadingSpace + "offset: " + timezoneOffset! + " " + timezoneDescription!
+        let timezoneSubtitle = "offset: " + timezoneOffset! + "\n" + timezoneDescription!
         setUpDetailView(timezoneView, "Timezone", timezoneSubtitle)
     }
     
     private func setUpDobView() {
-        let dobSubtitle = "Date: " + dobDate! + ", age:" + String(dobAge!)
+        let dobSubtitle = "Date: " + dobDate! + ", age: " + String(dobAge!)
         setUpDetailView(birthDateView, "Birth Date ", dobSubtitle)
     }
     private func setUpRegisteredView() {
-        let registeredSubtitle = "Date: " + registeredDate! + ", age:" + String(registeredAge!)
+        let registeredSubtitle = "Date: " + registeredDate! + ", age: " + String(registeredAge!)
         setUpDetailView(RegisteredDateView, "Registered ", registeredSubtitle)
     }
     
@@ -172,5 +172,10 @@ class UserDetailsViewController: UIViewController, UITextViewDelegate {
         } else {
             view.frame.origin.y = 0
         }
+    }
+    
+    private func displayTextViewOutline() {
+        noteTextView.layer.borderWidth = 0.7
+        noteTextView.layer.borderColor = UIColor.black.cgColor
     }
 }
