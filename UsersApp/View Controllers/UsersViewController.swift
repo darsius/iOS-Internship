@@ -85,8 +85,8 @@ extension UsersViewController: UITableViewDelegate {
         detailsViewController.timezoneOffset = user.location.timezone.offset
         detailsViewController.timezoneDescription = user.location.timezone.description
         detailsViewController.email = user.email
-        detailsViewController.dobDate = user.dob?.date
-        detailsViewController.dobAge = user.dob?.age
+        detailsViewController.dobDate = user.dob.date
+        detailsViewController.dobAge = user.dob.age
         detailsViewController.registeredDate = user.registered.date
         detailsViewController.registeredAge = user.registered.age
         detailsViewController.phone = user.phone

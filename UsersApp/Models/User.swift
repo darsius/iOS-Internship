@@ -10,7 +10,7 @@ struct User: Codable {
     let name: Name
     let location: Location
     let email: String
-    let dob: Dob?
+    let dob: Dob
     let registered: Registered
     let phone: String
     let cell: String
