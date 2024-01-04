@@ -77,11 +77,17 @@ extension UsersViewController: UITableViewDelegate {
         let lastName = selectedUser.name.last
         detailsViewController.lastName = lastName
         
+        let gender = selectedUser.gender
+        detailsViewController.gender = gender
+        
         let city = selectedUser.location.city
         detailsViewController.city = city
         
         let state = selectedUser.location.state
         detailsViewController.state = state
+        
+        let country = selectedUser.location.country
+        detailsViewController.country = country
         
         let streetAdress = selectedUser.location.street.name + " " +
             String(selectedUser.location.street.number)
