@@ -10,12 +10,16 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UserDetailsViewController" customModule="UsersApp" customModuleProvider="target">
             <connections>
+                <outlet property="cellPhoneLabel" destination="Q51-Yy-6tM" id="2li-Mr-Emd"/>
                 <outlet property="cityLabel" destination="eeN-uB-D13" id="PDB-ti-P2v"/>
                 <outlet property="coordinatesLabel" destination="H7B-7N-ebM" id="qdx-ri-MNr"/>
+                <outlet property="dobLabel" destination="vBh-J6-UTp" id="jY4-cM-4q6"/>
                 <outlet property="locationView" destination="ufN-33-Ld5" id="pLN-09-leC"/>
                 <outlet property="noteTextView" destination="gY4-kU-2c4" id="12V-q7-sPL"/>
                 <outlet property="outerDetailsStack" destination="vlz-da-hNK" id="ZVC-Hs-SpH"/>
+                <outlet property="phoneLabel" destination="Y6W-XT-aS8" id="Ii3-Mj-sfL"/>
                 <outlet property="postalCodeLabel" destination="uxD-8Y-DbX" id="qhg-ui-Sjg"/>
+                <outlet property="registeredLabel" destination="Goh-33-iEV" id="Aqw-JA-Hbk"/>
                 <outlet property="stateLabel" destination="YZJ-Jb-OUt" id="Va2-Va-lIq"/>
                 <outlet property="streetAdressLabel" destination="1fH-O3-FFj" id="O1f-QM-0Em"/>
                 <outlet property="timezoneLabel" destination="eTm-kQ-U7B" id="HnF-z1-4TM"/>
@@ -186,7 +190,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="hR8-1D-t79">
-                                                    <rect key="frame" x="20" y="36" width="365" height="438.66666666666669"/>
+                                                    <rect key="frame" x="20" y="36" width="365" height="424"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Street Adress" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cqz-AN-DWk">
                                                             <rect key="frame" x="0.0" y="0.0" width="365" height="20.333333333333332"/>
@@ -267,20 +271,20 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="       Latitude 555; Longitude444" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H7B-7N-ebM">
-                                                            <rect key="frame" x="0.0" y="347" width="365" height="27.666666666666686"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                                            <rect key="frame" x="0.0" y="347" width="365" height="20.333333333333314"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Timezone" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QcU-Mq-ban">
-                                                            <rect key="frame" x="0.0" y="382.66666666666674" width="365" height="20.333333333333314"/>
+                                                            <rect key="frame" x="0.0" y="375.33333333333326" width="365" height="20.333333333333314"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="       Offset" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eTm-kQ-U7B">
-                                                            <rect key="frame" x="0.0" y="411" width="365" height="27.666666666666686"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                                            <rect key="frame" x="0.0" y="403.66666666666674" width="365" height="20.333333333333314"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -307,9 +311,32 @@
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dlm-jd-KdR" customClass="UserDetailView" customModule="UsersApp" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="794" width="393" height="70"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Birth Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WxO-cy-hsw">
+                                                    <rect key="frame" x="8" y="8" width="377" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="20" id="gkR-ci-h42"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="date and age" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vBh-J6-UTp">
+                                                    <rect key="frame" x="8" y="36" width="377" height="20.333333333333329"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                             <color key="backgroundColor" systemColor="systemBrownColor"/>
                                             <constraints>
+                                                <constraint firstItem="vBh-J6-UTp" firstAttribute="leading" secondItem="Dlm-jd-KdR" secondAttribute="leading" constant="8" id="9fI-fR-01w"/>
+                                                <constraint firstItem="WxO-cy-hsw" firstAttribute="leading" secondItem="Dlm-jd-KdR" secondAttribute="leading" constant="8" id="MIT-8s-8dR"/>
+                                                <constraint firstAttribute="trailing" secondItem="vBh-J6-UTp" secondAttribute="trailing" constant="8" id="VTX-Am-46P"/>
+                                                <constraint firstAttribute="trailing" secondItem="WxO-cy-hsw" secondAttribute="trailing" constant="8" id="uZ0-iE-qa5"/>
                                                 <constraint firstAttribute="height" constant="70" id="wLx-Zi-Weh"/>
+                                                <constraint firstItem="vBh-J6-UTp" firstAttribute="top" secondItem="WxO-cy-hsw" secondAttribute="bottom" constant="8" id="xDJ-c5-60J"/>
+                                                <constraint firstItem="WxO-cy-hsw" firstAttribute="top" secondItem="Dlm-jd-KdR" secondAttribute="top" constant="8" id="zus-lO-d3p"/>
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g5L-IL-szU" userLabel="Divider">
@@ -321,9 +348,36 @@
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7hz-cp-3Hx" customClass="UserDetailView" customModule="UsersApp" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="885" width="393" height="70"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Registered" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="80M-iL-gF0">
+                                                    <rect key="frame" x="8" y="8" width="377" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="20" id="N5h-Ny-w1W"/>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="ylZ-E3-1BF"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="date and age" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Goh-33-iEV">
+                                                    <rect key="frame" x="8" y="36" width="377" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="20" id="lBX-t7-x2f"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                             <color key="backgroundColor" systemColor="systemBrownColor"/>
                                             <constraints>
+                                                <constraint firstItem="Goh-33-iEV" firstAttribute="top" secondItem="80M-iL-gF0" secondAttribute="bottom" constant="8" id="AWp-F4-JRf"/>
+                                                <constraint firstItem="80M-iL-gF0" firstAttribute="top" secondItem="7hz-cp-3Hx" secondAttribute="top" constant="8" id="EGa-3w-2hJ"/>
+                                                <constraint firstAttribute="trailing" secondItem="80M-iL-gF0" secondAttribute="trailing" constant="8" id="MzZ-GE-yWx"/>
                                                 <constraint firstAttribute="height" constant="70" id="c3c-Un-iTW"/>
+                                                <constraint firstItem="Goh-33-iEV" firstAttribute="leading" secondItem="7hz-cp-3Hx" secondAttribute="leading" constant="8" id="ihu-cV-zkY"/>
+                                                <constraint firstItem="80M-iL-gF0" firstAttribute="leading" secondItem="7hz-cp-3Hx" secondAttribute="leading" constant="8" id="jdG-oX-ili"/>
+                                                <constraint firstAttribute="trailing" secondItem="Goh-33-iEV" secondAttribute="trailing" constant="8" id="kae-hQ-rIQ"/>
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7bD-Hp-SC8" userLabel="Divider">
