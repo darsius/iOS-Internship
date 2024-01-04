@@ -5,32 +5,32 @@ class UserDetailsViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var outerDetailsStack: UIStackView!
     @IBOutlet weak var userImageView: UIImageView!
     @IBOutlet weak var noteTextView: UITextView!
-    @IBOutlet weak var userFirstNameView: UserDetailView!
-    @IBOutlet weak var userLastNameView: UserDetailView!
+    @IBOutlet weak var firstNameView: UserDetailView!
+    @IBOutlet weak var lastNameView: UserDetailView!
+    @IBOutlet weak var genderView: UserDetailView!
+    @IBOutlet weak var phoneView: UserDetailView!
+    @IBOutlet weak var cellphoneView: UserDetailView!
     
+    @IBOutlet weak var timezoneView: UserDetailView!
+    @IBOutlet weak var coordinatesView: UserDetailView!
+    @IBOutlet weak var postalCodeView: UserDetailView!
+    @IBOutlet weak var countryView: UserDetailView!
+    @IBOutlet weak var stateView: UserDetailView!
+    @IBOutlet weak var cityView: UserDetailView!
+    @IBOutlet weak var streetAdressView: UserDetailView!
+    @IBOutlet weak var RegisteredDateView: UserDetailView!
+    @IBOutlet weak var birthDateView: UserDetailView!
     @IBOutlet weak var locationView: UIView!
     
-    @IBOutlet weak var streetAdressLabel: UILabel!
-    @IBOutlet weak var cityLabel: UILabel!
-    @IBOutlet weak var stateLabel: UILabel!
-    @IBOutlet weak var postalCodeLabel: UILabel!
-    @IBOutlet weak var coordinatesLabel: UILabel!
-    @IBOutlet weak var timezoneLabel: UILabel!
-    @IBOutlet weak var dobLabel: UILabel!
-    @IBOutlet weak var registeredLabel: UILabel!
-    @IBOutlet weak var phoneLabel: UILabel!
-    @IBOutlet weak var cellPhoneLabel: UILabel!
-    
-    var firstNameTitle = "First Name"
     var firstName : String?
-    
-    var lastNameTitle = "Last Name"
     var lastName : String?
+    var gender: String?
     
     var userImageUrl: String?
     
     var city: String?
     var state: String?
+    var country: String?
     var streetAdress: String?
     var postalCode: PostalCode?
     var coordinatesLatitude: String?
@@ -55,6 +55,7 @@ class UserDetailsViewController: UIViewController, UITextViewDelegate {
         }
         setUpFirstNameView()
         setUpLastNameView()
+        setUpGenderView()
         setUpLocationView()
         setUpDobView()
         setUpRegisteredView()
@@ -91,40 +92,52 @@ class UserDetailsViewController: UIViewController, UITextViewDelegate {
         userImageView.layer.masksToBounds = true
     }
     
+    private func setUpDetailView(_ view: UserDetailView ,_ title: String, _ subtitle: String!) {
+        view.contentViewTitle.text = title
+        view.contentViewSubtitle.text = subtitle
+    }
+    
     private func setUpFirstNameView() {
-        userFirstNameView.contentViewTitle.text = firstNameTitle
-        userFirstNameView.contentViewSubtitle.text = firstName
+        setUpDetailView(firstNameView, "First Name", firstName)
     }
     
     private func setUpLastNameView() {
-        userLastNameView.contentViewTitle.text = lastNameTitle
-        userLastNameView.contentViewSubtitle.text = lastName
+        setUpDetailView(lastNameView, "Last Name", lastName)
+    }
+    
+    private func setUpGenderView() {
+        setUpDetailView(genderView, "Gender", gender)
     }
     
     private func setUpLocationView() {
-        cityLabel.text = leadingSpace + city!
-        stateLabel.text = leadingSpace + state!
-        streetAdressLabel.text = leadingSpace + streetAdress!
-        postalCodeLabel.text = leadingSpace + (postalCode?.description ?? "00000")
+        setUpDetailView(cityView, "City", city)
+        setUpDetailView(stateView, "State", state)
+        setUpDetailView(streetAdressView, "Street Adress", streetAdress)
+        setUpDetailView(countryView, "Country", country)
+        setUpDetailView(postalCodeView, "Postal Code", postalCode?.description)
         
-        coordinatesLabel.text = leadingSpace + "latitude: " + coordinatesLatitude! + " longitude: " + coordinatesLongitude!
+        let coordinatesSubtitle = leadingSpace + "latitude: " + coordinatesLatitude! + " longitude: " + coordinatesLongitude!
+        setUpDetailView(coordinatesView, "Coordinates", coordinatesSubtitle)
         
-        timezoneLabel.text = leadingSpace + "offset: " + timezoneOffset! + " " + timezoneDescription!
+        let timezoneSubtitle = leadingSpace + "offset: " + timezoneOffset! + " " + timezoneDescription!
+        setUpDetailView(timezoneView, "Timezone", timezoneSubtitle)
     }
     
     private func setUpDobView() {
-        dobLabel.text = "Date: " + dobDate! + ", age:" + String(dobAge!)
+        let dobSubtitle = "Date: " + dobDate! + ", age:" + String(dobAge!)
+        setUpDetailView(birthDateView, "Birth Date ", dobSubtitle)
     }
     private func setUpRegisteredView() {
-        registeredLabel.text = "Date: " + registeredDate! + ", age:" + String(registeredAge!)
+        let registeredSubtitle = "Date: " + registeredDate! + ", age:" + String(registeredAge!)
+        setUpDetailView(RegisteredDateView, "Registered ", registeredSubtitle)
     }
     
     private func setUpPhoneView() {
-        phoneLabel.text = phone
+        setUpDetailView(phoneView, "Phone", phone)
     }
     
     private func setUpCellphoneView() {
-        cellPhoneLabel.text = cell
+        setUpDetailView(cellphoneView, "Cellphone", cell)
     }
     
     //textView
