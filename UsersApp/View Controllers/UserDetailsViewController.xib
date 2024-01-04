@@ -10,20 +10,19 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UserDetailsViewController" customModule="UsersApp" customModuleProvider="target">
             <connections>
-                <outlet property="RegisteredDateView" destination="7hz-cp-3Hx" id="9Xd-2e-IMU"/>
-                <outlet property="birthDateView" destination="Dlm-jd-KdR" id="JHF-fv-1g8"/>
                 <outlet property="cellphoneView" destination="h7A-in-HoP" id="3yY-Da-A38"/>
                 <outlet property="cityView" destination="BJY-M8-WZm" id="fHv-EM-LwN"/>
                 <outlet property="coordinatesView" destination="vLQ-pX-It9" id="Gs6-ws-5cz"/>
                 <outlet property="countryView" destination="8SA-PU-Ylr" id="0OS-6Q-TrX"/>
+                <outlet property="dateOfBirth" destination="Dlm-jd-KdR" id="JHF-fv-1g8"/>
+                <outlet property="emailView" destination="ajD-sH-hBd" id="e5e-Ca-IhH"/>
                 <outlet property="firstNameView" destination="qEm-RF-uQZ" id="Gdz-e7-DH2"/>
                 <outlet property="genderView" destination="N4b-AM-L0e" id="UTq-lf-jhA"/>
                 <outlet property="lastNameView" destination="YX2-v1-QzV" id="0eG-VS-7ur"/>
-                <outlet property="locationView" destination="ufN-33-Ld5" id="pLN-09-leC"/>
                 <outlet property="noteTextView" destination="gY4-kU-2c4" id="12V-q7-sPL"/>
-                <outlet property="outerDetailsStack" destination="vlz-da-hNK" id="ZVC-Hs-SpH"/>
                 <outlet property="phoneView" destination="w5b-CD-6B4" id="s7i-mA-H39"/>
                 <outlet property="postalCodeView" destination="lp9-JL-FXO" id="Dof-5R-qmA"/>
+                <outlet property="registeredDateView" destination="7hz-cp-3Hx" id="9Xd-2e-IMU"/>
                 <outlet property="stateView" destination="bRq-gP-c7K" id="r6b-pM-zmC"/>
                 <outlet property="streetAdressView" destination="yLO-9V-CpB" id="pno-1F-Sil"/>
                 <outlet property="timezoneView" destination="FjJ-df-CSK" id="aGh-fN-oeH"/>
@@ -40,7 +39,7 @@
                     <rect key="frame" x="0.0" y="47" width="393" height="805"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P9q-bR-GCp">
-                            <rect key="frame" x="0.0" y="0.0" width="393" height="1560"/>
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="1600"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oEI-A7-rgJ">
                                     <rect key="frame" x="30" y="25" width="333" height="333"/>
@@ -49,7 +48,7 @@
                                     </constraints>
                                 </imageView>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="vlz-da-hNK">
-                                    <rect key="frame" x="0.0" y="383" width="393" height="966"/>
+                                    <rect key="frame" x="0.0" y="383" width="393" height="1031"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qEm-RF-uQZ" customClass="UserDetailView" customModule="UsersApp" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="393" height="44"/>
@@ -431,8 +430,46 @@
                                                 <constraint firstAttribute="height" constant="1" id="y41-Iw-c1m"/>
                                             </constraints>
                                         </view>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dlm-jd-KdR" customClass="UserDetailView" customModule="UsersApp" customModuleProvider="target">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ajD-sH-hBd" customClass="UserDetailView" customModule="UsersApp" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="716" width="393" height="44"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GX8-lr-FYb">
+                                                    <rect key="frame" x="8" y="0.0" width="377" height="19.333333333333332"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="user@gmail.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oie-ku-ACT">
+                                                    <rect key="frame" x="8" y="29" width="377" height="23"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="oie-ku-ACT" secondAttribute="bottom" constant="-8" id="GSK-2z-Gvd"/>
+                                                <constraint firstItem="oie-ku-ACT" firstAttribute="leading" secondItem="ajD-sH-hBd" secondAttribute="leading" constant="8" id="KfP-hC-x2N"/>
+                                                <constraint firstAttribute="trailing" secondItem="GX8-lr-FYb" secondAttribute="trailing" constant="8" id="MWg-Og-l06"/>
+                                                <constraint firstAttribute="height" constant="44" id="SUe-3C-Yr2"/>
+                                                <constraint firstAttribute="trailing" secondItem="oie-ku-ACT" secondAttribute="trailing" constant="8" id="doV-CM-u8q"/>
+                                                <constraint firstItem="GX8-lr-FYb" firstAttribute="top" secondItem="ajD-sH-hBd" secondAttribute="top" id="g9v-Hp-4E9"/>
+                                                <constraint firstItem="GX8-lr-FYb" firstAttribute="leading" secondItem="ajD-sH-hBd" secondAttribute="leading" constant="8" id="wh6-eg-jBy"/>
+                                            </constraints>
+                                            <connections>
+                                                <outlet property="contentViewSubtitle" destination="oie-ku-ACT" id="Eol-YQ-yqC"/>
+                                                <outlet property="contentViewTitle" destination="GX8-lr-FYb" id="YL1-yF-q6m"/>
+                                            </connections>
+                                        </view>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xVI-cJ-tIp" userLabel="Divider">
+                                            <rect key="frame" x="0.0" y="770" width="393" height="1"/>
+                                            <color key="backgroundColor" systemColor="systemGrayColor"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="1" id="yuJ-sC-jjh"/>
+                                            </constraints>
+                                        </view>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dlm-jd-KdR" customClass="UserDetailView" customModule="UsersApp" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="781" width="393" height="44"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Birth Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WxO-cy-hsw">
                                                     <rect key="frame" x="8" y="0.0" width="377" height="19.333333333333332"/>
@@ -463,14 +500,14 @@
                                             </connections>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g5L-IL-szU" userLabel="Divider">
-                                            <rect key="frame" x="0.0" y="770" width="393" height="1"/>
+                                            <rect key="frame" x="0.0" y="835" width="393" height="1"/>
                                             <color key="backgroundColor" systemColor="systemGrayColor"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="1" id="3Sc-qD-DL2"/>
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7hz-cp-3Hx" customClass="UserDetailView" customModule="UsersApp" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="781" width="393" height="44"/>
+                                            <rect key="frame" x="0.0" y="846" width="393" height="44"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Registered" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="80M-iL-gF0">
                                                     <rect key="frame" x="8" y="0.0" width="377" height="19.333333333333332"/>
@@ -501,14 +538,14 @@
                                             </connections>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7bD-Hp-SC8" userLabel="Divider">
-                                            <rect key="frame" x="0.0" y="835" width="393" height="1"/>
+                                            <rect key="frame" x="0.0" y="900" width="393" height="1"/>
                                             <color key="backgroundColor" systemColor="systemGrayColor"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="1" id="70s-4z-7dh"/>
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w5b-CD-6B4" customClass="UserDetailView" customModule="UsersApp" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="846" width="393" height="44"/>
+                                            <rect key="frame" x="0.0" y="911" width="393" height="44"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phone" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9AB-uE-KGU">
                                                     <rect key="frame" x="8" y="0.0" width="377" height="19.333333333333332"/>
@@ -539,14 +576,14 @@
                                             </connections>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nn2-iC-mz4" userLabel="Divider">
-                                            <rect key="frame" x="0.0" y="900" width="393" height="1"/>
+                                            <rect key="frame" x="0.0" y="965" width="393" height="1"/>
                                             <color key="backgroundColor" systemColor="systemGrayColor"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="1" id="W2S-E5-wvK"/>
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h7A-in-HoP" customClass="UserDetailView" customModule="UsersApp" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="911" width="393" height="44"/>
+                                            <rect key="frame" x="0.0" y="976" width="393" height="44"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cellphone" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DrD-4s-Gvp">
                                                     <rect key="frame" x="8" y="0.0" width="377" height="19.333333333333332"/>
@@ -577,7 +614,7 @@
                                             </connections>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uM3-xr-uvM" userLabel="Divider">
-                                            <rect key="frame" x="0.0" y="965" width="393" height="1"/>
+                                            <rect key="frame" x="0.0" y="1030" width="393" height="1"/>
                                             <color key="backgroundColor" systemColor="systemGrayColor"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="1" id="bml-Qo-axu"/>
@@ -590,14 +627,14 @@
                                     </constraints>
                                 </stackView>
                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="gY4-kU-2c4">
-                                    <rect key="frame" x="8" y="1379" width="377" height="161"/>
+                                    <rect key="frame" x="8" y="1444" width="377" height="136"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <color key="textColor" systemColor="labelColor"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 </textView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zrK-Bu-HV1">
-                                    <rect key="frame" x="8" y="1357" width="377" height="14"/>
+                                    <rect key="frame" x="8" y="1422" width="377" height="14"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -612,7 +649,7 @@
                                 <constraint firstAttribute="trailing" secondItem="vlz-da-hNK" secondAttribute="trailing" id="Q2B-c0-SkC"/>
                                 <constraint firstItem="vlz-da-hNK" firstAttribute="top" secondItem="oEI-A7-rgJ" secondAttribute="bottom" constant="25" id="Vea-eb-ero"/>
                                 <constraint firstAttribute="trailing" secondItem="oEI-A7-rgJ" secondAttribute="trailing" constant="30" id="WVA-9z-Be4"/>
-                                <constraint firstAttribute="height" constant="1560" id="YNR-P5-wyd"/>
+                                <constraint firstAttribute="height" constant="1600" id="YNR-P5-wyd"/>
                                 <constraint firstItem="oEI-A7-rgJ" firstAttribute="top" secondItem="P9q-bR-GCp" secondAttribute="top" constant="25" id="afr-Ow-ayD"/>
                                 <constraint firstItem="gY4-kU-2c4" firstAttribute="top" secondItem="vlz-da-hNK" secondAttribute="bottom" constant="30" id="e44-ea-gmc"/>
                                 <constraint firstAttribute="trailing" secondItem="zrK-Bu-HV1" secondAttribute="trailing" constant="8" id="f1e-DR-KOY"/>

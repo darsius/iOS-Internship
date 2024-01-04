@@ -1,51 +1,54 @@
 import UIKit
 
+
 class UserDetailsViewController: UIViewController, UITextViewDelegate {
     
-    @IBOutlet weak var outerDetailsStack: UIStackView!
     @IBOutlet weak var userImageView: UIImageView!
+    
     @IBOutlet weak var noteTextView: UITextView!
+    
     @IBOutlet weak var firstNameView: UserDetailView!
     @IBOutlet weak var lastNameView: UserDetailView!
     @IBOutlet weak var genderView: UserDetailView!
+    @IBOutlet weak var streetAdressView: UserDetailView!
+    @IBOutlet weak var cityView: UserDetailView!
+    @IBOutlet weak var stateView: UserDetailView!
+    @IBOutlet weak var countryView: UserDetailView!
+    @IBOutlet weak var postalCodeView: UserDetailView!
+    @IBOutlet weak var coordinatesView: UserDetailView!
+    @IBOutlet weak var timezoneView: UserDetailView!
+    @IBOutlet weak var emailView: UserDetailView!
+    @IBOutlet weak var dateOfBirth: UserDetailView!
+    @IBOutlet weak var registeredDateView: UserDetailView!
     @IBOutlet weak var phoneView: UserDetailView!
     @IBOutlet weak var cellphoneView: UserDetailView!
     
-    @IBOutlet weak var timezoneView: UserDetailView!
-    @IBOutlet weak var coordinatesView: UserDetailView!
-    @IBOutlet weak var postalCodeView: UserDetailView!
-    @IBOutlet weak var countryView: UserDetailView!
-    @IBOutlet weak var stateView: UserDetailView!
-    @IBOutlet weak var cityView: UserDetailView!
-    @IBOutlet weak var streetAdressView: UserDetailView!
-    @IBOutlet weak var RegisteredDateView: UserDetailView!
-    @IBOutlet weak var birthDateView: UserDetailView!
-    @IBOutlet weak var locationView: UIView!
+    
+    var userImageUrl: String?
     
     var firstName : String?
     var lastName : String?
     var gender: String?
     
-    var userImageUrl: String?
-    
+    var streetAdress: String?
     var city: String?
     var state: String?
     var country: String?
-    var streetAdress: String?
     var postalCode: PostalCode?
     var coordinatesLatitude: String?
     var coordinatesLongitude: String?
     var timezoneOffset: String?
     var timezoneDescription: String?
+    
+    var email: String?
     var dobDate: String?
     var dobAge: Int?
     var registeredDate: String?
     var registeredAge: Int?
     var phone: String?
-    var cell: String?
+    var cellphone: String?
     
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -56,10 +59,12 @@ class UserDetailsViewController: UIViewController, UITextViewDelegate {
         setUpLastNameView()
         setUpGenderView()
         setUpLocationView()
+        setUpEmailView()
         setUpDobView()
         setUpRegisteredView()
         setUpPhoneView()
         setUpCellphoneView()
+        
         displayTextViewOutline()
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
@@ -71,13 +76,11 @@ class UserDetailsViewController: UIViewController, UITextViewDelegate {
             noteTextView.text = previousText
         }
         
-        
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification: )), name: UIResponder.keyboardWillShowNotification, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification: )), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification: )), name: UIResponder.keyboardWillChangeFrameNotification, object: self)
-        
     }
     
     deinit {
@@ -123,13 +126,17 @@ class UserDetailsViewController: UIViewController, UITextViewDelegate {
         setUpDetailView(timezoneView, "Timezone", timezoneSubtitle)
     }
     
+    private func setUpEmailView() {
+        setUpDetailView(emailView, "Email", email)
+    }
+    
     private func setUpDobView() {
         let dobSubtitle = "Date: " + dobDate! + ", age: " + String(dobAge!)
-        setUpDetailView(birthDateView, "Birth Date ", dobSubtitle)
+        setUpDetailView(dateOfBirth, "Birth Date ", dobSubtitle)
     }
     private func setUpRegisteredView() {
         let registeredSubtitle = "Date: " + registeredDate! + ", age: " + String(registeredAge!)
-        setUpDetailView(RegisteredDateView, "Registered ", registeredSubtitle)
+        setUpDetailView(registeredDateView, "Registered ", registeredSubtitle)
     }
     
     private func setUpPhoneView() {
@@ -137,7 +144,7 @@ class UserDetailsViewController: UIViewController, UITextViewDelegate {
     }
     
     private func setUpCellphoneView() {
-        setUpDetailView(cellphoneView, "Cellphone", cell)
+        setUpDetailView(cellphoneView, "Cellphone", cellphone)
     }
     
     //textView

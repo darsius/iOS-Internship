@@ -63,72 +63,36 @@ class UsersViewController: UIViewController {
 
 extension UsersViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        let detailsViewController = UserDetailsViewController()
-        
         let selectedUser = users[indexPath.row]
-
-        let imageUrl = selectedUser.picture.large
-        detailsViewController.userImageUrl = imageUrl
-        
-        let firstName = selectedUser.name.first
-        detailsViewController.firstName = firstName
-        
-        let lastName = selectedUser.name.last
-        detailsViewController.lastName = lastName
-        
-        let gender = selectedUser.gender
-        detailsViewController.gender = gender
-        
-        let city = selectedUser.location.city
-        detailsViewController.city = city
-        
-        let state = selectedUser.location.state
-        detailsViewController.state = state
-        
-        let country = selectedUser.location.country
-        detailsViewController.country = country
-        
-        let streetAdress = selectedUser.location.street.name + " " +
-            String(selectedUser.location.street.number)
-        detailsViewController.streetAdress = streetAdress
-        
-        let postalCode = selectedUser.location.postcode
-        detailsViewController.postalCode = postalCode
-        
-        let coordinatesLatitude = selectedUser.location.coordinates.latitude
-        let coordinatesLongitude = selectedUser.location.coordinates.longitude
-        detailsViewController.coordinatesLatitude = coordinatesLatitude
-        detailsViewController.coordinatesLongitude = coordinatesLongitude
-        
-        let timezoneOffset = selectedUser.location.timezone.offset
-        let timezoneDescription =
-            selectedUser.location.timezone.description
-        
-        detailsViewController.timezoneOffset = timezoneOffset
-        detailsViewController.timezoneDescription = timezoneDescription
-
-        let dobDate = selectedUser.dob?.date
-        let dobAge = selectedUser.dob?.age
-        
-        detailsViewController.dobDate = dobDate
-        detailsViewController.dobAge = dobAge
-
-        let registeredDate = selectedUser.registered.date
-        let registeredAge = selectedUser.registered.age
-        
-        detailsViewController.registeredDate = registeredDate
-        detailsViewController.registeredAge = registeredAge
-        
-        let phone = selectedUser.phone
-        detailsViewController.phone = phone
-        let cellPhone = selectedUser.cell
-        detailsViewController.cell = cellPhone
-        
-        
+        let detailsViewController = makeDetailsViewController(for: selectedUser)
         navigationController?.pushViewController(detailsViewController, animated: true)
-        
-        
+    }
+
+    private func makeDetailsViewController(for user: User) -> UserDetailsViewController {
+        let detailsViewController = UserDetailsViewController()
+
+        detailsViewController.userImageUrl = user.picture.large
+        detailsViewController.firstName = user.name.first
+        detailsViewController.lastName = user.name.last
+        detailsViewController.gender = user.gender
+        detailsViewController.city = user.location.city
+        detailsViewController.state = user.location.state
+        detailsViewController.country = user.location.country
+        detailsViewController.streetAdress = "\(user.location.street.name) \(user.location.street.number)"
+        detailsViewController.postalCode = user.location.postcode
+        detailsViewController.coordinatesLatitude = user.location.coordinates.latitude
+        detailsViewController.coordinatesLongitude = user.location.coordinates.longitude
+        detailsViewController.timezoneOffset = user.location.timezone.offset
+        detailsViewController.timezoneDescription = user.location.timezone.description
+        detailsViewController.email = user.email
+        detailsViewController.dobDate = user.dob?.date
+        detailsViewController.dobAge = user.dob?.age
+        detailsViewController.registeredDate = user.registered.date
+        detailsViewController.registeredAge = user.registered.age
+        detailsViewController.phone = user.phone
+        detailsViewController.cellphone = user.cell
+
+        return detailsViewController
     }
 }
 
