@@ -1,10 +1,3 @@
-//
-//  ViewController.swift
-//  Prob
-//
-//  Created by Dar Dar on 28.09.2023.
-//
-
 import UIKit
 
 
@@ -20,12 +13,23 @@ class UsersViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setUpNavBar()
+        
         let nib = UINib(nibName: "UserCellView", bundle: nil)
         usersTableView.register(nib, forCellReuseIdentifier: "UserCellView")
     
         usersTableView.delegate = self
         usersTableView.dataSource = self
         fetchUsers()
+    }
+    
+    private func setUpNavBar() {
+        let titleAtributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont.systemFont(ofSize: 22)
+        ]
+
+        navigationController?.navigationBar.titleTextAttributes = titleAtributes
+        navigationItem.title = "Users"
     }
     
     private func fetchUsers() {
@@ -59,7 +63,36 @@ class UsersViewController: UIViewController {
 
 extension UsersViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("You tapped me!")
+        let selectedUser = users[indexPath.row]
+        let detailsViewController = makeDetailsViewController(for: selectedUser)
+        navigationController?.pushViewController(detailsViewController, animated: true)
+    }
+
+    private func makeDetailsViewController(for user: User) -> UserDetailsViewController {
+        let detailsViewController = UserDetailsViewController()
+
+        detailsViewController.userImageUrl = user.picture.large
+        detailsViewController.firstName = user.name.first
+        detailsViewController.lastName = user.name.last
+        detailsViewController.gender = user.gender
+        detailsViewController.city = user.location.city
+        detailsViewController.state = user.location.state
+        detailsViewController.country = user.location.country
+        detailsViewController.streetAdress = "\(user.location.street.name) \(user.location.street.number)"
+        detailsViewController.postalCode = user.location.postcode
+        detailsViewController.coordinatesLatitude = user.location.coordinates.latitude
+        detailsViewController.coordinatesLongitude = user.location.coordinates.longitude
+        detailsViewController.timezoneOffset = user.location.timezone.offset
+        detailsViewController.timezoneDescription = user.location.timezone.description
+        detailsViewController.email = user.email
+        detailsViewController.dobDate = user.dob.date
+        detailsViewController.dobAge = user.dob.age
+        detailsViewController.registeredDate = user.registered.date
+        detailsViewController.registeredAge = user.registered.age
+        detailsViewController.phone = user.phone
+        detailsViewController.cellphone = user.cell
+
+        return detailsViewController
     }
 }
 

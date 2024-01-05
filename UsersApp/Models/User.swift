@@ -1,10 +1,3 @@
-//
-//  Model.swift
-//  Prob
-//
-//  Created by Dar Dar on 04.10.2023.
-//
-
 import Foundation
 
 
@@ -13,9 +6,14 @@ struct UserListResponse: Codable {
 }
 
 struct User: Codable {
+    let gender: String
     let name: Name
     let location: Location
     let email: String
+    let dob: Dob
+    let registered: Registered
+    let phone: String
+    let cell: String
     let picture: Picture
 }
 
@@ -30,6 +28,7 @@ struct Location: Codable {
     let city: String
     let state: String
     let country: String
+    let postcode: PostalCode
     let coordinates: Coordinates
     let timezone: Timezone
 }
@@ -47,6 +46,16 @@ struct Coordinates: Codable {
 struct Timezone: Codable {
     let offset: String
     let description: String
+}
+
+struct Dob: Codable {
+    let date: String
+    let age: Int
+}
+
+struct Registered: Codable {
+    let date: String
+    let age: Int
 }
 
 struct Picture: Codable {
