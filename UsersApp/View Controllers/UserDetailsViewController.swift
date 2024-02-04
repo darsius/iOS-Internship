@@ -151,7 +151,8 @@ class UserDetailsViewController: UIViewController, UITextViewDelegate {
     
     var userDefaultsKey: String {
         guard let userId = dobDate else {
-            fatalError("User ID is nil")
+            print("User ID is nil")
+            return "0"
         }
         return "text_\(userId)"
     }
