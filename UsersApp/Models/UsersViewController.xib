@@ -23,8 +23,8 @@
                     <rect key="frame" x="0.0" y="59" width="393" height="793"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <connections>
-                        <outlet property="dataSource" destination="iN0-l3-epB" id="Iqa-fS-DFT"/>
-                        <outlet property="delegate" destination="iN0-l3-epB" id="xBz-vH-JYd"/>
+                        <outlet property="dataSource" destination="-1" id="ESF-9E-X3v"/>
+                        <outlet property="delegate" destination="-1" id="t1a-cG-x4l"/>
                     </connections>
                 </tableView>
             </subviews>

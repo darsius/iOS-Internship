@@ -18,8 +18,6 @@ class UsersViewController: UIViewController {
         let nib = UINib(nibName: "UserCellView", bundle: nil)
         usersTableView.register(nib, forCellReuseIdentifier: "UserCellView")
     
-        usersTableView.delegate = self
-        usersTableView.dataSource = self
         fetchUsers()
     }
     
@@ -40,6 +38,8 @@ class UsersViewController: UIViewController {
                 DispatchQueue.main.async {
                     self.usersTableView.reloadData()
                 }
+            } catch let error as NetworkError {
+                print("Network erro: \(error)")
             } catch {
                 print("Error! Can't fetch the users.")
             }
