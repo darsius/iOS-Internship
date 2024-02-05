@@ -1,11 +1,11 @@
 import UIKit
 
-
 extension UIImageView {
-    func downloaded(from url: String, contentMode mode: ContentMode = .scaleToFill) {
+    func downloaded(from url: String, contentMode mode: ContentMode = .scaleToFill, completion: ((Bool) -> Void)? = nil) {
         
         guard let url = URL(string: url) else {
-            print("error at the image string url")
+            print("Error: Invalid image URL")
+            completion?(false)
             return
         }
         
@@ -16,16 +16,18 @@ extension UIImageView {
                 let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
                 let data = data, error == nil,
                 let image = UIImage(data: data)
-            else{
+            else {
                 let defaultImage = UIImage(systemName: "person")
                 DispatchQueue.main.async { [weak self] in
                     self?.image = defaultImage
+                    completion?(false)
                 }
                 return
             }
             
-            DispatchQueue.main.async() { [weak self] in
+            DispatchQueue.main.async { [weak self] in
                 self?.image = image
+                completion?(true)
             }
         }.resume()
     }

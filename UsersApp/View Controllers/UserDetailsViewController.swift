@@ -90,10 +90,14 @@ class UserDetailsViewController: UIViewController, UITextViewDelegate {
     }
     
     private func setUpImageView(with urlString: String) {
-        userImageView.downloaded(from: urlString, contentMode: .scaleToFill)
-        userImageView.layer.cornerRadius = userImageView.frame.size.height / 2
-        userImageView.layer.masksToBounds = true
-    }
+        userImageView.downloaded(from: urlString) { [weak self] _ in
+            guard let self = self else { return }
+
+            self.userImageView.layer.cornerRadius = self.userImageView.frame.size.width / 2
+            self.userImageView.layer.masksToBounds = false
+            self.userImageView.clipsToBounds = true
+            }
+        }
     
     private func setUpDetailView(_ view: UserDetailView ,_ title: String, _ subtitle: String!) {
         view.contentViewTitle.text = title
