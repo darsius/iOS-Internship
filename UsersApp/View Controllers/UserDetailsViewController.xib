@@ -39,7 +39,7 @@
                     <rect key="frame" x="0.0" y="24" width="393" height="828"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P9q-bR-GCp">
-                            <rect key="frame" x="0.0" y="0.0" width="393" height="1600"/>
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="1474"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oEI-A7-rgJ">
                                     <rect key="frame" x="30" y="25" width="333" height="333"/>
@@ -627,7 +627,7 @@
                                     </constraints>
                                 </stackView>
                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="gY4-kU-2c4">
-                                    <rect key="frame" x="8" y="1444" width="377" height="136"/>
+                                    <rect key="frame" x="8" y="1444" width="377" height="10"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <color key="textColor" systemColor="labelColor"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -649,7 +649,6 @@
                                 <constraint firstAttribute="trailing" secondItem="vlz-da-hNK" secondAttribute="trailing" id="Q2B-c0-SkC"/>
                                 <constraint firstItem="vlz-da-hNK" firstAttribute="top" secondItem="oEI-A7-rgJ" secondAttribute="bottom" constant="25" id="Vea-eb-ero"/>
                                 <constraint firstAttribute="trailing" secondItem="oEI-A7-rgJ" secondAttribute="trailing" constant="30" id="WVA-9z-Be4"/>
-                                <constraint firstAttribute="height" constant="1600" id="YNR-P5-wyd"/>
                                 <constraint firstItem="oEI-A7-rgJ" firstAttribute="top" secondItem="P9q-bR-GCp" secondAttribute="top" constant="25" id="afr-Ow-ayD"/>
                                 <constraint firstItem="gY4-kU-2c4" firstAttribute="top" secondItem="vlz-da-hNK" secondAttribute="bottom" constant="30" id="e44-ea-gmc"/>
                                 <constraint firstAttribute="trailing" secondItem="zrK-Bu-HV1" secondAttribute="trailing" constant="8" id="f1e-DR-KOY"/>
@@ -676,6 +675,9 @@
                 <constraint firstAttribute="bottom" secondItem="p0z-t5-6Oi" secondAttribute="bottom" id="99r-jH-Jxc"/>
                 <constraint firstItem="p0z-t5-6Oi" firstAttribute="trailing" secondItem="lAB-um-Cug" secondAttribute="trailing" id="DRq-8V-lL9"/>
                 <constraint firstItem="p0z-t5-6Oi" firstAttribute="leading" secondItem="lAB-um-Cug" secondAttribute="leading" id="Tok-76-EgF"/>
+                <constraint firstItem="P9q-bR-GCp" firstAttribute="height" secondItem="7gM-MO-sEa" secondAttribute="height" multiplier="1.73" id="lzI-Sa-rKY">
+                    <variation key="heightClass=regular-widthClass=compact" constant="100"/>
+                </constraint>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="-5932.0093457943922" y="-2485.5291576673867"/>
