@@ -130,12 +130,25 @@ class UserDetailsViewController: UIViewController, UITextViewDelegate {
         setUpDetailView(emailView, "Email", email)
     }
     
+    private func formateDateString(_ dateString: String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        
+        if let date = dateFormatter.date(from: dateString) {
+            dateFormatter.dateFormat = "MMM d yyyy, h:m a"
+            return dateFormatter.string(from: date)
+        } else {
+            return "0--0 000"
+        }
+    }
+    
     private func setUpDobView() {
-        let dobSubtitle = "Date: " + dobDate! + ", age: " + String(dobAge!)
+        let dobSubtitle = "Date: " + formateDateString(dobDate!) + ", age: " + String(dobAge!)
         setUpDetailView(dateOfBirth, "Birth Date ", dobSubtitle)
     }
+    
     private func setUpRegisteredView() {
-        let registeredSubtitle = "Date: " + registeredDate! + ", age: " + String(registeredAge!)
+        let registeredSubtitle = "Date: " + formateDateString(registeredDate!) + ", age: " + String(registeredAge!)
         setUpDetailView(registeredDateView, "Registered ", registeredSubtitle)
     }
     
