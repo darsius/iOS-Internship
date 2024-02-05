@@ -1,10 +1,3 @@
-//
-//  ImageExtensions.swift
-//  UsersApp
-//
-//  Created by Dar Dar on 09.11.2023.
-//
-
 import UIKit
 
 
