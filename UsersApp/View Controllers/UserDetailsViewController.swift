@@ -3,9 +3,6 @@ import UIKit
 
 class UserDetailsViewController: UIViewController, UITextViewDelegate {
     
-    @IBOutlet weak var saveButton: UIButton!
-    @IBOutlet weak var deleteButton: UIButton!
-    
     @IBOutlet weak var userImageView: UIImageView!
     
     @IBOutlet weak var noteTextView: UITextView!
@@ -25,6 +22,9 @@ class UserDetailsViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var registeredDateView: UserDetailView!
     @IBOutlet weak var phoneView: UserDetailView!
     @IBOutlet weak var cellphoneView: UserDetailView!
+    
+    @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var deleteButton: UIButton!
     
     
     var userImageUrl: String?
@@ -51,12 +51,13 @@ class UserDetailsViewController: UIViewController, UITextViewDelegate {
     var phone: String?
     var cellphone: String?
     
-
     override func viewDidLoad() {
     
         super.viewDidLoad()
         
         noteTextView.delegate = self
+        
+        saveNoteContent()
         
         if let imageUrl = userImageUrl {
             setUpImageView(with: imageUrl)
@@ -72,26 +73,16 @@ class UserDetailsViewController: UIViewController, UITextViewDelegate {
         setUpCellphoneView()
         
         displayTextViewOutline()
+        disableEmptyNoteButtons()
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
         view.addGestureRecognizer(tapGesture)
-        
-        self.noteTextView.delegate = self
-        
-        if let previousText = userDefaults.value(forKey: userDefaultsKey) as? String {
-            noteTextView.text = previousText
-        }
                 
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification: )), name: UIResponder.keyboardWillShowNotification, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification: )), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification: )), name: UIResponder.keyboardWillChangeFrameNotification, object: self)
-        
-        if noteTextView.text.isEmpty {
-            deleteButton.isHidden = true
-            saveButton.isHidden = true
-        }
     }
     
     deinit {
@@ -110,8 +101,8 @@ class UserDetailsViewController: UIViewController, UITextViewDelegate {
             self.userImageView.layer.cornerRadius = self.userImageView.frame.size.width / 2
             self.userImageView.layer.masksToBounds = false
             self.userImageView.clipsToBounds = true
-            }
         }
+    }
     
     private func setUpDetailView(_ view: UserDetailView ,_ title: String, _ subtitle: String!) {
         view.contentViewTitle.text = title
@@ -209,13 +200,26 @@ class UserDetailsViewController: UIViewController, UITextViewDelegate {
         }
     }
     
+    internal func saveNoteContent() {
+        if let previousText = userDefaults.value(forKey: userDefaultsKey) as? String {
+            noteTextView.text = previousText
+        }
+    }
+    
     private func displayTextViewOutline() {
         noteTextView.layer.borderWidth = 0.7
         noteTextView.layer.borderColor = UIColor.black.cgColor
     }
     
-    func textViewDidChange(_ textView: UITextView) {
+    internal func textViewDidChange(_ textView: UITextView) {
         saveButton.isHidden = textView.text.isEmpty
+    }
+    
+    private func disableEmptyNoteButtons() {
+        if noteTextView.text.isEmpty {
+            deleteButton.isHidden = true
+            saveButton.isHidden = true
+        }
     }
     
     @IBAction func saveNote(_ sender: Any) {
