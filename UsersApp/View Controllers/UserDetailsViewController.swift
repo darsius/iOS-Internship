@@ -3,6 +3,9 @@ import UIKit
 
 class UserDetailsViewController: UIViewController, UITextViewDelegate {
     
+    @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var deleteButton: UIButton!
+    
     @IBOutlet weak var userImageView: UIImageView!
     
     @IBOutlet weak var noteTextView: UITextView!
@@ -50,7 +53,10 @@ class UserDetailsViewController: UIViewController, UITextViewDelegate {
     
 
     override func viewDidLoad() {
+    
         super.viewDidLoad()
+        
+        noteTextView.delegate = self
         
         if let imageUrl = userImageUrl {
             setUpImageView(with: imageUrl)
@@ -75,19 +81,27 @@ class UserDetailsViewController: UIViewController, UITextViewDelegate {
         if let previousText = userDefaults.value(forKey: userDefaultsKey) as? String {
             noteTextView.text = previousText
         }
-        
+                
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification: )), name: UIResponder.keyboardWillShowNotification, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification: )), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification: )), name: UIResponder.keyboardWillChangeFrameNotification, object: self)
+        
+        if noteTextView.text.isEmpty {
+            deleteButton.isHidden = true
+            saveButton.isHidden = true
+        }
     }
     
     deinit {
+        NotificationCenter.default.removeObserver(self, name: UITextView.textDidChangeNotification, object: noteTextView)
+        
         NotificationCenter.default.removeObserver(UIResponder.keyboardWillHideNotification)
         NotificationCenter.default.removeObserver(UIResponder.keyboardWillShowNotification)
         NotificationCenter.default.removeObserver(UIResponder.keyboardWillChangeFrameNotification)
     }
+    
     
     private func setUpImageView(with urlString: String) {
         userImageView.downloaded(from: urlString) { [weak self] _ in
@@ -176,10 +190,6 @@ class UserDetailsViewController: UIViewController, UITextViewDelegate {
     
     let userDefaults = UserDefaults()
     
-    func textViewDidChange(_ textView: UITextView) {
-        userDefaults.setValue(textView.text, forKey: userDefaultsKey)
-    }
-    
     @objc private func handleTap(_ gesture: UITapGestureRecognizer) {
         noteTextView.resignFirstResponder()
     }
@@ -202,5 +212,26 @@ class UserDetailsViewController: UIViewController, UITextViewDelegate {
     private func displayTextViewOutline() {
         noteTextView.layer.borderWidth = 0.7
         noteTextView.layer.borderColor = UIColor.black.cgColor
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        saveButton.isHidden = textView.text.isEmpty
+    }
+    
+    @IBAction func saveNote(_ sender: Any) {
+        if !noteTextView.text.isEmpty {
+            userDefaults.setValue(noteTextView.text, forKey: userDefaultsKey)
+            handleTap(UITapGestureRecognizer())
+        }
+    }
+    
+    @IBAction func deleteNote(_ sender: Any) {
+        if !noteTextView.text.isEmpty {
+            userDefaults.removeObject(forKey: userDefaultsKey)
+            noteTextView.text = ""
+        }
+        else {
+            deleteButton.isHidden = false
+        }
     }
 }
