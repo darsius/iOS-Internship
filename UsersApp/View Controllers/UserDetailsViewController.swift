@@ -10,22 +10,24 @@ class UserDetailsViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var firstNameView: UserDetailView!
     @IBOutlet weak var lastNameView: UserDetailView!
     @IBOutlet weak var genderView: UserDetailView!
-    @IBOutlet weak var streetAdressView: UserDetailView!
-    @IBOutlet weak var cityView: UserDetailView!
-    @IBOutlet weak var stateView: UserDetailView!
-    @IBOutlet weak var countryView: UserDetailView!
-    @IBOutlet weak var postalCodeView: UserDetailView!
-    @IBOutlet weak var coordinatesView: UserDetailView!
-    @IBOutlet weak var timezoneView: UserDetailView!
+    
+    @IBOutlet weak var streetAdressLabel: UILabel!
+    @IBOutlet weak var cityLabel: UILabel!
+    @IBOutlet weak var stateLabel: UILabel!
+    @IBOutlet weak var countryLabel: UILabel!
+    @IBOutlet weak var postalCodeLabel: UILabel!
+    @IBOutlet weak var coordinatesLabel: UILabel!
+    @IBOutlet weak var timezoneLabel: UILabel!
+    
     @IBOutlet weak var emailView: UserDetailView!
     @IBOutlet weak var dateOfBirth: UserDetailView!
     @IBOutlet weak var registeredDateView: UserDetailView!
     @IBOutlet weak var phoneView: UserDetailView!
     @IBOutlet weak var cellphoneView: UserDetailView!
     
-    @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var deleteButton: UIButton!
-    
+    @IBOutlet weak var saveButton: UIButton!
+        
     
     var userImageUrl: String?
     
@@ -93,7 +95,6 @@ class UserDetailsViewController: UIViewController, UITextViewDelegate {
         NotificationCenter.default.removeObserver(UIResponder.keyboardWillChangeFrameNotification)
     }
     
-    
     private func setUpImageView(with urlString: String) {
         userImageView.downloaded(from: urlString) { [weak self] _ in
             guard let self = self else { return }
@@ -122,17 +123,13 @@ class UserDetailsViewController: UIViewController, UITextViewDelegate {
     }
     
     private func setUpLocationView() {
-        setUpDetailView(cityView, "City", city)
-        setUpDetailView(stateView, "State", state)
-        setUpDetailView(streetAdressView, "Street Adress", streetAdress)
-        setUpDetailView(countryView, "Country", country)
-        setUpDetailView(postalCodeView, "Postal Code", postalCode?.description)
-        
-        let coordinatesSubtitle = "latitude: " + coordinatesLatitude! + "\nlongitude: " + coordinatesLongitude!
-        setUpDetailView(coordinatesView, "Coordinates", coordinatesSubtitle)
-        
-        let timezoneSubtitle = "offset: " + timezoneOffset! + "\n" + timezoneDescription!
-        setUpDetailView(timezoneView, "Timezone", timezoneSubtitle)
+        streetAdressLabel.text = streetAdress
+        cityLabel.text = city
+        stateLabel.text = state
+        countryLabel.text = country
+        postalCodeLabel.text = postalCode?.description
+        coordinatesLabel.text = "latitude: " + coordinatesLatitude! + "\nlongitude: " + coordinatesLongitude!
+        timezoneLabel.text = "offset: " + timezoneOffset! + "\n" + timezoneDescription!
     }
     
     private func setUpEmailView() {
