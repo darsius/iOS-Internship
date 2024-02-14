@@ -105,7 +105,11 @@ class UserDetailsViewController: UIViewController, UITextViewDelegate {
         }
     }
     
-    private func setUpDetailView(_ view: UserDetailView ,_ title: String, _ subtitle: String!) {
+    private func setUpDetailView(_ view: UserDetailView ,_ title: String, _ subtitle: String?) {
+        guard let subtitle = subtitle else {
+            return
+        }
+        
         view.contentViewTitle.text = title
         view.contentViewSubtitle.text = subtitle
     }
@@ -123,13 +127,21 @@ class UserDetailsViewController: UIViewController, UITextViewDelegate {
     }
     
     private func setUpLocationView() {
+        guard let coordinatesLatitude = coordinatesLatitude,
+              let coordinatesLongitude = coordinatesLongitude,
+              let timezoneOffset = timezoneOffset,
+              let timezoneDescription = timezoneDescription else {
+            print("Some location information is nil!")
+            return
+        }
+     
         streetAdressLabel.text = streetAdress
         cityLabel.text = city
         stateLabel.text = state
         countryLabel.text = country
         postalCodeLabel.text = postalCode?.description
-        coordinatesLabel.text = "latitude: " + coordinatesLatitude! + "\nlongitude: " + coordinatesLongitude!
-        timezoneLabel.text = "offset: " + timezoneOffset! + "\n" + timezoneDescription!
+        coordinatesLabel.text = "latitude: " + coordinatesLatitude + "\nlongitude: " + coordinatesLongitude
+        timezoneLabel.text = "offset: " + timezoneOffset + "\n" + timezoneDescription
     }
     
     private func setUpEmailView() {
@@ -149,12 +161,24 @@ class UserDetailsViewController: UIViewController, UITextViewDelegate {
     }
     
     private func setUpDobView() {
-        let dobSubtitle = "Date: " + formateDateString(dobDate!) + ", age: " + String(dobAge!)
+        guard let dobDate = dobDate,
+              let dobAge = dobAge else {
+            print("Some dob information is nill!")
+            return
+        }
+        
+        let dobSubtitle = "Date: " + formateDateString(dobDate) + ", age: " + String(dobAge)
         setUpDetailView(dateOfBirth, "Birth Date ", dobSubtitle)
     }
     
     private func setUpRegisteredView() {
-        let registeredSubtitle = "Date: " + formateDateString(registeredDate!) + ", age: " + String(registeredAge!)
+        guard let registeredDate = registeredDate,
+              let registeredAge = registeredAge else {
+            print("Some registered information is nill!")
+            return
+        }
+        
+        let registeredSubtitle = "Date: " + formateDateString(registeredDate) + ", age: " + String(registeredAge)
         setUpDetailView(registeredDateView, "Registered ", registeredSubtitle)
     }
     
@@ -173,7 +197,6 @@ class UserDetailsViewController: UIViewController, UITextViewDelegate {
     }
     
     @objc private func keyboardWillShow(notification: NSNotification) {
-        
         guard let keyboardRectangle = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
             return
         }
