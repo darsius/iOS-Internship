@@ -45,29 +45,7 @@ class UsersViewController: UIViewController {
             }
         }
     }
-
-    private func configureUsersCell(_ tableView: UITableView, indexPath: IndexPath) -> UserCellView {
-        let userCell = tableView.dequeueReusableCell(withIdentifier: "UserCellView", for: indexPath) as! UserCellView
-        
-        let userName = users[indexPath.row].name.first + " " + users[indexPath.row].name.last
-        let userEmail = users[indexPath.row].email
-        let userTime = users[indexPath.row].location.timezone.offset
-        
-        let imageUrl = users[indexPath.row].picture.medium
-        
-        userCell.userCellInit(userName, userEmail, userTime, imageUrl)
-
-        return userCell
-    }
-}
-
-extension UsersViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedUser = users[indexPath.row]
-        let detailsViewController = makeDetailsViewController(for: selectedUser)
-        navigationController?.pushViewController(detailsViewController, animated: true)
-    }
-
+    
     private func makeDetailsViewController(for user: User) -> UserDetailsViewController {
         let detailsViewController = UserDetailsViewController()
 
@@ -93,6 +71,28 @@ extension UsersViewController: UITableViewDelegate {
         detailsViewController.cellphone = user.cell
 
         return detailsViewController
+    }
+
+    private func configureUsersCell(_ tableView: UITableView, indexPath: IndexPath) -> UserCellView {
+        let userCell = tableView.dequeueReusableCell(withIdentifier: "UserCellView", for: indexPath) as! UserCellView
+        
+        let userName = users[indexPath.row].name.first + " " + users[indexPath.row].name.last
+        let userEmail = users[indexPath.row].email
+        let userTime = users[indexPath.row].location.timezone.offset
+        
+        let imageUrl = users[indexPath.row].picture.medium
+        
+        userCell.userCellInit(userName, userEmail, userTime, imageUrl)
+
+        return userCell
+    }
+}
+
+extension UsersViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedUser = users[indexPath.row]
+        let detailsViewController = makeDetailsViewController(for: selectedUser)
+        navigationController?.pushViewController(detailsViewController, animated: true)
     }
 }
 
