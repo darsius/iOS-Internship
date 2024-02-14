@@ -1,10 +1,3 @@
-//
-//  UserDetailView.swift
-//  UsersApp
-//
-//  Created by Dar Dar on 07.12.2023.
-//
-
 import UIKit
 
 class UserDetailView: UIView {

@@ -1,10 +1,3 @@
-//
-//  UserCell.swift
-//  Prob
-//
-//  Created by Dar Dar on 28.09.2023.
-//
-
 import UIKit
 
 
