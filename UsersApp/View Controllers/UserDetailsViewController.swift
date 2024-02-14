@@ -166,16 +166,6 @@ class UserDetailsViewController: UIViewController, UITextViewDelegate {
         setUpDetailView(cellphoneView, "Cellphone", cellphone)
     }
     
-    //textView
-    
-    var userDefaultsKey: String {
-        guard let userId = dobDate else {
-            print("User ID is nil")
-            return "0"
-        }
-        return "text_\(userId)"
-    }
-    
     let userDefaults = UserDefaults()
     
     @objc private func handleTap(_ gesture: UITapGestureRecognizer) {
@@ -198,7 +188,12 @@ class UserDetailsViewController: UIViewController, UITextViewDelegate {
     }
     
     internal func saveNoteContent() {
-        if let previousText = userDefaults.value(forKey: userDefaultsKey) as? String {
+        guard let email = email else {
+            print("error at getting the email")
+            return
+        }
+        
+        if let previousText = userDefaults.value(forKey: email) as? String {
             noteTextView.text = previousText
         }
     }
@@ -220,15 +215,25 @@ class UserDetailsViewController: UIViewController, UITextViewDelegate {
     }
     
     @IBAction func saveNote(_ sender: Any) {
+        guard let email = email else {
+            print("error at getting the email")
+            return
+        }
+        
         if !noteTextView.text.isEmpty {
-            userDefaults.setValue(noteTextView.text, forKey: userDefaultsKey)
+            userDefaults.setValue(noteTextView.text, forKey: email)
             handleTap(UITapGestureRecognizer())
         }
     }
     
     @IBAction func deleteNote(_ sender: Any) {
+        guard let email = email else {
+            print("error at getting the email")
+            return
+        }
+        
         if !noteTextView.text.isEmpty {
-            userDefaults.removeObject(forKey: userDefaultsKey)
+            userDefaults.removeObject(forKey: email)
             noteTextView.text = ""
         }
         else {
