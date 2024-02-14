@@ -72,20 +72,6 @@ class UsersViewController: UIViewController {
 
         return detailsViewController
     }
-
-    private func configureUsersCell(_ tableView: UITableView, indexPath: IndexPath) -> UserCellView {
-        let userCell = tableView.dequeueReusableCell(withIdentifier: "UserCellView", for: indexPath) as! UserCellView
-        
-        let userName = users[indexPath.row].name.first + " " + users[indexPath.row].name.last
-        let userEmail = users[indexPath.row].email
-        let userTime = users[indexPath.row].location.timezone.offset
-        
-        let imageUrl = users[indexPath.row].picture.medium
-        
-        userCell.userCellInit(userName, userEmail, userTime, imageUrl)
-
-        return userCell
-    }
 }
 
 extension UsersViewController: UITableViewDelegate {
@@ -101,10 +87,31 @@ extension UsersViewController: UITableViewDataSource {
 
         return users.count
     }
+    
+    func configureUsersCell(_ tableView: UITableView, indexPath: IndexPath) throws -> UserCellView {
+        guard let userCell = tableView.dequeueReusableCell(withIdentifier: "UserCellView", for: indexPath) as? UserCellView else {
+            throw CellError.unableToDeque
+        }
+        
+        let userName = users[indexPath.row].name.first + " " + users[indexPath.row].name.last
+        let userEmail = users[indexPath.row].email
+        let userTime = users[indexPath.row].location.timezone.offset
+        
+        let imageUrl = users[indexPath.row].picture.medium
+        
+        userCell.userCellInit(userName, userEmail, userTime, imageUrl)
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
-        let userCell = configureUsersCell(tableView, indexPath: indexPath)
         return userCell
     }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        do {
+            let userCell = try configureUsersCell(tableView, indexPath: indexPath)
+            return userCell
+        } catch {
+            print("Error: \(error)")
+            return tableView.dequeueReusableCell(withIdentifier: "DefaultCell", for: indexPath)
+        }
+    }
+
 }

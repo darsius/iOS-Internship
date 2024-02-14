@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E403E8302B7D3ABC0008AAE2 /* CellError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E403E82F2B7D3ABC0008AAE2 /* CellError.swift */; };
 		E427CEF72B31C0EF00F9AC04 /* UserDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E427CEF62B31C0EF00F9AC04 /* UserDetailView.swift */; };
 		E427CEF92B31C0FE00F9AC04 /* UserDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E427CEF82B31C0FE00F9AC04 /* UserDetailView.xib */; };
 		E427CEFE2B31C18700F9AC04 /* UsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E427CEFA2B31C18700F9AC04 /* UsersViewController.swift */; };
@@ -26,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E403E82F2B7D3ABC0008AAE2 /* CellError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellError.swift; sourceTree = "<group>"; };
 		E427CEF62B31C0EF00F9AC04 /* UserDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetailView.swift; sourceTree = "<group>"; };
 		E427CEF82B31C0FE00F9AC04 /* UserDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserDetailView.xib; sourceTree = "<group>"; };
 		E427CEFA2B31C18700F9AC04 /* UsersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersViewController.swift; sourceTree = "<group>"; };
@@ -57,6 +59,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E403E82E2B7D3A7A0008AAE2 /* Errors */ = {
+			isa = PBXGroup;
+			children = (
+				E447041A2AFD4FA400D5C5BF /* NetworkError.swift */,
+				E403E82F2B7D3ABC0008AAE2 /* CellError.swift */,
+			);
+			name = Errors;
+			sourceTree = "<group>";
+		};
 		E4BBFCEF2B0CFE4000027A26 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -88,8 +99,9 @@
 			isa = PBXGroup;
 			children = (
 				E4E43DA72AFD1C9700A92706 /* AppDelegate */,
-				E4E43DA62AFD1C7700A92706 /* Networking */,
+				E403E82E2B7D3A7A0008AAE2 /* Errors */,
 				E4E43DA32AFD14E500A92706 /* Extensions */,
+				E4E43DA62AFD1C7700A92706 /* Networking */,
 				E4E43DA82AFD1CD500A92706 /* Models */,
 				E4E43DA92AFD1D1A00A92706 /* View Controllers */,
 				E4BBFCEF2B0CFE4000027A26 /* Views */,
@@ -111,7 +123,6 @@
 			isa = PBXGroup;
 			children = (
 				E437C2622ACCCF3800DD8950 /* NetworkManager.swift */,
-				E447041A2AFD4FA400D5C5BF /* NetworkError.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -218,6 +229,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E403E8302B7D3ABC0008AAE2 /* CellError.swift in Sources */,
 				E437C2632ACCCF3800DD8950 /* NetworkManager.swift in Sources */,
 				E437C2612ACCCD4B00DD8950 /* User.swift in Sources */,
 				E468D2842B4732FA0045A8AE /* PostalColde.swift in Sources */,
