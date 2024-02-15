@@ -113,5 +113,4 @@ extension UsersViewController: UITableViewDataSource {
             return tableView.dequeueReusableCell(withIdentifier: "DefaultCell", for: indexPath)
         }
     }
-
 }

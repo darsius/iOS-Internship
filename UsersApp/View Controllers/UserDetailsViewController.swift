@@ -53,6 +53,9 @@ class UserDetailsViewController: UIViewController, UITextViewDelegate {
     var phone: String?
     var cellphone: String?
     
+    private let userDefaults = UserDefaults()
+
+    
     override func viewDidLoad() {
     
         super.viewDidLoad()
@@ -189,9 +192,10 @@ class UserDetailsViewController: UIViewController, UITextViewDelegate {
     private func setUpCellphoneView() {
         setUpDetailView(cellphoneView, "Cellphone", cellphone)
     }
-    
-    let userDefaults = UserDefaults()
-    
+}
+
+// MARK: - noteTextViewMethods
+extension UserDetailsViewController {
     @objc private func handleTap(_ gesture: UITapGestureRecognizer) {
         noteTextView.resignFirstResponder()
     }
@@ -210,7 +214,7 @@ class UserDetailsViewController: UIViewController, UITextViewDelegate {
         }
     }
     
-    internal func saveNoteContent() {
+    private func saveNoteContent() {
         guard let email = email else {
             print("error at getting the email")
             return
