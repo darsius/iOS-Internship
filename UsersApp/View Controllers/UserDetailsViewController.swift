@@ -29,13 +29,9 @@ class UserDetailsViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var saveButton: UIButton!
     
     
-    var userImageUrl: String?
-    
-    
     private let userDefaults = UserDefaults()
     
-    var user: User?
-    
+    internal var user: User?
     
     override func viewDidLoad() {
         
@@ -47,17 +43,7 @@ class UserDetailsViewController: UIViewController, UITextViewDelegate {
         
         configureDetails()
         
-        displayTextViewOutline()
-        disableEmptyNoteButtons()
-        
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
-        view.addGestureRecognizer(tapGesture)
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification: )), name: UIResponder.keyboardWillShowNotification, object: nil)
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification: )), name: UIResponder.keyboardWillHideNotification, object: nil)
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification: )), name: UIResponder.keyboardWillChangeFrameNotification, object: self)
+        configureNoteTextView()
         
     }
     
@@ -67,6 +53,11 @@ class UserDetailsViewController: UIViewController, UITextViewDelegate {
         NotificationCenter.default.removeObserver(UIResponder.keyboardWillHideNotification)
         NotificationCenter.default.removeObserver(UIResponder.keyboardWillShowNotification)
         NotificationCenter.default.removeObserver(UIResponder.keyboardWillChangeFrameNotification)
+    }
+    
+    private func setUpDetailView(view: UserDetailView, _ title: String, _ subtitle: String) {
+        view.contentViewTitle.text = title
+        view.contentViewSubtitle.text = subtitle
     }
     
     private func configureDetails() {
@@ -80,29 +71,15 @@ class UserDetailsViewController: UIViewController, UITextViewDelegate {
         setUpDetailView(view: lastNameView, "Last Name", user.name.last)
         setUpDetailView(view: genderView, "Gender", user.gender)
         
-        let location = user.location
-        streetAdressLabel.text = location.street.name
-        cityLabel.text = location.city
-        stateLabel.text = location.state
-        countryLabel.text = location.country
-        postalCodeLabel.text = location.postcode.description
-        coordinatesLabel.text = "latitude: " + location.coordinates.latitude + "\nlongitude: " + location.coordinates.longitude
-        timezoneLabel.text = "offset: " + location.timezone.offset + "\n" + location.timezone.description
+        configureLocationView(user)
         
-        let dobSubtitle = "Date: " + formateDateString(user.dob.date) + ", age: " + String(user.dob.age)
-        setUpDetailView(view: dateOfBirth, "Birth Date ", dobSubtitle)
+        configureDobView(user)
         
-        let registeredSubtitle = "Date: " + formateDateString(user.registered.date) + ", age: " + String(user.registered.age)
-        setUpDetailView(view: registeredDateView, "Registered ", registeredSubtitle)
+        configureRegisteredView(user)
         
         setUpDetailView(view: emailView, "Email", user.email)
         setUpDetailView(view: cellphoneView, "Cellphone", user.cell)
         setUpDetailView(view: phoneView, "Phone", user.phone)
-    }
-    
-    private func setUpDetailView(view: UserDetailView, _ title: String, _ subtitle: String) {
-        view.contentViewTitle.text = title
-        view.contentViewSubtitle.text = subtitle
     }
     
     private func setUpImageView(with urlString: String) {
@@ -113,6 +90,27 @@ class UserDetailsViewController: UIViewController, UITextViewDelegate {
             self.userImageView.layer.masksToBounds = false
             self.userImageView.clipsToBounds = true
         }
+    }
+    
+    private func configureLocationView(_ user: User) {
+        let location = user.location
+        streetAdressLabel.text = location.street.name
+        cityLabel.text = location.city
+        stateLabel.text = location.state
+        countryLabel.text = location.country
+        postalCodeLabel.text = location.postcode.description
+        coordinatesLabel.text = "latitude: " + location.coordinates.latitude + "\nlongitude: " + location.coordinates.longitude
+        timezoneLabel.text = "offset: " + location.timezone.offset + "\n" + location.timezone.description
+    }
+    
+    private func configureDobView(_ user: User) {
+        let dobSubtitle = "Date: " + formateDateString(user.dob.date) + ", age: " + String(user.dob.age)
+        setUpDetailView(view: dateOfBirth, "Birth Date ", dobSubtitle)
+    }
+    
+    private func configureRegisteredView(_ user: User) {
+        let registeredSubtitle = "Date: " + formateDateString(user.registered.date) + ", age: " + String(user.registered.age)
+        setUpDetailView(view: registeredDateView, "Registered ", registeredSubtitle)
     }
     
     private func formateDateString(_ dateString: String) -> String {
@@ -130,6 +128,21 @@ class UserDetailsViewController: UIViewController, UITextViewDelegate {
     
 // MARK: - noteTextViewMethods
 extension UserDetailsViewController {
+    
+    private func configureNoteTextView() {
+        displayTextViewOutline()
+        disableEmptyNoteButtons()
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
+        view.addGestureRecognizer(tapGesture)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification: )), name: UIResponder.keyboardWillShowNotification, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification: )), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification: )), name: UIResponder.keyboardWillChangeFrameNotification, object: self)
+    }
+    
     @objc private func handleTap(_ gesture: UITapGestureRecognizer) {
         noteTextView.resignFirstResponder()
     }
