@@ -9,14 +9,14 @@ class UsersViewController: UIViewController {
     
     private var numberOfUsersDisplayed: Int = 100;
     private var orderOfUsersDisplayed: String = "abc"
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setUpNavBar()
         
-        let nib = UINib(nibName: "UserCellView", bundle: nil)
-        usersTableView.register(nib, forCellReuseIdentifier: "UserCellView")
+        configureUserCellView()
     
         fetchUsers()
     }
@@ -28,6 +28,11 @@ class UsersViewController: UIViewController {
 
         navigationController?.navigationBar.titleTextAttributes = titleAtributes
         navigationItem.title = "Users"
+    }
+    
+    private func configureUserCellView() {
+        let nib = UINib(nibName: "UserCellView", bundle: nil)
+        usersTableView.register(nib, forCellReuseIdentifier: "UserCellView")
     }
     
     private func fetchUsers() {
@@ -48,27 +53,7 @@ class UsersViewController: UIViewController {
     
     private func makeDetailsViewController(for user: User) -> UserDetailsViewController {
         let detailsViewController = UserDetailsViewController()
-
-        detailsViewController.userImageUrl = user.picture.large
-        detailsViewController.firstName = user.name.first
-        detailsViewController.lastName = user.name.last
-        detailsViewController.gender = user.gender
-        detailsViewController.city = user.location.city
-        detailsViewController.state = user.location.state
-        detailsViewController.country = user.location.country
-        detailsViewController.streetAdress = "\(user.location.street.name) \(user.location.street.number)"
-        detailsViewController.postalCode = user.location.postcode
-        detailsViewController.coordinatesLatitude = user.location.coordinates.latitude
-        detailsViewController.coordinatesLongitude = user.location.coordinates.longitude
-        detailsViewController.timezoneOffset = user.location.timezone.offset
-        detailsViewController.timezoneDescription = user.location.timezone.description
-        detailsViewController.email = user.email
-        detailsViewController.dobDate = user.dob.date
-        detailsViewController.dobAge = user.dob.age
-        detailsViewController.registeredDate = user.registered.date
-        detailsViewController.registeredAge = user.registered.age
-        detailsViewController.phone = user.phone
-        detailsViewController.cellphone = user.cell
+        detailsViewController.user = user
 
         return detailsViewController
     }
