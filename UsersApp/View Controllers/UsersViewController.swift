@@ -44,9 +44,12 @@ class UsersViewController: UIViewController {
                     self.usersTableView.reloadData()
                 }
             } catch let error as NetworkError {
-                print("Network erro: \(error)")
-            } catch {
-                print("Error! Can't fetch the users.")
+                print("Network error: \(error.localizedDescription)")
+                let alert = UIAlertController(title: "Could not fetch the users!", message: "\(error.localizedDescription)", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: { _ in
+                NSLog("The \"OK\" alert occured.")
+                }))
+                self.present(alert, animated: true, completion: nil)
             }
         }
     }
