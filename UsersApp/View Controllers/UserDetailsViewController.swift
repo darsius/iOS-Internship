@@ -33,6 +33,7 @@ class UserDetailsViewController: UIViewController, UITextViewDelegate {
     
     internal var user: User?
     
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -44,7 +45,6 @@ class UserDetailsViewController: UIViewController, UITextViewDelegate {
         configureDetails()
         
         configureNoteTextView()
-        
     }
     
     deinit {

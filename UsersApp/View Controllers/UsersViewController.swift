@@ -31,8 +31,8 @@ class UsersViewController: UIViewController {
     }
     
     private func configureUserCellView() {
-        let nib = UINib(nibName: "UserCellView", bundle: nil)
-        usersTableView.register(nib, forCellReuseIdentifier: "UserCellView")
+        let userCellNib = UINib(nibName: "UserCellView", bundle: nil)
+        usersTableView.register(userCellNib, forCellReuseIdentifier: "UserCellView")
     }
     
     private func fetchUsers() {
