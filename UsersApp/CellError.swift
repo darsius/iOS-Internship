@@ -2,5 +2,5 @@ import Foundation
 
     
 enum CellError: Error {
-    case unableToDeque
+    case unableToDequeue
 }

@@ -3,7 +3,7 @@ import UIKit
 
 class UsersViewController: UIViewController {
 
-    @IBOutlet weak var usersTableView: UITableView!
+    @IBOutlet weak private var usersTableView: UITableView!
     
     private var users: [User] = []
     
@@ -22,11 +22,11 @@ class UsersViewController: UIViewController {
     }
     
     private func setUpNavBar() {
-        let titleAtributes: [NSAttributedString.Key: Any] = [
+        let titleAttributes: [NSAttributedString.Key: Any] = [
             .font: UIFont.systemFont(ofSize: 22)
         ]
 
-        navigationController?.navigationBar.titleTextAttributes = titleAtributes
+        navigationController?.navigationBar.titleTextAttributes = titleAttributes
         navigationItem.title = "Users"
     }
     
@@ -45,9 +45,13 @@ class UsersViewController: UIViewController {
                 }
             } catch let error as NetworkError {
                 print("Network error: \(error.localizedDescription)")
-                let alert = UIAlertController(title: "Could not fetch the users!", message: "\(error.localizedDescription)", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: { _ in
-                NSLog("The \"OK\" alert occured.")
+                let alert = UIAlertController(
+                    title: "Could not fetch the users!",
+                    message: "\(error.localizedDescription)", preferredStyle: .alert)
+                
+                alert.addAction(UIAlertAction(
+                    title: "OK", style: .default, handler: { _ in
+                NSLog("The \"OK\" alert occurred.")
                 }))
                 self.present(alert, animated: true, completion: nil)
             }
@@ -78,7 +82,7 @@ extension UsersViewController: UITableViewDataSource {
     
     func configureUsersCell(_ tableView: UITableView, indexPath: IndexPath) throws -> UserCellView {
         guard let userCell = tableView.dequeueReusableCell(withIdentifier: "UserCellView", for: indexPath) as? UserCellView else {
-            throw CellError.unableToDeque
+            throw CellError.unableToDequeue
         }
         
         let userName = users[indexPath.row].name.first + " " + users[indexPath.row].name.last

@@ -3,30 +3,30 @@ import UIKit
 
 class UserDetailsViewController: UIViewController, UITextViewDelegate {
     
-    @IBOutlet weak var userImageView: UIImageView!
+    @IBOutlet weak private var userImageView: UIImageView!
     
-    @IBOutlet weak var noteTextView: UITextView!
+    @IBOutlet weak private var noteTextView: UITextView!
     
-    @IBOutlet weak var firstNameView: UserDetailView!
-    @IBOutlet weak var lastNameView: UserDetailView!
-    @IBOutlet weak var genderView: UserDetailView!
+    @IBOutlet weak private var firstNameView: UserDetailView!
+    @IBOutlet weak private var lastNameView: UserDetailView!
+    @IBOutlet weak private var genderView: UserDetailView!
     
-    @IBOutlet weak var streetAdressLabel: UILabel!
-    @IBOutlet weak var cityLabel: UILabel!
-    @IBOutlet weak var stateLabel: UILabel!
-    @IBOutlet weak var countryLabel: UILabel!
-    @IBOutlet weak var postalCodeLabel: UILabel!
-    @IBOutlet weak var coordinatesLabel: UILabel!
-    @IBOutlet weak var timezoneLabel: UILabel!
+    @IBOutlet weak private var streetAddressLabel: UILabel!
+    @IBOutlet weak private var cityLabel: UILabel!
+    @IBOutlet weak private var stateLabel: UILabel!
+    @IBOutlet weak private var countryLabel: UILabel!
+    @IBOutlet weak private var postalCodeLabel: UILabel!
+    @IBOutlet weak private var coordinatesLabel: UILabel!
+    @IBOutlet weak private var timezoneLabel: UILabel!
     
-    @IBOutlet weak var emailView: UserDetailView!
-    @IBOutlet weak var dateOfBirth: UserDetailView!
-    @IBOutlet weak var registeredDateView: UserDetailView!
-    @IBOutlet weak var phoneView: UserDetailView!
-    @IBOutlet weak var cellphoneView: UserDetailView!
+    @IBOutlet weak private var emailView: UserDetailView!
+    @IBOutlet weak private var dateOfBirth: UserDetailView!
+    @IBOutlet weak private var registeredDateView: UserDetailView!
+    @IBOutlet weak private var phoneView: UserDetailView!
+    @IBOutlet weak private var cellphoneView: UserDetailView!
     
-    @IBOutlet weak var deleteButton: UIButton!
-    @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak private var deleteButton: UIButton!
+    @IBOutlet weak private var saveButton: UIButton!
     
     
     private let userDefaults = UserDefaults()
@@ -94,7 +94,7 @@ class UserDetailsViewController: UIViewController, UITextViewDelegate {
     
     private func configureLocationView(_ user: User) {
         let location = user.location
-        streetAdressLabel.text = location.street.name
+        streetAddressLabel.text = location.street.name
         cityLabel.text = location.city
         stateLabel.text = location.state
         countryLabel.text = location.country
