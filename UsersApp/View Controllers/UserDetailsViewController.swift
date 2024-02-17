@@ -192,25 +192,35 @@ extension UserDetailsViewController {
         }
         else {
             saveButton.isHidden = true
+            swapButtons()
         }
     }
     
-    @IBAction func saveNote(_ sender: Any) {
+    @IBAction private func saveNote(_ sender: Any) {
         if !noteTextView.text.isEmpty {
             let email = getUsersEmail()
             userDefaults.setValue(noteTextView.text, forKey: email)
             handleTap(UITapGestureRecognizer())
             saveButton.isHidden = true
+            swapButtons()
             deleteButton.isHidden = false
         }
     }
     
-    @IBAction func deleteNote(_ sender: Any) {
+    @IBAction private func deleteNote(_ sender: Any) {
         if !noteTextView.text.isEmpty {
             let email = getUsersEmail()
             userDefaults.removeObject(forKey: email)
             noteTextView.text = ""
+            swapButtons()
             deleteButton.isHidden = true
+            saveButton.isHidden = true
         }
+    }
+    
+    private func swapButtons() {
+        let tempButton = saveButton.center
+        saveButton.center = deleteButton.center
+        deleteButton.center = tempButton
     }
 }
