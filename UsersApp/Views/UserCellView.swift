@@ -30,7 +30,8 @@ class UserCellView: UITableViewCell {
               let hours = Double(components[0]),
               let minutes = Double(components[1])
         else {
-            fatalError("invalid time as string")
+            print("invalid time as string")
+            return
         }
         
         let userTimeHours = hours + (minutes / 60)
