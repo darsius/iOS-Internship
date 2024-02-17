@@ -190,6 +190,9 @@ extension UserDetailsViewController {
             deleteButton.isHidden = true
             saveButton.isHidden = true
         }
+        else {
+            saveButton.isHidden = true
+        }
     }
     
     @IBAction func saveNote(_ sender: Any) {
@@ -197,6 +200,8 @@ extension UserDetailsViewController {
             let email = getUsersEmail()
             userDefaults.setValue(noteTextView.text, forKey: email)
             handleTap(UITapGestureRecognizer())
+            saveButton.isHidden = true
+            deleteButton.isHidden = false
         }
     }
     
@@ -205,9 +210,7 @@ extension UserDetailsViewController {
             let email = getUsersEmail()
             userDefaults.removeObject(forKey: email)
             noteTextView.text = ""
-        }
-        else {
-            deleteButton.isHidden = false
+            deleteButton.isHidden = true
         }
     }
 }
