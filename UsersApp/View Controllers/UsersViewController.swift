@@ -80,9 +80,10 @@ extension UsersViewController: UITableViewDataSource {
         return users.count
     }
     
-    func configureUsersCell(_ tableView: UITableView, indexPath: IndexPath) throws -> UserCellView {
-        guard let userCell = tableView.dequeueReusableCell(withIdentifier: "UserCellView", for: indexPath) as? UserCellView else {
-            throw CellError.unableToDequeue
+    func configureUsersCell(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
+
+        guard let userCell = tableView.dequeueReusableCell(withIdentifier: "UserCllView", for: indexPath) as? UserCellView else {
+            return UITableViewCell()
         }
         
         let userName = users[indexPath.row].name.first + " " + users[indexPath.row].name.last
@@ -97,12 +98,7 @@ extension UsersViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        do {
-            let userCell = try configureUsersCell(tableView, indexPath: indexPath)
-            return userCell
-        } catch {
-            print("Error: \(error)")
-            return tableView.dequeueReusableCell(withIdentifier: "DefaultCell", for: indexPath)
-        }
+        let userCell = configureUsersCell(tableView, indexPath: indexPath)
+        return userCell
     }
 }
