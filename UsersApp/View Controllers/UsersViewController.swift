@@ -82,7 +82,7 @@ extension UsersViewController: UITableViewDataSource {
     
     func configureUsersCell(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
 
-        guard let userCell = tableView.dequeueReusableCell(withIdentifier: "UserCllView", for: indexPath) as? UserCellView else {
+        guard let userCell = tableView.dequeueReusableCell(withIdentifier: "UserCellView", for: indexPath) as? UserCellView else {
             return UITableViewCell()
         }
         
