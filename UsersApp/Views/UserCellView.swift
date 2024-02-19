@@ -18,9 +18,9 @@ class UserCellView: UITableViewCell {
     }
     
     func setupImageView(with urlString: String) {
-            userImageView.downloaded(from: urlString, contentMode: .scaleToFill)
-            userImageView.layer.cornerRadius = userImageView.frame.size.height / 2
-            userImageView.layer.masksToBounds = true
+        userImageView.downloaded(from: urlString, contentMode: .scaleToFill)
+        userImageView.layer.cornerRadius = userImageView.frame.size.height / 2
+        userImageView.layer.masksToBounds = true
     }
     
     func setupTimeLabel(with userTime: String) {
@@ -48,10 +48,10 @@ class UserCellView: UITableViewCell {
     }
     
     func userCellInit(_ name: String, _ email: String, _ userTime: String, _ imageUrl: String) {
-            nameLabel.text = name
-            emailLabel.text = email
-            
-            setupImageView(with: imageUrl)
-            setupTimeLabel(with: userTime)
-        }
+        nameLabel.text = name
+        emailLabel.text = email
+        
+        setupImageView(with: imageUrl)
+        setupTimeLabel(with: userTime)
+    }
 }
