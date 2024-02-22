@@ -50,9 +50,7 @@ class UsersViewController: UIViewController {
                     message: "\(error.localizedDescription)", preferredStyle: .alert)
                 
                 alert.addAction(UIAlertAction(
-                    title: "OK", style: .default, handler: { _ in
-                NSLog("The \"OK\" alert occurred.")
-                }))
+                    title: "OK", style: .default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
             }
         }

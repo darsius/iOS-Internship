@@ -188,12 +188,11 @@ extension UserDetailsViewController {
     private func disableEmptyNoteButtons() {
         if noteTextView.text.isEmpty {
             deleteButton.isHidden = true
-            saveButton.isHidden = true
         }
         else {
-            saveButton.isHidden = true
             swapButtons()
         }
+        saveButton.isHidden = true
     }
     
     @IBAction private func saveNote(_ sender: Any) {
