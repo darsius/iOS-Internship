@@ -1,31 +1,38 @@
-//
-//  ViewController.swift
-//  Prob
-//
-//  Created by Dar Dar on 28.09.2023.
-//
-
 import UIKit
 
 
 class UsersViewController: UIViewController {
 
-    @IBOutlet weak var usersTableView: UITableView!
+    @IBOutlet weak private var usersTableView: UITableView!
     
     private var users: [User] = []
     
     private var numberOfUsersDisplayed: Int = 100;
     private var orderOfUsersDisplayed: String = "abc"
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let nib = UINib(nibName: "UserCellView", bundle: nil)
-        usersTableView.register(nib, forCellReuseIdentifier: "UserCellView")
+        setUpNavBar()
+        
+        configureUserCellView()
     
-        usersTableView.delegate = self
-        usersTableView.dataSource = self
         fetchUsers()
+    }
+    
+    private func setUpNavBar() {
+        let titleAttributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont.systemFont(ofSize: 22)
+        ]
+
+        navigationController?.navigationBar.titleTextAttributes = titleAttributes
+        navigationItem.title = "Users"
+    }
+    
+    private func configureUserCellView() {
+        let userCellNib = UINib(nibName: "UserCellView", bundle: nil)
+        usersTableView.register(userCellNib, forCellReuseIdentifier: "UserCellView")
     }
     
     private func fetchUsers() {
@@ -36,14 +43,46 @@ class UsersViewController: UIViewController {
                 DispatchQueue.main.async {
                     self.usersTableView.reloadData()
                 }
-            } catch {
-                print("Error! Can't fetch the users.")
+            } catch let error as NetworkError {
+                print("Network error: \(error.localizedDescription)")
+                let alert = UIAlertController(
+                    title: "Could not fetch the users!",
+                    message: "\(error.localizedDescription)", preferredStyle: .alert)
+                
+                alert.addAction(UIAlertAction(
+                    title: "OK", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
             }
         }
     }
+    
+    private func makeDetailsViewController(for user: User) -> UserDetailsViewController {
+        let detailsViewController = UserDetailsViewController()
+        detailsViewController.user = user
 
-    private func configureUsersCell(_ tableView: UITableView, indexPath: IndexPath) -> UserCellView {
-        let userCell = tableView.dequeueReusableCell(withIdentifier: "UserCellView", for: indexPath) as! UserCellView
+        return detailsViewController
+    }
+}
+
+extension UsersViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedUser = users[indexPath.row]
+        let detailsViewController = makeDetailsViewController(for: selectedUser)
+        navigationController?.pushViewController(detailsViewController, animated: true)
+    }
+}
+
+extension UsersViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+
+        return users.count
+    }
+    
+    func configureUsersCell(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
+
+        guard let userCell = tableView.dequeueReusableCell(withIdentifier: "UserCellView", for: indexPath) as? UserCellView else {
+            return UITableViewCell()
+        }
         
         let userName = users[indexPath.row].name.first + " " + users[indexPath.row].name.last
         let userEmail = users[indexPath.row].email
@@ -55,22 +94,8 @@ class UsersViewController: UIViewController {
 
         return userCell
     }
-}
-
-extension UsersViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("You tapped me!")
-    }
-}
-
-extension UsersViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
-        return users.count
-    }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
         let userCell = configureUsersCell(tableView, indexPath: indexPath)
         return userCell
     }

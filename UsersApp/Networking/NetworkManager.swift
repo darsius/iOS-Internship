@@ -1,15 +1,8 @@
-//
-//  NetworkManager.swift
-//  Prob
-//
-//  Created by Dar Dar on 04.10.2023.
-//
-
 import Foundation
 
 
 class NetworkManager {
-    let networError = NetworkError.self
+    let networkError = NetworkError.self
     
     func getUser(endpointResult: Int, endpointSeed: String) async throws -> [User] {
         
@@ -20,18 +13,18 @@ class NetworkManager {
         ]
         
         guard endpointResult >= 1 else {
-            throw networError.invalidParameter
+            throw networkError.invalidParameter
         }
 
         guard let url = urlComponents?.url else {
-            throw networError.invalidUrl
+            throw networkError.invalidUrl
         }
         
         let (data, response) = try await URLSession.shared.data(from: url)
         
         guard let response = response as? HTTPURLResponse,
                 response.statusCode == 200 else {
-            throw networError.invalidReponse
+            throw networkError.invalidResponse
         }
         
         do {
@@ -39,7 +32,7 @@ class NetworkManager {
             let result = try decoder.decode(UserListResponse.self, from: data)
             return result.results
         } catch {
-            throw networError.invalidData
+            throw networkError.invalidData
         }
     }
 }
