@@ -22,8 +22,6 @@ final class NetworkMonitor {
                 self?.isConnected = path.status != .unsatisfied
                 self?.isExpensive = path.isExpensive
                 self?.currentConnectionType = NWInterface.InterfaceType.allCases.filter{path.usesInterfaceType($0)}.first
-//                print("Is connected? \(String(describing: self?.isConnected))")
-//                print("Connection type: \(self?.currentConnectionType as Any)")
                 NotificationCenter.default.post(name: .connectivityStatus, object: nil)
             }
         }
