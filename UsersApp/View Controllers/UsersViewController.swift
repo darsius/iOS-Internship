@@ -42,6 +42,7 @@ class UsersViewController: UIViewController {
                 self.users = try await networkManager.getUser(endpointResult: numberOfUsersDisplayed, endpointSeed: orderOfUsersDisplayed)
                 DispatchQueue.main.async {
                     self.usersTableView.reloadData()
+//                    NetworkMonitor.shared.stopMonitoring()
                 }
             } catch let error as NetworkError {
                 print("Network error: \(error.localizedDescription)")
