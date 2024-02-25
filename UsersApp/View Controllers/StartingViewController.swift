@@ -2,13 +2,12 @@ import UIKit
 import Network
 
 class StartingViewController: UIViewController {
-    @IBOutlet weak var btn: UIButton!
-    @IBOutlet weak var networkLabel: UILabel!
-    @IBOutlet weak var infoLabel: UILabel!
-    //    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        activityIndicator.startAnimating()
         
         NotificationCenter.default.addObserver(self, selector: #selector(showOfflineDeviceUI(notification:)), name: NSNotification.Name.connectivityStatus, object: nil)
 //        startMonitoringInternetConnectivity()
@@ -21,7 +20,7 @@ class StartingViewController: UIViewController {
                 self.navigateToUsersViewController()
             } else {
                 // TODO: alerta
-                networkLabel.text = "neconectat \(NetworkMonitor.shared.isConnected)"
+//                networkLabel.text = "neconectat \(NetworkMonitor.shared.isConnected)"
                 print("Not connected")
             }
         }
@@ -52,7 +51,7 @@ class StartingViewController: UIViewController {
 //    }
     
     func navigateToUsersViewController() {
-        networkLabel.text = "navigating.."
+//        networkLabel.text = "navigating.."
         let usersViewController = UsersViewController()
         
         
