@@ -99,7 +99,7 @@ class UserDetailsViewController: UIViewController, UITextViewDelegate {
         stateLabel.text = location.state
         countryLabel.text = location.country
         postalCodeLabel.text = location.postcode.description
-        coordinatesLabel.text = "latitude: " + location.coordinates.latitude + "\nlongitude: " + location.coordinates.longitude
+        coordinatesLabel.text = "latitude: " + location.coordinates.latitude + "\n longitude: " + location.coordinates.longitude
         timezoneLabel.text = "offset: " + location.timezone.offset + "\n" + location.timezone.description
     }
     
