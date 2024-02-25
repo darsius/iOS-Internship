@@ -17,7 +17,7 @@ extension UIImageView {
                 let data = data, error == nil,
                 let image = UIImage(data: data)
             else {
-                let defaultImage = UIImage(systemName: "person")
+                let defaultImage = UIImage(systemName: "person.fill")
                 DispatchQueue.main.async { [weak self] in
                     self?.image = defaultImage
                     completion?(false)
