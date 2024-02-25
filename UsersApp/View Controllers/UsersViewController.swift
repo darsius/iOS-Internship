@@ -19,6 +19,25 @@ class UsersViewController: UIViewController {
         configureUserCellView()
     
         fetchUsers()
+        
+        observeNetworkChanges()
+    }
+    
+    private func observeNetworkChanges() {
+        NotificationCenter.default.addObserver(self, selector: #selector(manageNoInternetConnection(notification:)), name: NSNotification.Name.connectivityStatus, object: nil)
+    }
+    
+    @objc func manageNoInternetConnection(notification: Notification) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            if !NetworkMonitor.shared.isConnected {
+                let alert = UIAlertController(
+                    title: "No internet",
+                    message: "You're offline. Check you connection", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(
+                    title: "Dismiss", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }
+        }
     }
     
     private func setUpNavBar() {
@@ -42,14 +61,13 @@ class UsersViewController: UIViewController {
                 self.users = try await networkManager.getUser(endpointResult: numberOfUsersDisplayed, endpointSeed: orderOfUsersDisplayed)
                 DispatchQueue.main.async {
                     self.usersTableView.reloadData()
-//                    NetworkMonitor.shared.stopMonitoring()
                 }
             } catch let error as NetworkError {
                 print("Network error: \(error.localizedDescription)")
+                
                 let alert = UIAlertController(
                     title: "Could not fetch the users!",
                     message: "\(error.localizedDescription)", preferredStyle: .alert)
-                
                 alert.addAction(UIAlertAction(
                     title: "OK", style: .default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
