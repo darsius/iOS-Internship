@@ -14,21 +14,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let usersViewController = UsersViewController()
             let navController = UINavigationController(rootViewController: usersViewController)
         
-<<<<<<< HEAD
             let loadingViewController = LoadingViewController()
-=======
-            let startingViewController = StartingViewController()
->>>>>>> 2259357c6857a7741f8991fdba407c3d3c0ae72e
             
             DispatchQueue.main.async {
-                if NetworkMonitor.shared.isConnected {
+                if NetworkMonitor.shared.isConnected && !NetworkMonitor.shared.isExpensive {
                     window.rootViewController = navController
                 } else {
-<<<<<<< HEAD
                     window.rootViewController = loadingViewController
-=======
-                    window.rootViewController = startingViewController
->>>>>>> 2259357c6857a7741f8991fdba407c3d3c0ae72e
                 }
             }
             
