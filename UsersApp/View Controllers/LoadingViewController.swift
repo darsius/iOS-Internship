@@ -4,12 +4,16 @@ import Network
 class LoadingViewController: UIViewController {
 
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         activityIndicator.startAnimating()
         
+        observeNetworkChanges()
+    }
+    
+    private func observeNetworkChanges() {
         NotificationCenter.default.addObserver(self, selector: #selector(navigateToUsersViewController(notification:)), name: NSNotification.Name.connectivityStatus, object: nil)
     }
     
