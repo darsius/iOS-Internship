@@ -21,8 +21,13 @@
 		E4C1ABF72B88BD42009042A5 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C1ABF62B88BD42009042A5 /* NetworkMonitor.swift */; };
 		E4C1ABF92B88BD57009042A5 /* NetworkNotificationNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C1ABF82B88BD57009042A5 /* NetworkNotificationNames.swift */; };
 		E4C1ABFB2B88BD5F009042A5 /* NetworkInterfaceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C1ABFA2B88BD5F009042A5 /* NetworkInterfaceType.swift */; };
+<<<<<<< HEAD
 		E4C1ABFE2B88C383009042A5 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C1ABFC2B88C383009042A5 /* LoadingViewController.swift */; };
 		E4C1ABFF2B88C383009042A5 /* LoadingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4C1ABFD2B88C383009042A5 /* LoadingViewController.xib */; };
+=======
+		E4C1ABFE2B88C383009042A5 /* StartingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C1ABFC2B88C383009042A5 /* StartingViewController.swift */; };
+		E4C1ABFF2B88C383009042A5 /* StartingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4C1ABFD2B88C383009042A5 /* StartingViewController.xib */; };
+>>>>>>> 2259357c6857a7741f8991fdba407c3d3c0ae72e
 		E4C4A4F22AC5CB6E00BAA03A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C4A4F12AC5CB6E00BAA03A /* AppDelegate.swift */; };
 		E4C4A4F42AC5CB6E00BAA03A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C4A4F32AC5CB6E00BAA03A /* SceneDelegate.swift */; };
 		E4C4A4FB2AC5CB6F00BAA03A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4C4A4FA2AC5CB6F00BAA03A /* Assets.xcassets */; };
@@ -45,8 +50,13 @@
 		E4C1ABF62B88BD42009042A5 /* NetworkMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		E4C1ABF82B88BD57009042A5 /* NetworkNotificationNames.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkNotificationNames.swift; sourceTree = "<group>"; };
 		E4C1ABFA2B88BD5F009042A5 /* NetworkInterfaceType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkInterfaceType.swift; sourceTree = "<group>"; };
+<<<<<<< HEAD
 		E4C1ABFC2B88C383009042A5 /* LoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		E4C1ABFD2B88C383009042A5 /* LoadingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingViewController.xib; sourceTree = "<group>"; };
+=======
+		E4C1ABFC2B88C383009042A5 /* StartingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartingViewController.swift; sourceTree = "<group>"; };
+		E4C1ABFD2B88C383009042A5 /* StartingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StartingViewController.xib; sourceTree = "<group>"; };
+>>>>>>> 2259357c6857a7741f8991fdba407c3d3c0ae72e
 		E4C4A4EE2AC5CB6E00BAA03A /* UsersApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UsersApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4C4A4F12AC5CB6E00BAA03A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E4C4A4F32AC5CB6E00BAA03A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -162,8 +172,13 @@
 				E427CEFC2B31C18700F9AC04 /* UsersViewController.xib */,
 				E427CEFD2B31C18700F9AC04 /* UserDetailsViewController.swift */,
 				E427CEFB2B31C18700F9AC04 /* UserDetailsViewController.xib */,
+<<<<<<< HEAD
 				E4C1ABFC2B88C383009042A5 /* LoadingViewController.swift */,
 				E4C1ABFD2B88C383009042A5 /* LoadingViewController.xib */,
+=======
+				E4C1ABFC2B88C383009042A5 /* StartingViewController.swift */,
+				E4C1ABFD2B88C383009042A5 /* StartingViewController.xib */,
+>>>>>>> 2259357c6857a7741f8991fdba407c3d3c0ae72e
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -226,7 +241,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+<<<<<<< HEAD
 				E4C1ABFF2B88C383009042A5 /* LoadingViewController.xib in Resources */,
+=======
+				E4C1ABFF2B88C383009042A5 /* StartingViewController.xib in Resources */,
+>>>>>>> 2259357c6857a7741f8991fdba407c3d3c0ae72e
 				E427CEFF2B31C18700F9AC04 /* UserDetailsViewController.xib in Resources */,
 				E427CF002B31C18700F9AC04 /* UsersViewController.xib in Resources */,
 				E4C4A4FB2AC5CB6F00BAA03A /* Assets.xcassets in Resources */,
@@ -246,7 +265,11 @@
 				E4C1ABF72B88BD42009042A5 /* NetworkMonitor.swift in Sources */,
 				E437C2612ACCCD4B00DD8950 /* User.swift in Sources */,
 				E468D2842B4732FA0045A8AE /* PostalColde.swift in Sources */,
+<<<<<<< HEAD
 				E4C1ABFE2B88C383009042A5 /* LoadingViewController.swift in Sources */,
+=======
+				E4C1ABFE2B88C383009042A5 /* StartingViewController.swift in Sources */,
+>>>>>>> 2259357c6857a7741f8991fdba407c3d3c0ae72e
 				E4C4A5062AC5CC7C00BAA03A /* UserCellView.swift in Sources */,
 				E4C4A4F22AC5CB6E00BAA03A /* AppDelegate.swift in Sources */,
 				E447041B2AFD4FA400D5C5BF /* NetworkError.swift in Sources */,

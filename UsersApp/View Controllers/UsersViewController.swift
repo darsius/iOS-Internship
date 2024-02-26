@@ -54,6 +54,20 @@ class UsersViewController: UIViewController {
         usersTableView.register(userCellNib, forCellReuseIdentifier: "UserCellView")
     }
     
+    private func setUpNavBar() {
+        let titleAttributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont.systemFont(ofSize: 22)
+        ]
+
+        navigationController?.navigationBar.titleTextAttributes = titleAttributes
+        navigationItem.title = "Users"
+    }
+    
+    private func configureUserCellView() {
+        let userCellNib = UINib(nibName: "UserCellView", bundle: nil)
+        usersTableView.register(userCellNib, forCellReuseIdentifier: "UserCellView")
+    }
+    
     private func fetchUsers() {
         let networkManager = NetworkManager()
         Task {
@@ -61,13 +75,21 @@ class UsersViewController: UIViewController {
                 self.users = try await networkManager.getUser(endpointResult: numberOfUsersDisplayed, endpointSeed: orderOfUsersDisplayed)
                 DispatchQueue.main.async {
                     self.usersTableView.reloadData()
+//                    NetworkMonitor.shared.stopMonitoring()
                 }
             } catch let error as NetworkError {
                 print("Network error: \(error.localizedDescription)")
+<<<<<<< HEAD
                 
                 let alert = UIAlertController(
                     title: "Could not fetch the users!",
                     message: "\(error.localizedDescription)", preferredStyle: .alert)
+=======
+                let alert = UIAlertController(
+                    title: "Could not fetch the users!",
+                    message: "\(error.localizedDescription)", preferredStyle: .alert)
+                
+>>>>>>> 2259357c6857a7741f8991fdba407c3d3c0ae72e
                 alert.addAction(UIAlertAction(
                     title: "OK", style: .default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
