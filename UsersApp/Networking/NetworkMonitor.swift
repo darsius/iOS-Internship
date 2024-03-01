@@ -16,7 +16,7 @@ final class NetworkMonitor {
         monitor = NWPathMonitor()
     }
     
-    func startMonitoring() {
+    func initiateConnectivityTracking() {
         monitor.pathUpdateHandler = { [weak self] path in
             DispatchQueue.main.async {
                 self?.isConnected = path.status != .unsatisfied
@@ -28,7 +28,7 @@ final class NetworkMonitor {
         monitor.start(queue: networkQueue)
     }
     
-    func stopMonitoring() {
+    func terminateConnectivityTracking() {
         monitor.cancel()
     }
 }

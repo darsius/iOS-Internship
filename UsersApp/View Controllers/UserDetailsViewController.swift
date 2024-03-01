@@ -83,12 +83,20 @@ class UserDetailsViewController: UIViewController, UITextViewDelegate {
     }
     
     private func setUpImageView(with urlString: String) {
-        userImageView.downloaded(from: urlString) { [weak self] _ in
-            guard let self = self else { return }
-            
-            self.userImageView.layer.cornerRadius = self.userImageView.frame.size.width / 2
-            self.userImageView.layer.masksToBounds = false
-            self.userImageView.clipsToBounds = true
+        self.userImageView.layer.cornerRadius = self.userImageView.frame.size.width / 2
+        self.userImageView.layer.masksToBounds = false
+        self.userImageView.clipsToBounds = true
+        userImageView.downloaded(from: urlString) { result in
+            switch result {
+            case .success(let image):
+                self.userImageView.image = image
+            case .failure(let error):
+                print("Error downloading image: \(error.localizedDescription)")
+                let defaultImage = UIImage(systemName: "person.fill")
+                DispatchQueue.main.async {
+                    self.userImageView.image = defaultImage
+                }
+            }
         }
     }
     

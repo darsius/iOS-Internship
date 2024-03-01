@@ -18,7 +18,18 @@ class UserCellView: UITableViewCell {
     }
     
     func setupImageView(with urlString: String) {
-        userImageView.downloaded(from: urlString, contentMode: .scaleToFill)
+        userImageView.downloaded(from: urlString) { result in
+            switch result {
+            case .success(let image):
+                self.userImageView.image = image
+            case .failure(let error):
+                print("Error downloading image: \(error.localizedDescription)")
+                let defaultImage = UIImage(systemName: "person.fill")
+                DispatchQueue.main.async {
+                    self.userImageView.image = defaultImage
+                }
+            }
+        }
         userImageView.layer.cornerRadius = userImageView.frame.size.height / 2
         userImageView.layer.masksToBounds = true
     }

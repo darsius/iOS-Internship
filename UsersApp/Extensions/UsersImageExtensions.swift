@@ -1,11 +1,11 @@
 import UIKit
 
 extension UIImageView {
-    func downloaded(from url: String, contentMode mode: ContentMode = .scaleToFill, completion: ((Bool) -> Void)? = nil) {
+    func downloaded(from url: String, contentMode mode: ContentMode = .scaleToFill, completion: @escaping (Result<UIImage, Error>) -> Void) {
         
         guard let url = URL(string: url) else {
             print("Error: Invalid image URL")
-            completion?(false)
+            completion(.failure(ImageDownloadError.invalidUrl))
             return
         }
         
@@ -17,18 +17,16 @@ extension UIImageView {
                 let data = data, error == nil,
                 let image = UIImage(data: data)
             else {
-                let defaultImage = UIImage(systemName: "person.fill")
-                DispatchQueue.main.async { [weak self] in
-                    self?.image = defaultImage
-                    completion?(false)
-                }
+                completion(.failure(ImageDownloadError.invalidResponse))
+                print("invalid http response when downloading the image")
                 return
-            }
+                }
             
             DispatchQueue.main.async { [weak self] in
                 self?.image = image
-                completion?(true)
+                completion(.success(image))
             }
         }.resume()
     }
 }
+
