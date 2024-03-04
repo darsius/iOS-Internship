@@ -1,11 +1,9 @@
 import Foundation
 
-
 class NetworkManager {
     let networkError = NetworkError.self
     
     func getUser(endpointResult: Int, endpointSeed: String) async throws -> [User] {
-        
         var urlComponents = URLComponents(string: "https://randomuser.me/api/")
         urlComponents?.queryItems = [
             URLQueryItem(name: "results", value: "\(endpointResult)"),
@@ -20,14 +18,19 @@ class NetworkManager {
             throw networkError.invalidUrl
         }
         
-        let (data, response) = try await URLSession.shared.data(from: url)
-        
-        guard let response = response as? HTTPURLResponse,
-                response.statusCode == 200 else {
-            throw networkError.invalidResponse
-        }
+        let config = URLSessionConfiguration.default
+        config.waitsForConnectivity = true
+        config.timeoutIntervalForRequest = 60
+
+        let session = URLSession(configuration: config)
         
         do {
+            let (data, response) = try await session.data(from: url)
+            
+            guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+                throw networkError.invalidResponse
+            }
+
             let decoder = JSONDecoder()
             let result = try decoder.decode(UserListResponse.self, from: data)
             return result.results
