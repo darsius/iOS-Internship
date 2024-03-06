@@ -113,7 +113,7 @@
 				E4E43DA32AFD14E500A92706 /* Extensions */,
 				E4E43DA62AFD1C7700A92706 /* Networking */,
 				E4E43DA82AFD1CD500A92706 /* Models */,
-				E4E43DA92AFD1D1A00A92706 /* View Controllers */,
+				E4E43DA92AFD1D1A00A92706 /* Controllers */,
 				E4BBFCEF2B0CFE4000027A26 /* Views */,
 				E4C4A4FA2AC5CB6F00BAA03A /* Assets.xcassets */,
 				E4C4A4FF2AC5CB6F00BAA03A /* Info.plist */,
@@ -158,7 +158,7 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		E4E43DA92AFD1D1A00A92706 /* View Controllers */ = {
+		E4E43DA92AFD1D1A00A92706 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				E427CEFA2B31C18700F9AC04 /* UsersViewController.swift */,
@@ -168,7 +168,7 @@
 				E4C1ABFC2B88C383009042A5 /* LoadingViewController.swift */,
 				E4C1ABFD2B88C383009042A5 /* LoadingViewController.xib */,
 			);
-			path = "View Controllers";
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

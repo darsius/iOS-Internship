@@ -10,11 +10,11 @@ class UsersViewController: UIViewController {
     private var users: [User] = []
     private var filteredUsers: [User] = []
     
-    var isSearchBarEmpty: Bool {
+    private var isSearchBarEmpty: Bool {
         return searchController.searchBar.text?.isEmpty ?? true
     }
     
-    var isFiltering: Bool {
+    private var isFiltering: Bool {
         return searchController.isActive && !isSearchBarEmpty
     }
     
@@ -69,7 +69,7 @@ class UsersViewController: UIViewController {
         definesPresentationContext = true
     }
     
-    internal func filterUsersForSearchText(_ searchText: String) {
+    private func filterUsersForSearchText(_ searchText: String) {
         filteredUsers = users.filter { (user: User) -> Bool in
             return user.name.first.lowercased().contains(searchText.lowercased()) || user.name.last.lowercased().contains(searchText.lowercased())
         }
@@ -113,7 +113,12 @@ class UsersViewController: UIViewController {
 
 extension UsersViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedUser = users[indexPath.row]
+        var selectedUser: User
+        if isFiltering {
+            selectedUser = filteredUsers[indexPath.row]
+        } else {
+            selectedUser = users[indexPath.row]
+        }
         let detailsViewController = makeDetailsViewController(for: selectedUser)
         navigationController?.pushViewController(detailsViewController, animated: true)
     }
