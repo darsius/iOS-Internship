@@ -35,6 +35,7 @@ class UsersViewController: UIViewController {
         observeNetworkChanges()
     }
     
+    
     private func observeNetworkChanges() {
         NotificationCenter.default.addObserver(self, selector: #selector(manageNoInternetConnection(notification:)), name: NSNotification.Name.connectivityStatus, object: nil)
     }
@@ -67,14 +68,6 @@ class UsersViewController: UIViewController {
         searchController.searchBar.placeholder = "Search User"
         navigationItem.searchController = searchController
         definesPresentationContext = true
-    }
-    
-    private func filterUsersForSearchText(_ searchText: String) {
-        filteredUsers = users.filter { (user: User) -> Bool in
-            return user.name.first.lowercased().contains(searchText.lowercased()) || user.name.last.lowercased().contains(searchText.lowercased())
-        }
-        
-        usersTableView.reloadData()
     }
     
     private func configureUserCellView() {
@@ -171,5 +164,16 @@ extension UsersViewController: UISearchResultsUpdating {
         }
         
         filterUsersForSearchText(searchBarText)
+    }
+    
+    private func filterUsersForSearchText(_ searchText: String) {
+        let newFilteredUsers = users.filter { (user: User) -> Bool in
+            return user.name.first.lowercased().contains(searchText.lowercased()) || user.name.last.lowercased().contains(searchText.lowercased())
+        }
+
+        if newFilteredUsers != filteredUsers {
+            filteredUsers = newFilteredUsers
+            usersTableView.reloadData()
+        }
     }
 }
