@@ -5,7 +5,18 @@ class UsersViewController: UIViewController {
 
     @IBOutlet weak private var usersTableView: UITableView!
     
+    private let searchController = UISearchController(searchResultsController: nil)
+    
     private var users: [User] = []
+    private var filteredUsers: [User] = []
+    
+    var isSearchBarEmpty: Bool {
+        return searchController.searchBar.text?.isEmpty ?? true
+    }
+    
+    var isFiltering: Bool {
+        return searchController.isActive && !isSearchBarEmpty
+    }
     
     private var numberOfUsersDisplayed: Int = 100;
     private var orderOfUsersDisplayed: String = "abc"
@@ -14,11 +25,12 @@ class UsersViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        fetchUsers()
+        
         setUpNavBar()
+        setUpSearchController()
         
         configureUserCellView()
-    
-        fetchUsers()
         
         observeNetworkChanges()
     }
@@ -47,6 +59,22 @@ class UsersViewController: UIViewController {
 
         navigationController?.navigationBar.titleTextAttributes = titleAttributes
         navigationItem.title = "Users"
+    }
+    
+    private func setUpSearchController() {
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search User"
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
+    }
+    
+    internal func filterUsersForSearchText(_ searchText: String) {
+        filteredUsers = users.filter { (user: User) -> Bool in
+            return user.name.first.lowercased().contains(searchText.lowercased()) || user.name.last.lowercased().contains(searchText.lowercased())
+        }
+        
+        usersTableView.reloadData()
     }
     
     private func configureUserCellView() {
@@ -93,21 +121,24 @@ extension UsersViewController: UITableViewDelegate {
 
 extension UsersViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
+        if isFiltering {
+            return filteredUsers.count
+        }
+        
         return users.count
     }
     
-    func configureUsersCell(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
+    func configureUsersCell(usersArray: [User], _ tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
 
         guard let userCell = tableView.dequeueReusableCell(withIdentifier: "UserCellView", for: indexPath) as? UserCellView else {
             return UITableViewCell()
         }
         
-        let userName = users[indexPath.row].name.first + " " + users[indexPath.row].name.last
-        let userEmail = users[indexPath.row].email
-        let userTime = users[indexPath.row].location.timezone.offset
+        let userName = usersArray[indexPath.row].name.first + " " + usersArray[indexPath.row].name.last
+        let userEmail = usersArray[indexPath.row].email
+        let userTime = usersArray[indexPath.row].location.timezone.offset
         
-        let imageUrl = users[indexPath.row].picture.medium
+        let imageUrl = usersArray[indexPath.row].picture.medium
         
         userCell.userCellInit(userName, userEmail, userTime, imageUrl)
 
@@ -115,7 +146,25 @@ extension UsersViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let userCell = configureUsersCell(tableView, indexPath: indexPath)
+        
+        var userCell: UserCellView
+        if isFiltering {
+            userCell = configureUsersCell(usersArray: filteredUsers ,tableView, indexPath: indexPath) as! UserCellView
+        } else {
+            userCell = configureUsersCell(usersArray: users, tableView, indexPath: indexPath) as! UserCellView
+        }
+            
         return userCell
+    }
+}
+
+extension UsersViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        let searchBar = searchController.searchBar
+        guard let searchBarText = searchBar.text else {
+            return
+        }
+        
+        filterUsersForSearchText(searchBarText)
     }
 }
