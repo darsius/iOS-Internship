@@ -66,6 +66,7 @@ class UsersViewController: UIViewController {
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search User"
+        searchController.hidesNavigationBarDuringPresentation = false
         navigationItem.searchController = searchController
         definesPresentationContext = true
     }
