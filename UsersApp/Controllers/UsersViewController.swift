@@ -1,9 +1,10 @@
 import UIKit
 
 
-class UsersViewController: UIViewController {
+class UsersViewController: UIViewController, UISearchControllerDelegate, UISearchBarDelegate {
 
     @IBOutlet weak private var usersTableView: UITableView!
+    
     
     private let searchController = UISearchController(searchResultsController: nil)
     
@@ -63,13 +64,28 @@ class UsersViewController: UIViewController {
     }
     
     private func setUpSearchController() {
+        
+        searchController.delegate = self
+        searchController.searchBar.delegate = self
+        
+        usersTableView.tableHeaderView = searchController.searchBar
+        
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search User"
-        searchController.hidesNavigationBarDuringPresentation = false
-        navigationItem.searchController = searchController
+        
         definesPresentationContext = true
+        
     }
+    
+    private func hideSearchBar() {
+        
+//        usersTableView.tableHeaderView = .none
+//        searchController.searchBar.resignFirstResponder()
+//        navigationItem.hidesSearchBarWhenScrolling = true
+//        searchController.searchBar.isHidden = true
+    }
+    
     
     private func configureUserCellView() {
         let userCellNib = UINib(nibName: "UserCellView", bundle: nil)
@@ -98,6 +114,9 @@ class UsersViewController: UIViewController {
     }
     
     private func makeDetailsViewController(for user: User) -> UserDetailsViewController {
+        
+        
+        
         let detailsViewController = UserDetailsViewController()
         detailsViewController.user = user
 
@@ -107,12 +126,16 @@ class UsersViewController: UIViewController {
 
 extension UsersViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         var selectedUser: User
         if isFiltering {
             selectedUser = filteredUsers[indexPath.row]
         } else {
             selectedUser = users[indexPath.row]
         }
+        
+        hideSearchBar()
+        
         let detailsViewController = makeDetailsViewController(for: selectedUser)
         navigationController?.pushViewController(detailsViewController, animated: true)
     }
