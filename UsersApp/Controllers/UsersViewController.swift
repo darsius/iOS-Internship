@@ -1,10 +1,9 @@
 import UIKit
 
 
-class UsersViewController: UIViewController, UISearchControllerDelegate, UISearchBarDelegate {
+class UsersViewController: UIViewController {
 
     @IBOutlet weak private var usersTableView: UITableView!
-    
     
     private let searchController = UISearchController(searchResultsController: nil)
     
@@ -30,12 +29,12 @@ class UsersViewController: UIViewController, UISearchControllerDelegate, UISearc
         
         setUpNavBar()
         setUpSearchController()
+        setUpScrollInsets()
         
         configureUserCellView()
         
         observeNetworkChanges()
     }
-    
     
     private func observeNetworkChanges() {
         NotificationCenter.default.addObserver(self, selector: #selector(manageNoInternetConnection(notification:)), name: NSNotification.Name.connectivityStatus, object: nil)
@@ -54,6 +53,10 @@ class UsersViewController: UIViewController, UISearchControllerDelegate, UISearc
         }
     }
     
+    func setUpScrollInsets() {
+        usersTableView.scrollIndicatorInsets = UIEdgeInsets(top:  -0.1, left: 0, bottom: 0, right: 0)
+    }
+    
     private func setUpNavBar() {
         let titleAttributes: [NSAttributedString.Key: Any] = [
             .font: UIFont.systemFont(ofSize: 22)
@@ -61,31 +64,21 @@ class UsersViewController: UIViewController, UISearchControllerDelegate, UISearc
 
         navigationController?.navigationBar.titleTextAttributes = titleAttributes
         navigationItem.title = "Users"
+        
     }
     
     private func setUpSearchController() {
-        
-        searchController.delegate = self
-        searchController.searchBar.delegate = self
-        
-        usersTableView.tableHeaderView = searchController.searchBar
-        
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search User"
+        searchController.hidesNavigationBarDuringPresentation = false
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.navigationItem.searchController = self.searchController
+        }
         
         definesPresentationContext = true
-        
     }
-    
-    private func hideSearchBar() {
-        
-//        usersTableView.tableHeaderView = .none
-//        searchController.searchBar.resignFirstResponder()
-//        navigationItem.hidesSearchBarWhenScrolling = true
-//        searchController.searchBar.isHidden = true
-    }
-    
     
     private func configureUserCellView() {
         let userCellNib = UINib(nibName: "UserCellView", bundle: nil)
@@ -114,9 +107,6 @@ class UsersViewController: UIViewController, UISearchControllerDelegate, UISearc
     }
     
     private func makeDetailsViewController(for user: User) -> UserDetailsViewController {
-        
-        
-        
         let detailsViewController = UserDetailsViewController()
         detailsViewController.user = user
 
@@ -126,16 +116,12 @@ class UsersViewController: UIViewController, UISearchControllerDelegate, UISearc
 
 extension UsersViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         var selectedUser: User
         if isFiltering {
             selectedUser = filteredUsers[indexPath.row]
         } else {
             selectedUser = users[indexPath.row]
         }
-        
-        hideSearchBar()
-        
         let detailsViewController = makeDetailsViewController(for: selectedUser)
         navigationController?.pushViewController(detailsViewController, animated: true)
     }
