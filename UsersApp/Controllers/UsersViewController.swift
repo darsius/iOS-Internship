@@ -27,10 +27,6 @@ class UsersViewController: UIViewController {
         
         fetchUsers()
         
-        setUpNavBar()
-        setUpSearchController()
-        setUpScrollInsets()
-        
         configureUserCellView()
         
         observeNetworkChanges()
@@ -64,14 +60,13 @@ class UsersViewController: UIViewController {
 
         navigationController?.navigationBar.titleTextAttributes = titleAttributes
         navigationItem.title = "Users"
-        
     }
     
     private func setUpSearchController() {
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search User"
-        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.searchBar.barTintColor = .black
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.navigationItem.searchController = self.searchController
@@ -85,6 +80,15 @@ class UsersViewController: UIViewController {
         usersTableView.register(userCellNib, forCellReuseIdentifier: "UserCellView")
     }
     
+    private func setUpUI() {
+        self.setUpNavBar()
+        self.setUpSearchController()
+        self.setUpScrollInsets()
+        self.usersTableView.backgroundColor = .systemYellow
+        self.view.backgroundColor = .systemYellow
+    }
+    
+    
     private func fetchUsers() {
         let networkManager = NetworkManager()
         Task {
@@ -92,6 +96,7 @@ class UsersViewController: UIViewController {
                 self.users = try await networkManager.getUser(endpointResult: numberOfUsersDisplayed, endpointSeed: orderOfUsersDisplayed)
                 DispatchQueue.main.async {
                     self.usersTableView.reloadData()
+                    self.setUpUI()
                 }
             } catch let error as NetworkError {
                 print("Network error: \(error.localizedDescription)")
