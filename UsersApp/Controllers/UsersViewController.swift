@@ -67,6 +67,7 @@ class UsersViewController: UIViewController {
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search User"
         searchController.searchBar.barTintColor = .black
+        searchController.searchBar.delegate = self
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.navigationItem.searchController = self.searchController
@@ -188,6 +189,15 @@ extension UsersViewController: UISearchResultsUpdating {
 
         if newFilteredUsers != filteredUsers {
             filteredUsers = newFilteredUsers
+            usersTableView.reloadData()
+        }
+    }
+}
+
+extension UsersViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.isEmpty {
+            filteredUsers = []
             usersTableView.reloadData()
         }
     }
