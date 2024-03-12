@@ -66,9 +66,9 @@ class UsersViewController: UIViewController {
         Task {
             do {
                 self.users = try await networkManager.getUser(endpointResult: numberOfUsersDisplayed, endpointSeed: orderOfUsersDisplayed)
-                DispatchQueue.main.async {
-                    self.usersTableView.reloadData()
-                    self.setUpUI()
+                DispatchQueue.main.async { [weak self] in
+                    self?.usersTableView.reloadData()
+                    self?.setUpUI()
                 }
             } catch let error as NetworkError {
                 print("Network error: \(error.localizedDescription)")
@@ -152,8 +152,8 @@ extension UsersViewController: UITableViewDataSource {
             let numberOfFilteredUsers = filteredUsers.count
             currentScreenHeight = numberOfFilteredUsers * cellHeight
             if currentScreenHeight < screenHeight {
-                DispatchQueue.main.async {
-                    self.setUpUsersTableFooter()
+                DispatchQueue.main.async { [weak self] in
+                    self?.setUpUsersTableFooter()
                 }
             } 
             else {
@@ -220,10 +220,11 @@ extension UsersViewController: UISearchResultsUpdating {
 
 extension UsersViewController: UISearchBarDelegate {
     private func refreshUsersTable() {
-        DispatchQueue.main.async {
-            self.usersTableView.isScrollEnabled = true
-            self.removeUsersTableFooter()
-            self.usersTableView.reloadData()
+        DispatchQueue.main.async { [weak self] in
+            self?.usersTableView.isScrollEnabled = true
+            self?.removeUsersTableFooter()
+            self?.usersTableView.reloadData()
+            self?.scrollTableViewUp()
         }
     }
     
@@ -231,14 +232,14 @@ extension UsersViewController: UISearchBarDelegate {
         if searchText.isEmpty {
             filteredUsers = []
         }
-        refreshUsersTable()
         scrollTableViewUp()
+        refreshUsersTable()
     }
    
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         removeUsersTableFooter()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-            self.usersTableView.reloadData()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
+            self?.usersTableView.reloadData()
         }
         usersTableView.isScrollEnabled = true
     }
