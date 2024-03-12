@@ -18,9 +18,9 @@ class UsersViewController: UIViewController {
         return searchController.isActive && !isSearchBarEmpty
     }
     
-    private var numberOfUsersDisplayed: Int = 15;
+    private var numberOfUsersDisplayed: Int = 100;
     private var orderOfUsersDisplayed: String = "abc"
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +32,14 @@ class UsersViewController: UIViewController {
         observeNetworkChanges()
     }
     
+    private func setUpUI() {
+        self.setUpNavBar()
+        self.setUpSearchController()
+        self.view.backgroundColor = .systemYellow
+        self.usersTableView.backgroundColor = .systemYellow
+    }
+    
+// MARK: - network
     private func observeNetworkChanges() {
         NotificationCenter.default.addObserver(self, selector: #selector(manageNoInternetConnection(notification:)), name: NSNotification.Name.connectivityStatus, object: nil)
     }
@@ -47,46 +55,6 @@ class UsersViewController: UIViewController {
                 self.present(alert, animated: true, completion: nil)
             }
         }
-    }
-    
-    private func setUpUsersTableHeader() {
-        let viewHeader = UIView(frame: CGRect(x: 0, y: 0, width: usersTableView.frame.size.width, height: 1000))
-        usersTableView.tableFooterView = viewHeader
-        viewHeader.backgroundColor = .white
-    }
-    
-    private func setUpNavBar() {
-        let titleAttributes: [NSAttributedString.Key: Any] = [
-            .font: UIFont.systemFont(ofSize: 22)
-        ]
-        
-        navigationController?.navigationBar.backgroundColor = .systemYellow
-        navigationController?.navigationBar.titleTextAttributes = titleAttributes
-        navigationItem.title = "Users"
-    }
-    
-    private func setUpSearchController() {
-        searchController.searchResultsUpdater = self
-        searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search User"
-        searchController.searchBar.barTintColor = .black
-        searchController.searchBar.delegate = self
-        
-        self.navigationItem.searchController = self.searchController
-        
-        definesPresentationContext = true
-    }
-    
-    private func configureUserCellView() {
-        let userCellNib = UINib(nibName: "UserCellView", bundle: nil)
-        usersTableView.register(userCellNib, forCellReuseIdentifier: "UserCellView")
-    }
-    
-    private func setUpUI() {
-        self.setUpNavBar()
-        self.setUpSearchController()
-        self.view.backgroundColor = .systemYellow
-        self.usersTableView.backgroundColor = .systemYellow
     }
     
     private func fetchUsers() {
@@ -111,14 +79,55 @@ class UsersViewController: UIViewController {
         }
     }
     
+// MARK: - navigation items
+    private func setUpNavBar() {
+        let titleAttributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont.systemFont(ofSize: 22)
+        ]
+        
+        navigationController?.navigationBar.backgroundColor = .systemYellow
+        navigationController?.navigationBar.titleTextAttributes = titleAttributes
+        navigationItem.title = "Users"
+    }
+    
+    private func setUpSearchController() {
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search User"
+        searchController.searchBar.barTintColor = .black
+        searchController.searchBar.delegate = self
+        
+        self.navigationItem.searchController = self.searchController
+        
+        definesPresentationContext = true
+    }
+    
+// MARK: - table view
+    private func configureUserCellView() {
+        let userCellNib = UINib(nibName: "UserCellView", bundle: nil)
+        usersTableView.register(userCellNib, forCellReuseIdentifier: "UserCellView")
+    }
+    
     private func makeDetailsViewController(for user: User) -> UserDetailsViewController {
         let detailsViewController = UserDetailsViewController()
         detailsViewController.user = user
 
         return detailsViewController
     }
+    
+    private func setUpUsersTableFooter() {
+        let viewHeader = UIView(frame: CGRect(x: 0, y: 0, width: usersTableView.frame.size.width, height: 1000))
+        usersTableView.tableFooterView = viewHeader
+        viewHeader.backgroundColor = .white
+    }
+    
+    private func removeUsersTableFooter() {
+        let viewHeader = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+        usersTableView.tableFooterView = viewHeader
+    }
 }
 
+// MARK: - extensions
 extension UsersViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         var selectedUser: User
@@ -139,12 +148,13 @@ extension UsersViewController: UITableViewDataSource {
             let numberOfFilteredUsers = filteredUsers.count
             if numberOfFilteredUsers < 8 {
                 DispatchQueue.main.async {
-                    self.setUpUsersTableHeader()
+                    self.setUpUsersTableFooter()
                 }
                 usersTableView.isScrollEnabled = false
             } else {
                 usersTableView.isScrollEnabled = true
             }
+            
             return numberOfFilteredUsers
         }
         
@@ -204,19 +214,23 @@ extension UsersViewController: UISearchResultsUpdating {
 }
 
 extension UsersViewController: UISearchBarDelegate {
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchText.isEmpty {
-            filteredUsers = []
-            usersTableView.isScrollEnabled = true
-            let viewHeader = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
-            usersTableView.tableFooterView = viewHeader
-            usersTableView.reloadData()
+    private func refreshUsersTable() {
+        DispatchQueue.main.async {
+            self.usersTableView.isScrollEnabled = true
+            self.removeUsersTableFooter()
+            self.usersTableView.reloadData()
         }
     }
     
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.isEmpty {
+            filteredUsers = []
+        }
+        refreshUsersTable()
+    }
+   
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        let viewHeader = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
-        usersTableView.tableFooterView = viewHeader
+        removeUsersTableFooter()
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
             self.usersTableView.reloadData()
         }
