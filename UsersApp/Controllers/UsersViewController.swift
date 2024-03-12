@@ -155,7 +155,8 @@ extension UsersViewController: UITableViewDataSource {
                 DispatchQueue.main.async {
                     self.setUpUsersTableFooter()
                 }
-            } else {
+            } 
+            else {
                 usersTableView.isScrollEnabled = true
             }
             
@@ -230,8 +231,8 @@ extension UsersViewController: UISearchBarDelegate {
         if searchText.isEmpty {
             filteredUsers = []
         }
-        scrollTableViewUp()
         refreshUsersTable()
+        scrollTableViewUp()
     }
    
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
@@ -243,7 +244,9 @@ extension UsersViewController: UISearchBarDelegate {
     }
     
     private func scrollTableViewUp() {
-        let indexPath = IndexPath(row: 0, section: 0)
-        usersTableView.scrollToRow(at: indexPath, at: .top, animated: true)
+        if filteredUsers.count != 0 {
+            let indexPath = IndexPath(row: 0, section: 0)
+            usersTableView.scrollToRow(at: indexPath, at: .top, animated: true)
+        }
     }
 }
