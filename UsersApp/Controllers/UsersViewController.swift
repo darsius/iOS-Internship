@@ -21,6 +21,10 @@ class UsersViewController: UIViewController {
     private var numberOfUsersDisplayed: Int = 100;
     private var orderOfUsersDisplayed: String = "abc"
     
+    private let screenHeight: Int = Int(UIScreen.main.bounds.height)
+    private var currentScreenHeight = 0
+    private let cellHeight = 80
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -116,7 +120,7 @@ class UsersViewController: UIViewController {
     }
     
     private func setUpUsersTableFooter() {
-        let viewHeader = UIView(frame: CGRect(x: 0, y: 0, width: usersTableView.frame.size.width, height: 1000))
+        let viewHeader = UIView(frame: CGRect(x: 0, y: 0, width: usersTableView.frame.size.width, height: 1400))
         usersTableView.tableFooterView = viewHeader
         viewHeader.backgroundColor = .white
     }
@@ -146,7 +150,8 @@ extension UsersViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if isFiltering {
             let numberOfFilteredUsers = filteredUsers.count
-            if numberOfFilteredUsers < 8 {
+            currentScreenHeight = numberOfFilteredUsers * cellHeight
+            if currentScreenHeight < screenHeight {
                 DispatchQueue.main.async {
                     self.setUpUsersTableFooter()
                 }
