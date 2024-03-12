@@ -155,7 +155,6 @@ extension UsersViewController: UITableViewDataSource {
                 DispatchQueue.main.async {
                     self.setUpUsersTableFooter()
                 }
-                usersTableView.isScrollEnabled = false
             } else {
                 usersTableView.isScrollEnabled = true
             }
@@ -231,6 +230,7 @@ extension UsersViewController: UISearchBarDelegate {
         if searchText.isEmpty {
             filteredUsers = []
         }
+        scrollTableViewUp()
         refreshUsersTable()
     }
    
@@ -240,5 +240,10 @@ extension UsersViewController: UISearchBarDelegate {
             self.usersTableView.reloadData()
         }
         usersTableView.isScrollEnabled = true
+    }
+    
+    private func scrollTableViewUp() {
+        let indexPath = IndexPath(row: 0, section: 0)
+        usersTableView.scrollToRow(at: indexPath, at: .top, animated: true)
     }
 }
