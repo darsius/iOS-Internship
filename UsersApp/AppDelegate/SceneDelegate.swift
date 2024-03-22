@@ -23,7 +23,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     window.rootViewController = loadingViewController
                 }
             }
-            
+            //
             window.makeKeyAndVisible()
             self.window = window
     }
