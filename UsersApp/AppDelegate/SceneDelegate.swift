@@ -3,30 +3,30 @@ import Network
 
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-
+    
     var window: UIWindow?
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
         guard let windowScene = (scene as? UIWindowScene) else { return }
-            let window = UIWindow(windowScene: windowScene)
-
-            let usersViewController = UsersViewController()
-            let navController = UINavigationController(rootViewController: usersViewController)
+        let window = UIWindow(windowScene: windowScene)
         
-            let loadingViewController = LoadingViewController()
-            
-            DispatchQueue.main.async {
-                if NetworkMonitor.shared.isConnected && !NetworkMonitor.shared.isExpensive {
-                    window.rootViewController = navController
-                } else {
-                    window.rootViewController = loadingViewController
-                }
+        let loadingViewController = LoadingViewController()
+        
+        let tabBar = TabBarViewController().createTabBar()
+        
+        DispatchQueue.main.async {
+            if NetworkMonitor.shared.isConnected && !NetworkMonitor.shared.isExpensive {
+                window.rootViewController = tabBar
+            } else {
+                window.rootViewController = loadingViewController
             }
-            //
-            window.makeKeyAndVisible()
-            self.window = window
+        }
+        
+        window.makeKeyAndVisible()
+        self.window = window
     }
+    
 
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.

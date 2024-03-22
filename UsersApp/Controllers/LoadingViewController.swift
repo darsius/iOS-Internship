@@ -24,11 +24,15 @@ class LoadingViewController: UIViewController {
     }
     
     private func makeUsersViewController() {
-        let usersViewController = UsersViewController()
+//        let usersViewController = UsersViewController()
+//
+//        let navController = UINavigationController(rootViewController: usersViewController)
+//        navController.modalPresentationStyle = .fullScreen
+//
+//        present(navController, animated: false, completion: nil)
         
-        let navController = UINavigationController(rootViewController: usersViewController)
-        navController.modalPresentationStyle = .fullScreen
-
-        present(navController, animated: false, completion: nil)
+        let tabBarViewController = TabBarViewController()
+        tabBarViewController.modalPresentationStyle = .fullScreen
+        present(tabBarViewController, animated: false)
     }
 }
