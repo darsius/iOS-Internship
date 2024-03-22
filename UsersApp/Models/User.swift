@@ -63,3 +63,10 @@ struct Picture: Codable {
     let medium: String
     let thumbnail: String
 }
+
+
+extension User: Equatable {
+    static func == (user1: User, user2: User) -> Bool {
+        return user1.email.isEqual(user2.email)
+    }
+}

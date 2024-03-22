@@ -20,8 +20,8 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="jLZ-fH-h80">
-                    <rect key="frame" x="0.0" y="59" width="393" height="793"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="40" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="jLZ-fH-h80">
+                    <rect key="frame" x="0.0" y="0.0" width="393" height="818"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="ESF-9E-X3v"/>
@@ -30,10 +30,10 @@
                 </tableView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <color key="backgroundColor" systemColor="systemYellowColor"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="jLZ-fH-h80" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="437-Oe-Crw"/>
-                <constraint firstAttribute="bottom" secondItem="jLZ-fH-h80" secondAttribute="bottom" id="7VK-la-6fF"/>
+                <constraint firstItem="jLZ-fH-h80" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="437-Oe-Crw"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="jLZ-fH-h80" secondAttribute="bottom" id="7VK-la-6fF"/>
                 <constraint firstItem="jLZ-fH-h80" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="GOP-6x-7dq"/>
                 <constraint firstItem="jLZ-fH-h80" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="SZ1-ew-hBa"/>
             </constraints>
@@ -43,9 +43,6 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemYellowColor">
-            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
