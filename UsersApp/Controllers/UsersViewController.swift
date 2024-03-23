@@ -34,6 +34,12 @@ class UsersViewController: UIViewController {
         configureUserCellView()
         
         observeNetworkChanges()
+        
+        getUsers()
+    }
+    
+    private func getUsers() {
+        UserData.shared.users = self.users
     }
     
     private func setUpUI() {
@@ -69,6 +75,7 @@ class UsersViewController: UIViewController {
                 DispatchQueue.main.async { [weak self] in
                     self?.usersTableView.reloadData()
                     self?.setUpUI()
+                    self?.getUsers()
                 }
             } catch let error as NetworkError {
                 print("Network error: \(error.localizedDescription)")
@@ -122,7 +129,13 @@ class UsersViewController: UIViewController {
     private func setUpUsersTableFooter() {
         let viewHeader = UIView(frame: CGRect(x: 0, y: 0, width: usersTableView.frame.size.width, height: 1400))
         usersTableView.tableFooterView = viewHeader
-        viewHeader.backgroundColor = .white
+        
+        let currentInterfaceStyle = UITraitCollection.current.userInterfaceStyle
+        if currentInterfaceStyle == .dark {
+            viewHeader.backgroundColor = .black
+        } else {
+            viewHeader.backgroundColor = .white
+        }
     }
     
     private func removeUsersTableFooter() {
@@ -155,7 +168,8 @@ extension UsersViewController: UITableViewDataSource {
                 DispatchQueue.main.async { [weak self] in
                     self?.setUpUsersTableFooter()
                 }
-            } 
+                usersTableView.isScrollEnabled = false
+            }
             else {
                 usersTableView.isScrollEnabled = true
             }
