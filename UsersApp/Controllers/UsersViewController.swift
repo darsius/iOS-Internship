@@ -39,7 +39,7 @@ class UsersViewController: UIViewController {
     private func setUpUI() {
         self.setUpNavBar()
         self.setUpSearchController()
-        self.view.backgroundColor = .systemYellow
+//        self.view.backgroundColor = .systemYellow
         self.usersTableView.backgroundColor = .systemYellow
     }
     
