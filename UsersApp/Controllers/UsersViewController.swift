@@ -155,7 +155,8 @@ extension UsersViewController: UITableViewDataSource {
                 DispatchQueue.main.async { [weak self] in
                     self?.setUpUsersTableFooter()
                 }
-            } 
+                usersTableView.isScrollEnabled = false
+            }
             else {
                 usersTableView.isScrollEnabled = true
             }
