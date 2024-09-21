@@ -13,13 +13,9 @@ class UsersViewController: UIViewController {
     private var isSearchBarEmpty: Bool {
         return searchController.searchBar.text?.isEmpty ?? true
     }
-    
     private var isFiltering: Bool {
         return searchController.isActive && !isSearchBarEmpty
     }
-    
-    private var numberOfUsersDisplayed: Int = 100;
-    private var orderOfUsersDisplayed: String = "abc"
     
     private let screenHeight: Int = Int(UIScreen.main.bounds.height)
     private var currentScreenHeight = 0
@@ -39,7 +35,6 @@ class UsersViewController: UIViewController {
     private func setUpUI() {
         self.setUpNavBar()
         self.setUpSearchController()
-//        self.view.backgroundColor = .systemYellow
         self.usersTableView.backgroundColor = .systemYellow
     }
     
@@ -62,24 +57,10 @@ class UsersViewController: UIViewController {
     }
     
     private func fetchUsers() {
-        let networkManager = NetworkManager()
-        Task {
-            do {
-                self.users = try await networkManager.getUser(endpointResult: numberOfUsersDisplayed, endpointSeed: orderOfUsersDisplayed)
-                DispatchQueue.main.async { [weak self] in
-                    self?.usersTableView.reloadData()
-                    self?.setUpUI()
-                }
-            } catch let error as NetworkError {
-                print("Network error: \(error.localizedDescription)")
-                
-                let alert = UIAlertController(
-                    title: "Could not fetch the users!",
-                    message: "\(error.localizedDescription)", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(
-                    title: "OK", style: .default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
-            }
+        UsersManager.shared.getUsers { [weak self] fetchedUsers in
+            self?.users = fetchedUsers
+            self?.usersTableView.reloadData()
+            self?.setUpUI()
         }
     }
     

@@ -17,6 +17,7 @@
 		E437C2632ACCCF3800DD8950 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E437C2622ACCCF3800DD8950 /* NetworkManager.swift */; };
 		E43FBCEC2C9DA428008D495E /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43FBCEB2C9DA428008D495E /* TabBarController.swift */; };
 		E43FBCEE2C9DB4B2008D495E /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E43FBCED2C9DB4B2008D495E /* MapViewController.xib */; };
+		E43FBCF12C9DE2B4008D495E /* UsersManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43FBCF02C9DE2B4008D495E /* UsersManager.swift */; };
 		E4431CB82B0A8E5D00820A44 /* UserCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4431CB72B0A8E5D00820A44 /* UserCellView.xib */; };
 		E447041B2AFD4FA400D5C5BF /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E447041A2AFD4FA400D5C5BF /* NetworkError.swift */; };
 		E468D2842B4732FA0045A8AE /* PostalColde.swift in Sources */ = {isa = PBXBuildFile; fileRef = E468D2832B4732FA0045A8AE /* PostalColde.swift */; };
@@ -45,6 +46,7 @@
 		E437C2622ACCCF3800DD8950 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		E43FBCEB2C9DA428008D495E /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		E43FBCED2C9DB4B2008D495E /* MapViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
+		E43FBCF02C9DE2B4008D495E /* UsersManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersManager.swift; sourceTree = "<group>"; };
 		E4431CB72B0A8E5D00820A44 /* UserCellView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserCellView.xib; sourceTree = "<group>"; };
 		E447041A2AFD4FA400D5C5BF /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		E468D2832B4732FA0045A8AE /* PostalColde.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostalColde.swift; sourceTree = "<group>"; };
@@ -84,6 +86,14 @@
 			name = Errors;
 			sourceTree = "<group>";
 		};
+		E43FBCEF2C9DE298008D495E /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				E43FBCF02C9DE2B4008D495E /* UsersManager.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
 		E4BBFCEF2B0CFE4000027A26 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -115,6 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				E4E43DA72AFD1C9700A92706 /* AppDelegate */,
+				E43FBCEF2C9DE298008D495E /* Shared */,
 				E403E82E2B7D3A7A0008AAE2 /* Errors */,
 				E4E43DA32AFD14E500A92706 /* Extensions */,
 				E4E43DA62AFD1C7700A92706 /* Networking */,
@@ -266,6 +277,7 @@
 				E447041B2AFD4FA400D5C5BF /* NetworkError.swift in Sources */,
 				E4BE7A8E2B92494400B78D46 /* ImageDownloadError.swift in Sources */,
 				E4E43DA52AFD152600A92706 /* UsersImageExtensions.swift in Sources */,
+				E43FBCF12C9DE2B4008D495E /* UsersManager.swift in Sources */,
 				E4C4A4F42AC5CB6E00BAA03A /* SceneDelegate.swift in Sources */,
 				E427CEFE2B31C18700F9AC04 /* UsersViewController.swift in Sources */,
 				E4C1ABFB2B88BD5F009042A5 /* NetworkInterfaceType.swift in Sources */,
