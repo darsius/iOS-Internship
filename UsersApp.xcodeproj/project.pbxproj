@@ -21,6 +21,7 @@
 		E4431CB82B0A8E5D00820A44 /* UserCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4431CB72B0A8E5D00820A44 /* UserCellView.xib */; };
 		E447041B2AFD4FA400D5C5BF /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E447041A2AFD4FA400D5C5BF /* NetworkError.swift */; };
 		E45A03CD2C9EF29400DADA8A /* UserAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45A03CC2C9EF29400DADA8A /* UserAnnotation.swift */; };
+		E45ED0532CA0A9F800246A10 /* ViewControllerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45ED0522CA0A9F800246A10 /* ViewControllerHelper.swift */; };
 		E468D2842B4732FA0045A8AE /* PostalColde.swift in Sources */ = {isa = PBXBuildFile; fileRef = E468D2832B4732FA0045A8AE /* PostalColde.swift */; };
 		E46B5BF42C9A40D8005B7806 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46B5BF32C9A40D8005B7806 /* MapViewController.swift */; };
 		E4BE7A8E2B92494400B78D46 /* ImageDownloadError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BE7A8D2B92494400B78D46 /* ImageDownloadError.swift */; };
@@ -51,6 +52,7 @@
 		E4431CB72B0A8E5D00820A44 /* UserCellView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserCellView.xib; sourceTree = "<group>"; };
 		E447041A2AFD4FA400D5C5BF /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		E45A03CC2C9EF29400DADA8A /* UserAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAnnotation.swift; sourceTree = "<group>"; };
+		E45ED0522CA0A9F800246A10 /* ViewControllerHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerHelper.swift; sourceTree = "<group>"; };
 		E468D2832B4732FA0045A8AE /* PostalColde.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostalColde.swift; sourceTree = "<group>"; };
 		E46B5BF32C9A40D8005B7806 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		E4BE7A8D2B92494400B78D46 /* ImageDownloadError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloadError.swift; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				E43FBCF02C9DE2B4008D495E /* UsersManager.swift */,
+				E45ED0522CA0A9F800246A10 /* ViewControllerHelper.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -286,6 +289,7 @@
 				E4C1ABFB2B88BD5F009042A5 /* NetworkInterfaceType.swift in Sources */,
 				E427CF012B31C18700F9AC04 /* UserDetailsViewController.swift in Sources */,
 				E4C1ABF92B88BD57009042A5 /* NetworkNotificationNames.swift in Sources */,
+				E45ED0532CA0A9F800246A10 /* ViewControllerHelper.swift in Sources */,
 				E45A03CD2C9EF29400DADA8A /* UserAnnotation.swift in Sources */,
 				E427CEF72B31C0EF00F9AC04 /* UserDetailView.swift in Sources */,
 				E46B5BF42C9A40D8005B7806 /* MapViewController.swift in Sources */,

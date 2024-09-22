@@ -93,13 +93,6 @@ class UsersViewController: UIViewController {
         usersTableView.register(userCellNib, forCellReuseIdentifier: "UserCellView")
     }
     
-    private func makeDetailsViewController(for user: User) -> UserDetailsViewController {
-        let detailsViewController = UserDetailsViewController()
-        detailsViewController.user = user
-
-        return detailsViewController
-    }
-    
     private func setUpUsersTableFooter() {
         let viewHeader = UIView(frame: CGRect(x: 0, y: 0, width: usersTableView.frame.size.width, height: 1400))
         usersTableView.tableFooterView = viewHeader
@@ -121,7 +114,8 @@ extension UsersViewController: UITableViewDelegate {
         } else {
             selectedUser = users[indexPath.row]
         }
-        let detailsViewController = makeDetailsViewController(for: selectedUser)
+        let detailsViewController = ViewControllerHelper
+            .makeDetailsViewController(for: selectedUser)
         
         navigationController?.pushViewController(detailsViewController, animated: true)
     }
