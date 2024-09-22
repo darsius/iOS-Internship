@@ -36,6 +36,46 @@ class MapViewController: UIViewController {
         
         return detailsViewController
     }
+    
+    private func createArrowView() -> UIView {
+        let arrowView = UIImageView()
+        arrowView.frame = CGRect(x: 12, y: 40, width: 15, height: 15)
+        arrowView.transform = CGAffineTransform(rotationAngle: .pi)
+        arrowView.image = UIImage(systemName: "location.north.fill")
+        return arrowView
+    }
+    
+    private func createCustomAnnotationView(with imageUrl: String?) -> UIView {
+        let containerView = UIView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+        
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+        imageView.layer.cornerRadius = 20;
+        imageView.layer.masksToBounds = true
+        
+        
+        if let imageUrl = imageUrl {
+            imageView.downloaded(from: imageUrl) { result in
+                switch result {
+                case .success(let image):
+                    DispatchQueue.main.async {
+                        imageView.image = image
+                    }
+                case .failure(let error):
+                    print("Error downloading image: \(error.localizedDescription)")
+                    let defaultImage = UIImage(systemName: "person.fill")
+                    DispatchQueue.main.async {
+                        imageView.image = defaultImage
+                    }
+                }
+            }
+        }
+        let arrowView = createArrowView()
+        
+        containerView.addSubview(imageView)
+        containerView.addSubview(arrowView)
+        
+        return containerView
+    }
 }
 
 extension MapViewController: MKMapViewDelegate {
@@ -56,27 +96,13 @@ extension MapViewController: MKMapViewDelegate {
         }
         
         if let imageUrl = annotation.imageUrl {
-            let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
-            imageView.layer.cornerRadius = 20;
-            imageView.layer.masksToBounds = true
+            let customView = createCustomAnnotationView(with: imageUrl)
+            annotationView?.addSubview(customView)
+            annotationView?.frame = customView.frame
             
-            imageView.downloaded(from: imageUrl) { result in
-                switch result {
-                case .success(let image):
-                    DispatchQueue.main.async {
-                        imageView.image = image
-                    }
-                case .failure(let error):
-                    print("Error downloading image: \(error.localizedDescription)")
-                    let defaultImage = UIImage(systemName: "person.fill")
-                    DispatchQueue.main.async {
-                        imageView.image = defaultImage
-                    }
-                }
-            }
-            annotationView?.addSubview(imageView)
-            annotationView?.frame = imageView.frame
+            return annotationView
         }
+        
         return annotationView
     }
     
