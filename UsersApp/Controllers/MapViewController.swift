@@ -4,15 +4,13 @@ import MapKit
 class MapViewController: UIViewController {
     @IBOutlet private var mapView: MKMapView!
     private var users: [User] = []
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
         view.backgroundColor = .systemYellow
         
-        let zoomRange = MKMapView.CameraZoomRange(minCenterCoordinateDistance: 10000000)
-        mapView.setCameraZoomRange(zoomRange, animated: true)
         fetchUsers()
     }
     
@@ -35,7 +33,7 @@ class MapViewController: UIViewController {
     private func makeDetailsViewController(for user: User) -> UserDetailsViewController {
         let detailsViewController = UserDetailsViewController()
         detailsViewController.user = user
-
+        
         return detailsViewController
     }
 }
@@ -45,31 +43,41 @@ extension MapViewController: MKMapViewDelegate {
         guard let annotation = annotation as? UserAnnotation else {
             return nil
         }
-        let identifier = "userPin"
-        var view: MKMarkerAnnotationView
         
-        if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKMarkerAnnotationView {
-            dequeuedView.annotation = annotation
-            view = dequeuedView
+        let identifier = "userPin"
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
+        
+        if annotationView == nil {
+            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            annotationView?.canShowCallout = true
+            annotationView?.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
         } else {
-            view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-            view.canShowCallout = true
-            view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
-            
-            let detailView = UIView(frame: CGRect(x: 0, y: 0, width: 1000, height: 1000))
-            detailView.backgroundColor = .brown
-            view.detailCalloutAccessoryView = detailView
-            
-            if let imageUrl = annotation.userImageURL {
-                let userImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
-                userImageView.layer.cornerRadius = 20
-                userImageView.clipsToBounds = true
-                userImageView.image = UIImage(systemName: "person.fill")
-                view.leftCalloutAccessoryView = userImageView
-            }
-            
+            annotationView?.annotation = annotation
         }
-        return view
+        
+        if let imageUrl = annotation.imageUrl {
+            let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+            imageView.layer.cornerRadius = 20;
+            imageView.layer.masksToBounds = true
+            
+            imageView.downloaded(from: imageUrl) { result in
+                switch result {
+                case .success(let image):
+                    DispatchQueue.main.async {
+                        imageView.image = image
+                    }
+                case .failure(let error):
+                    print("Error downloading image: \(error.localizedDescription)")
+                    let defaultImage = UIImage(systemName: "person.fill")
+                    DispatchQueue.main.async {
+                        imageView.image = defaultImage
+                    }
+                }
+            }
+            annotationView?.addSubview(imageView)
+            annotationView?.frame = imageView.frame
+        }
+        return annotationView
     }
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
