@@ -93,7 +93,7 @@ extension MapViewController: MKMapViewDelegate {
             annotationView?.annotation = userAnnotation
         }
         
-        if let annotationView {
+        if let annotationView = annotationView {
             configureAnnotationView(annotationView, with: userAnnotation)
         }
         

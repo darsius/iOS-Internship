@@ -5,16 +5,19 @@ class TabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tabBar.tintColor = .black
-        tabBar.unselectedItemTintColor = .systemGray
-        
-        tabBar.barTintColor = .systemYellow
-        tabBar.backgroundColor = .systemYellow
-        
+        setupTabBarAppearance()
+            
         let mapViewController = createMapViewController()
         let usersNavController = createUsersNavController()
         
         self.viewControllers = [mapViewController, usersNavController]
+    }
+    
+    private func setupTabBarAppearance() {
+        tabBar.tintColor = .black
+        tabBar.unselectedItemTintColor = .systemGray
+        tabBar.barTintColor = .systemYellow
+        tabBar.backgroundColor = .systemYellow
     }
     
     private func createUsersNavController() -> UINavigationController {
@@ -27,18 +30,21 @@ class TabBarController: UITabBarController {
             image: UIImage(systemName: "person.3"),
             tag: 1
         )
+        
         return navController
     }
     
     private func createMapViewController() -> UIViewController {
         let mapViewController = MapViewController()
         mapViewController.title = "Users Map"
+        
         let navController = UINavigationController(rootViewController: mapViewController)
         mapViewController.tabBarItem = UITabBarItem(
             title: "Map",
             image: UIImage(systemName: "map"),
             tag: 0
         )
+        
         return navController
     }
 }
