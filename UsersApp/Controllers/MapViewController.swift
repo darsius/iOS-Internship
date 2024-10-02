@@ -16,7 +16,7 @@ class MapViewController: UIViewController {
     }
     
     private func fetchUsers() {
-        UsersManager.shared.getUsers { [weak self] users in
+        UsersManager.shared.getUsers(on: self) { [weak self] users in
             self?.addAnnotations(users: users)
             self?.users = users
         }
@@ -108,6 +108,3 @@ extension MapViewController: MKMapViewDelegate {
         navigationController?.pushViewController(detailsViewController, animated: true)
     }
 }
-
-
-

@@ -57,7 +57,7 @@ class UsersViewController: UIViewController {
     }
     
     private func fetchUsers() {
-        UsersManager.shared.getUsers { [weak self] fetchedUsers in
+        UsersManager.shared.getUsers(on: self) { [weak self] fetchedUsers in
             self?.users = fetchedUsers
             self?.usersTableView.reloadData()
             self?.setUpUI()
