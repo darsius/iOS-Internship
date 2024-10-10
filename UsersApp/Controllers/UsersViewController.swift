@@ -96,7 +96,7 @@ class UsersViewController: UIViewController {
     private func setUpUsersTableFooter() {
         let viewHeader = UIView(frame: CGRect(x: 0, y: 0, width: usersTableView.frame.size.width, height: 1400))
         usersTableView.tableFooterView = viewHeader
-        viewHeader.backgroundColor = .white
+        viewHeader.backgroundColor = UIColor.systemBackground
     }
     
     private func removeUsersTableFooter() {
