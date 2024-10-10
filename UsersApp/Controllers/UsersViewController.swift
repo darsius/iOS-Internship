@@ -13,13 +13,9 @@ class UsersViewController: UIViewController {
     private var isSearchBarEmpty: Bool {
         return searchController.searchBar.text?.isEmpty ?? true
     }
-    
     private var isFiltering: Bool {
         return searchController.isActive && !isSearchBarEmpty
     }
-    
-    private var numberOfUsersDisplayed: Int = 100;
-    private var orderOfUsersDisplayed: String = "abc"
     
     private let screenHeight: Int = Int(UIScreen.main.bounds.height)
     private var currentScreenHeight = 0
@@ -39,7 +35,6 @@ class UsersViewController: UIViewController {
     private func setUpUI() {
         self.setUpNavBar()
         self.setUpSearchController()
-        self.view.backgroundColor = .systemYellow
         self.usersTableView.backgroundColor = .systemYellow
     }
     
@@ -62,24 +57,10 @@ class UsersViewController: UIViewController {
     }
     
     private func fetchUsers() {
-        let networkManager = NetworkManager()
-        Task {
-            do {
-                self.users = try await networkManager.getUser(endpointResult: numberOfUsersDisplayed, endpointSeed: orderOfUsersDisplayed)
-                DispatchQueue.main.async { [weak self] in
-                    self?.usersTableView.reloadData()
-                    self?.setUpUI()
-                }
-            } catch let error as NetworkError {
-                print("Network error: \(error.localizedDescription)")
-                
-                let alert = UIAlertController(
-                    title: "Could not fetch the users!",
-                    message: "\(error.localizedDescription)", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(
-                    title: "OK", style: .default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
-            }
+        UsersManager.shared.getUsers(on: self) { [weak self] fetchedUsers in
+            self?.users = fetchedUsers
+            self?.usersTableView.reloadData()
+            self?.setUpUI()
         }
     }
     
@@ -112,17 +93,10 @@ class UsersViewController: UIViewController {
         usersTableView.register(userCellNib, forCellReuseIdentifier: "UserCellView")
     }
     
-    private func makeDetailsViewController(for user: User) -> UserDetailsViewController {
-        let detailsViewController = UserDetailsViewController()
-        detailsViewController.user = user
-
-        return detailsViewController
-    }
-    
     private func setUpUsersTableFooter() {
         let viewHeader = UIView(frame: CGRect(x: 0, y: 0, width: usersTableView.frame.size.width, height: 1400))
         usersTableView.tableFooterView = viewHeader
-        viewHeader.backgroundColor = .white
+        viewHeader.backgroundColor = UIColor.systemBackground
     }
     
     private func removeUsersTableFooter() {
@@ -140,7 +114,8 @@ extension UsersViewController: UITableViewDelegate {
         } else {
             selectedUser = users[indexPath.row]
         }
-        let detailsViewController = makeDetailsViewController(for: selectedUser)
+        let detailsViewController = ViewControllerHelper
+            .makeDetailsViewController(for: selectedUser)
         
         navigationController?.pushViewController(detailsViewController, animated: true)
     }
@@ -155,7 +130,8 @@ extension UsersViewController: UITableViewDataSource {
                 DispatchQueue.main.async { [weak self] in
                     self?.setUpUsersTableFooter()
                 }
-            } 
+                usersTableView.isScrollEnabled = false
+            }
             else {
                 usersTableView.isScrollEnabled = true
             }
