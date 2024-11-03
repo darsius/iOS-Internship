@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9264F858F948C9EDBC1A063E /* Pods_UsersApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62347E8B507DADCFB93223CD /* Pods_UsersApp.framework */; };
 		E427CEF72B31C0EF00F9AC04 /* UserDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E427CEF62B31C0EF00F9AC04 /* UserDetailView.swift */; };
 		E427CEF92B31C0FE00F9AC04 /* UserDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E427CEF82B31C0FE00F9AC04 /* UserDetailView.xib */; };
 		E427CEFE2B31C18700F9AC04 /* UsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E427CEFA2B31C18700F9AC04 /* UsersViewController.swift */; };
@@ -15,6 +16,8 @@
 		E427CF012B31C18700F9AC04 /* UserDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E427CEFD2B31C18700F9AC04 /* UserDetailsViewController.swift */; };
 		E437C2612ACCCD4B00DD8950 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E437C2602ACCCD4B00DD8950 /* User.swift */; };
 		E437C2632ACCCF3800DD8950 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E437C2622ACCCF3800DD8950 /* NetworkManager.swift */; };
+		E43EC7662CD83449008CB975 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E43EC7652CD83449008CB975 /* LoginViewController.xib */; };
+		E43EC7672CD83449008CB975 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43EC7642CD83449008CB975 /* LoginViewController.swift */; };
 		E4431CB82B0A8E5D00820A44 /* UserCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4431CB72B0A8E5D00820A44 /* UserCellView.xib */; };
 		E447041B2AFD4FA400D5C5BF /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E447041A2AFD4FA400D5C5BF /* NetworkError.swift */; };
 		E468D2842B4732FA0045A8AE /* PostalColde.swift in Sources */ = {isa = PBXBuildFile; fileRef = E468D2832B4732FA0045A8AE /* PostalColde.swift */; };
@@ -32,6 +35,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4285A80282C907FA16D4CF33 /* Pods-UsersApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UsersApp.release.xcconfig"; path = "Target Support Files/Pods-UsersApp/Pods-UsersApp.release.xcconfig"; sourceTree = "<group>"; };
+		62347E8B507DADCFB93223CD /* Pods_UsersApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UsersApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D19422C9B37B8615F57BB54B /* Pods-UsersApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UsersApp.debug.xcconfig"; path = "Target Support Files/Pods-UsersApp/Pods-UsersApp.debug.xcconfig"; sourceTree = "<group>"; };
 		E427CEF62B31C0EF00F9AC04 /* UserDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetailView.swift; sourceTree = "<group>"; };
 		E427CEF82B31C0FE00F9AC04 /* UserDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserDetailView.xib; sourceTree = "<group>"; };
 		E427CEFA2B31C18700F9AC04 /* UsersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersViewController.swift; sourceTree = "<group>"; };
@@ -40,6 +46,8 @@
 		E427CEFD2B31C18700F9AC04 /* UserDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetailsViewController.swift; sourceTree = "<group>"; };
 		E437C2602ACCCD4B00DD8950 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		E437C2622ACCCF3800DD8950 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		E43EC7642CD83449008CB975 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		E43EC7652CD83449008CB975 /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		E4431CB72B0A8E5D00820A44 /* UserCellView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserCellView.xib; sourceTree = "<group>"; };
 		E447041A2AFD4FA400D5C5BF /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		E468D2832B4732FA0045A8AE /* PostalColde.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostalColde.swift; sourceTree = "<group>"; };
@@ -63,12 +71,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9264F858F948C9EDBC1A063E /* Pods_UsersApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1D2A445571043EA4452865FE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D19422C9B37B8615F57BB54B /* Pods-UsersApp.debug.xcconfig */,
+				4285A80282C907FA16D4CF33 /* Pods-UsersApp.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		E1247186F61A6EC8EDE064EA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				62347E8B507DADCFB93223CD /* Pods_UsersApp.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		E403E82E2B7D3A7A0008AAE2 /* Errors */ = {
 			isa = PBXGroup;
 			children = (
@@ -94,6 +120,8 @@
 			children = (
 				E4C4A4F02AC5CB6E00BAA03A /* UsersApp */,
 				E4C4A4EF2AC5CB6E00BAA03A /* Products */,
+				1D2A445571043EA4452865FE /* Pods */,
+				E1247186F61A6EC8EDE064EA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -167,6 +195,8 @@
 				E427CEFB2B31C18700F9AC04 /* UserDetailsViewController.xib */,
 				E4C1ABFC2B88C383009042A5 /* LoadingViewController.swift */,
 				E4C1ABFD2B88C383009042A5 /* LoadingViewController.xib */,
+				E43EC7642CD83449008CB975 /* LoginViewController.swift */,
+				E43EC7652CD83449008CB975 /* LoginViewController.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -178,9 +208,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E4C4A5022AC5CB6F00BAA03A /* Build configuration list for PBXNativeTarget "UsersApp" */;
 			buildPhases = (
+				5951D4C773E253E734210B99 /* [CP] Check Pods Manifest.lock */,
 				E4C4A4EA2AC5CB6E00BAA03A /* Sources */,
 				E4C4A4EB2AC5CB6E00BAA03A /* Frameworks */,
 				E4C4A4EC2AC5CB6E00BAA03A /* Resources */,
+				6F5F055C22C36DAF90BD7685 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -234,11 +266,54 @@
 				E427CF002B31C18700F9AC04 /* UsersViewController.xib in Resources */,
 				E4C4A4FB2AC5CB6F00BAA03A /* Assets.xcassets in Resources */,
 				E427CEF92B31C0FE00F9AC04 /* UserDetailView.xib in Resources */,
+				E43EC7662CD83449008CB975 /* LoginViewController.xib in Resources */,
 				E4431CB82B0A8E5D00820A44 /* UserCellView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5951D4C773E253E734210B99 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-UsersApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6F5F055C22C36DAF90BD7685 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-UsersApp/Pods-UsersApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-UsersApp/Pods-UsersApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-UsersApp/Pods-UsersApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		E4C4A4EA2AC5CB6E00BAA03A /* Sources */ = {
@@ -258,6 +333,7 @@
 				E4C4A4F42AC5CB6E00BAA03A /* SceneDelegate.swift in Sources */,
 				E427CEFE2B31C18700F9AC04 /* UsersViewController.swift in Sources */,
 				E4C1ABFB2B88BD5F009042A5 /* NetworkInterfaceType.swift in Sources */,
+				E43EC7672CD83449008CB975 /* LoginViewController.swift in Sources */,
 				E427CF012B31C18700F9AC04 /* UserDetailsViewController.swift in Sources */,
 				E4C1ABF92B88BD57009042A5 /* NetworkNotificationNames.swift in Sources */,
 				E427CEF72B31C0EF00F9AC04 /* UserDetailView.swift in Sources */,
@@ -385,12 +461,14 @@
 		};
 		E4C4A5032AC5CB6F00BAA03A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D19422C9B37B8615F57BB54B /* Pods-UsersApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = HYB4RR9UDF;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = UsersApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -411,12 +489,14 @@
 		};
 		E4C4A5042AC5CB6F00BAA03A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4285A80282C907FA16D4CF33 /* Pods-UsersApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = HYB4RR9UDF;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = UsersApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
