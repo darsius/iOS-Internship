@@ -61,6 +61,8 @@ class LoginViewController: UIViewController {
     
     private func invalidEmail(_ value: String) -> String? {
         if value.count == 0 {return "Required"}
+        if value.count < 6 {return "Email must be at least 6 characters"}
+        if value.count > 256 {return "Email must be at most 256 characters"}
         let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
         let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailRegex)
         if !emailPredicate.evaluate(with: value) {
@@ -71,9 +73,8 @@ class LoginViewController: UIViewController {
     
     private func invalidPassword(_ value: String) -> String? {
         if value.count == 0 {return "Required"}
-        if value.count < 8 {
-            return "Password must be at least 8 characters"
-        }
+        if value.count < 8 {return "Password must be at least 8 characters"}
+        if value.count > 64 {return "Password must be at most 8 characters"}
         if containsDigits(value) {
             return "Password must contain at least 1 digit"
         }
@@ -110,7 +111,7 @@ class LoginViewController: UIViewController {
         ]
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.titleTextAttributes = titleAttributes
-        navigationItem.title = "Sign In"
+        navigationItem.title = "Welcome to Users App"
         
     }
     
