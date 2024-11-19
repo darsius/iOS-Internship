@@ -14,24 +14,20 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        view.backgroundColor = .systemYellow
+
         setupNavBar()
         resetForm()
     }
     
     private func resetForm() {
         loginButton.isEnabled = false;
-        
         emailErrorTF.isHidden = false;
         passwordErrorTF.isHidden = false;
-        
-        
     }
     
     @IBAction func emailChanged(_ sender: Any) {
-        if let email = emailTF.text {
-            if let errorMessage = invalidEmail(email) {
+        if let email = emailTF.text?.trimmingCharacters(in: .whitespacesAndNewlines) {
+            if let errorMessage = invalidEmailFormat(email) {
                 emailErrorTF.text = errorMessage
                 emailErrorTF.isHidden = false
             } else {
@@ -43,8 +39,8 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func passwordChanged(_ sender: Any) {
-        if let password = passwordTF.text {
-            if let errorMessage = invalidPassword(password) {
+        if let password = passwordTF.text?.trimmingCharacters(in: .whitespacesAndNewlines) {
+            if let errorMessage = invalidPasswordFormat(password) {
                 passwordErrorTF.text = errorMessage
                 passwordErrorTF.isHidden = false
             } else {
@@ -56,28 +52,45 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func login(_ sender: Any) {
-        self.makeUsersViewController()
+        print(1)
+        guard let email = self.emailTF.text?.trimmingCharacters(in: .whitespacesAndNewlines) else { return }
+        guard let password = self.passwordTF.text?.trimmingCharacters(in: .whitespacesAndNewlines) else { return }
+        
+        if email == LoginConstants.hardcodedEmail && password == LoginConstants.hardcodedPassword {
+            self.makeUsersViewController()
+        } else {
+            let alert = UIAlertController(
+                title: "Wrong email or password.",
+                message: "", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(
+                title: "Try again", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+        print(2)
     }
     
-    private func invalidEmail(_ value: String) -> String? {
+    private func invalidEmailFormat(_ value: String) -> String? {
         if value.count == 0 {return "Required"}
         if value.count < 6 {return "Email must be at least 6 characters"}
         if value.count > 256 {return "Email must be at most 256 characters"}
         let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
         let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailRegex)
         if !emailPredicate.evaluate(with: value) {
-            return "Invalid Email Address"
+            return "Invalid Email Address format"
         }
+        
         return nil
     }
     
-    private func invalidPassword(_ value: String) -> String? {
+    private func invalidPasswordFormat(_ value: String) -> String? {
         if value.count == 0 {return "Required"}
         if value.count < 8 {return "Password must be at least 8 characters"}
         if value.count > 64 {return "Password must be at most 8 characters"}
+        if value.contains(" ") {return "Password cannot contain spaces"}
         if containsDigits(value) {
             return "Password must contain at least 1 digit"
         }
+        
         return nil
     }
     
@@ -97,10 +110,10 @@ class LoginViewController: UIViewController {
     
     
     // MARK: - Google Sign In
-    @IBAction func signIn(sender: Any) {
+    @IBAction func signInWithGoogle(sender: Any) {
       GIDSignIn.sharedInstance.signIn(withPresenting: self) { signInResult, error in
         guard error == nil else { return }
-
+          
           self.makeUsersViewController()
       }
     }
