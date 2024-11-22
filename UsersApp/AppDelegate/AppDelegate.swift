@@ -12,8 +12,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         GIDSignIn.sharedInstance.restorePreviousSignIn { user, error in
             if error != nil || user == nil {
+//                print("signed out state")
               // Show the app's signed-out state.
             } else {
+//                print("signed in state")
               // Show the app's signed-in state.
             }
           }

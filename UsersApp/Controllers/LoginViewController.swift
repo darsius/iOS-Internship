@@ -17,6 +17,35 @@ class LoginViewController: UIViewController {
 
         setupNavBar()
         resetForm()
+        handleKeyboardBehaviour()
+        
+    }
+    
+    private func handleKeyboardBehaviour() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
+        view.addGestureRecognizer(tapGesture)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification: )), name: UIResponder.keyboardWillShowNotification, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification: )), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification: )), name: UIResponder.keyboardWillChangeFrameNotification, object: self)
+    }
+    
+    @objc private func handleTap(_ gesture: UITapGestureRecognizer) {
+        emailTF.resignFirstResponder()
+        passwordTF.resignFirstResponder()
+    }
+    
+    @objc private func keyboardWillShow(notification: NSNotification) {
+        
+        if notification.name == UIResponder.keyboardWillShowNotification ||
+        notification.name == UIResponder.keyboardWillChangeFrameNotification {
+            
+            view.frame.origin.y = -20
+        } else {
+            view.frame.origin.y = 0
+        }
     }
     
     private func resetForm() {
@@ -107,6 +136,9 @@ class LoginViewController: UIViewController {
             loginButton.isEnabled = false
         }
     }
+    
+    
+    
     
     
     // MARK: - Google Sign In
