@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23094" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23084"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="header" id="U6b-Vx-4bR" customClass="HeaderView" customModule="UsersApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DKl-qb-PnI">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                    <subviews>
+                        <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="aWe-G6-qKb">
+                            <rect key="frame" x="114.66666666666669" y="9.6666666666666643" width="91" height="32"/>
+                            <segments>
+                                <segment title="List"/>
+                                <segment title="Grid"/>
+                            </segments>
+                        </segmentedControl>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemGreenColor"/>
+                    <constraints>
+                        <constraint firstItem="aWe-G6-qKb" firstAttribute="centerX" secondItem="DKl-qb-PnI" secondAttribute="centerX" id="6Y9-IR-5GZ"/>
+                        <constraint firstItem="aWe-G6-qKb" firstAttribute="centerY" secondItem="DKl-qb-PnI" secondAttribute="centerY" id="IkV-MA-iZR"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="VXr-Tz-HHm"/>
+            <constraints>
+                <constraint firstItem="DKl-qb-PnI" firstAttribute="leading" secondItem="VXr-Tz-HHm" secondAttribute="leading" id="08l-6f-Gt1"/>
+                <constraint firstItem="DKl-qb-PnI" firstAttribute="top" secondItem="U6b-Vx-4bR" secondAttribute="top" id="TWH-9A-dG2"/>
+                <constraint firstAttribute="bottom" secondItem="DKl-qb-PnI" secondAttribute="bottom" id="fu9-1k-KYF"/>
+                <constraint firstItem="DKl-qb-PnI" firstAttribute="trailing" secondItem="VXr-Tz-HHm" secondAttribute="trailing" id="vve-av-Qtj"/>
+            </constraints>
+            <connections>
+                <outlet property="segmentControl" destination="aWe-G6-qKb" id="gmK-dA-KuJ"/>
+            </connections>
+            <point key="canvasLocation" x="14" y="20"/>
+        </collectionReusableView>
+    </objects>
+    <resources>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
