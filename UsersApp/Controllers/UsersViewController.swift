@@ -98,14 +98,14 @@ class UsersViewController: UIViewController {
     @objc private func switchToListLayout() {
         isGridView = false
         updateToListLayout()
+        scrollUp()
     }
 
     @objc private func switchToGridLayout() {
         isGridView = true
         updateToGridLayout()
+        scrollUp()
     }
-    
-    
     
     private func setupNavigationBar() {
         navigationItem.title = "Dynamic Layout"
@@ -250,8 +250,9 @@ extension UsersViewController: UICollectionViewDelegate, UICollectionViewDataSou
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionCell", for: indexPath) as? CustomCollectionViewCell else {
             return UICollectionViewCell()
         }
+        let userName = users[indexPath.item].name
         let image = UIImage(systemName: "person.circle")
-        let title = users[indexPath.item].name.first
+        let title = "\(userName.first) \(userName.last)"
         cell.backgroundColor = .systemGreen
         cell.configure(for: isGridView, image: image, title: title)
         return cell

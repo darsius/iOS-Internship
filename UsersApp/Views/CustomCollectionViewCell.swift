@@ -2,13 +2,20 @@ import UIKit
 
 class CustomCollectionViewCell: UICollectionViewCell {
     private let imageView = UIImageView()
-    private let titleLabel = UILabel()
+    private let nameLb = UILabel()
+    private let emailLb = UILabel()
+    private let timeLb = UILabel()
 
     private var imageLeftConstraint: NSLayoutConstraint?
     private var imageCenterConstraint: NSLayoutConstraint?
-    private var labelRightConstraint: NSLayoutConstraint?
-    private var labelBelowConstraint: NSLayoutConstraint?
-    private var labelCenterConstraint: NSLayoutConstraint?
+    
+    private var nameLbRightConstraint: NSLayoutConstraint?
+    private var nameLbBelowConstraint: NSLayoutConstraint?
+    private var nameLbCenterConstraint: NSLayoutConstraint?
+    
+    private var emailLbRightConstraint: NSLayoutConstraint?
+    private var emailLbBelowConstraint: NSLayoutConstraint?
+//    private var emailLbCenterConstraint: NSLayoutConstraint?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -28,46 +35,69 @@ class CustomCollectionViewCell: UICollectionViewCell {
         imageView.contentMode = .scaleAspectFill
         contentView.addSubview(imageView)
 
-        titleLabel.textAlignment = .left
-        titleLabel.font = UIFont.systemFont(ofSize: 14, weight: .medium)
-        titleLabel.textColor = .black
-        contentView.addSubview(titleLabel)
+        nameLb.textAlignment = .left
+        nameLb.font = UIFont.systemFont(ofSize: 20, weight: .medium)
+        nameLb.textColor = .black
+        contentView.addSubview(nameLb)
+        
+        emailLb.textAlignment = .left
+        emailLb.font = UIFont.systemFont(ofSize: 14, weight: .medium)
+        emailLb.textColor = .gray
+        contentView.addSubview(emailLb)
+        
     }
 
     private func setupConstraints() {
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        nameLb.translatesAutoresizingMaskIntoConstraints = false
+        emailLb.translatesAutoresizingMaskIntoConstraints = false
 
         imageLeftConstraint = imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10)
         imageCenterConstraint = imageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor)
 
-        labelRightConstraint = titleLabel.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 10)
-        labelBelowConstraint = titleLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 10)
-        labelCenterConstraint = titleLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor)
+        nameLbRightConstraint = nameLb.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 10)
+        nameLbBelowConstraint = nameLb.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 10)
+        nameLbCenterConstraint = nameLb.centerXAnchor.constraint(equalTo: contentView.centerXAnchor)
+        
+        emailLbRightConstraint = emailLb.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 10)
+        emailLbBelowConstraint = emailLb.topAnchor.constraint(equalTo: nameLb.bottomAnchor, constant: 4)
+        
 
         NSLayoutConstraint.activate([
             imageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0),
             imageView.widthAnchor.constraint(equalToConstant: 50),
             imageView.heightAnchor.constraint(equalToConstant: 50),
-            titleLabel.trailingAnchor.constraint(lessThanOrEqualTo: contentView.trailingAnchor, constant: -10)
+            
+            
+            nameLb.trailingAnchor.constraint(lessThanOrEqualTo: contentView.trailingAnchor, constant: -20)
+            
+//            emailLb.
         ])
 
         imageLeftConstraint?.isActive = true
-        labelRightConstraint?.isActive = true
+        nameLbRightConstraint?.isActive = true
+        emailLbRightConstraint?.isActive = true
+        emailLbBelowConstraint?.isActive = true
     }
     
 
     func configure(for isGridView: Bool, image: UIImage?, title: String) {
         imageView.image = image
-        titleLabel.text = title
+        nameLb.text = title
+        emailLb.text = "a@aaaa.com"
 
         imageLeftConstraint?.isActive = !isGridView
         imageCenterConstraint?.isActive = isGridView
-        labelRightConstraint?.isActive = !isGridView
-        labelBelowConstraint?.isActive = isGridView
-        labelCenterConstraint?.isActive = isGridView
+        
+        nameLbRightConstraint?.isActive = !isGridView
+        nameLbBelowConstraint?.isActive = isGridView
+        nameLbCenterConstraint?.isActive = isGridView
+        
+        emailLbRightConstraint?.isActive = !isGridView
+        emailLbBelowConstraint?.isActive = !isGridView
+        emailLb.isHidden = isGridView
 
-        titleLabel.textAlignment = isGridView ? .center : .left
+        nameLb.textAlignment = isGridView ? .center : .left
 
         contentView.setNeedsLayout()
         contentView.layoutIfNeeded()
