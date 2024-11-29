@@ -78,7 +78,8 @@ class UsersViewController: UIViewController {
         gridBarButtonItem.isEnabled = false
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 10
-        layout.minimumInteritemSpacing = 10
+        layout.minimumInteritemSpacing = 2
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
         let itemSize = (view.bounds.width - 30) / 2
         layout.itemSize = CGSize(width: itemSize, height: itemSize)
         listBarButtonItem.isEnabled = true
