@@ -89,6 +89,7 @@ class UsersViewController: UIViewController {
         UIView.animate(withDuration: 0.3, animations: {
             self.usersCollectionView.setCollectionViewLayout(layout, animated: true)
             self.usersCollectionView.setContentOffset(.zero, animated: true)
+            self.usersCollectionView.layoutIfNeeded()
         })
 
         let visibleIndexPaths = usersCollectionView.indexPathsForVisibleItems
@@ -250,11 +251,9 @@ extension UsersViewController: UICollectionViewDelegate, UICollectionViewDataSou
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionCell", for: indexPath) as? CustomCollectionViewCell else {
             return UICollectionViewCell()
         }
-        let userName = users[indexPath.item].name
-        let image = UIImage(systemName: "person.circle")
-        let title = "\(userName.first) \(userName.last)"
+        let user = users[indexPath.item]
         cell.backgroundColor = .systemGreen
-        cell.configure(for: isGridView, image: image, title: title)
+        cell.configure(for: isGridView, user: user)
         return cell
     }
 }
