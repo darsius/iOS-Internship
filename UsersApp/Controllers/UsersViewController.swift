@@ -73,7 +73,7 @@ class UsersViewController: UIViewController {
         applyLayout(layout)
         gridBarButtonItem.isEnabled = true
     }
-
+    
     private func updateToGridLayout() {
         gridBarButtonItem.isEnabled = false
         let layout = UICollectionViewFlowLayout()
@@ -85,24 +85,24 @@ class UsersViewController: UIViewController {
         listBarButtonItem.isEnabled = true
         applyLayout(layout)
     }
-
+    
     private func applyLayout(_ layout: UICollectionViewFlowLayout) {
         UIView.animate(withDuration: 0.3, animations: {
             self.usersCollectionView.setCollectionViewLayout(layout, animated: true)
             self.usersCollectionView.setContentOffset(.zero, animated: true)
             self.usersCollectionView.layoutIfNeeded()
         })
-
+        
         let visibleIndexPaths = usersCollectionView.indexPathsForVisibleItems
         usersCollectionView.reconfigureItems(at: visibleIndexPaths)
     }
-
+    
     @objc private func switchToListLayout() {
         isGridView = false
         updateToListLayout()
         scrollUp()
     }
-
+    
     @objc private func switchToGridLayout() {
         isGridView = true
         updateToGridLayout()
@@ -110,7 +110,13 @@ class UsersViewController: UIViewController {
     }
     
     private func setupNavigationBar() {
-        navigationItem.title = "Dynamic Layout"
+        let titleAttributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont.systemFont(ofSize: 22)
+        ]
+        
+        navigationController?.navigationBar.backgroundColor = .systemYellow
+        navigationController?.navigationBar.titleTextAttributes = titleAttributes
+        navigationItem.title = "Users"
         
         listBarButtonItem.imageInsets = UIEdgeInsets(top: 0, left: 40, bottom: 0, right: 0)
         
@@ -136,12 +142,6 @@ class UsersViewController: UIViewController {
     }
     
     
-    
-    //    private func setUpUI() {
-    //        self.setUpNavBar()
-    //        self.setUpSearchController()
-    //    }
-    
     // MARK: - network
     private func observeNetworkChanges() {
         NotificationCenter.default.addObserver(self, selector: #selector(manageNoInternetConnection(notification:)), name: NSNotification.Name.connectivityStatus, object: nil)
@@ -160,25 +160,19 @@ class UsersViewController: UIViewController {
         }
     }
     
+    private func makeDetailsViewController(for user: User) -> UserDetailsViewController {
+        let detailsViewController = UserDetailsViewController()
+        detailsViewController.user = user
+        
+        return detailsViewController
+    }
     
-    // MARK: - navigation items
-    //    private func setUpNavBar() {
-    //        let titleAttributes: [NSAttributedString.Key: Any] = [
-    //            .font: UIFont.systemFont(ofSize: 22)
-    //        ]
-    //
-    //        navigationController?.navigationBar.backgroundColor = .systemYellow
-    //        navigationController?.navigationBar.titleTextAttributes = titleAttributes
-    //        navigationItem.title = "Users"
-    //    }
     
     private func setUpSearchController() {
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search User"
         searchController.searchBar.barTintColor = .black
-        //        searchController.searchBar.showsScopeBar = true
-        //        searchController.searchBar.scopeButtonTitles = ["List", "Grid"]
         searchController.searchBar.delegate = self
         
         self.navigationItem.searchController = self.searchController
@@ -199,67 +193,80 @@ extension UsersViewController: UISearchResultsUpdating {
     }
     
     private func filterUsersForSearchText(_ searchText: String) {
-        let newFilteredUsers = users.filter { (user: User) -> Bool in
-            return user.name.first.lowercased().contains(searchText.lowercased()) || user.name.last.lowercased().contains(searchText.lowercased())
+        filteredUsers = users.filter { (user: User) -> Bool in
+            return user.name.first.lowercased().contains(searchText.lowercased()) ||
+            user.name.last.lowercased().contains(searchText.lowercased())
         }
-        
-        updateData(with: isFiltering ? newFilteredUsers: users)
-    }
-}
+        DispatchQueue.main.async {
+            self.usersCollectionView.reloadData()
+        }
+    }}
 
 extension UsersViewController: UISearchBarDelegate {
     private func refreshUsersTable() {
         DispatchQueue.main.async { [weak self] in
             self?.usersCollectionView.isScrollEnabled = true
             //            self?.removeUsersTableFooter()
-            //            self?.usersTableView.reloadData()
-            //            self?.scrollTableViewUp()
+            self?.usersCollectionView.reloadData()
+            self?.scrollTableViewUp()
         }
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.isEmpty {
             filteredUsers = []
+            DispatchQueue.main.async {
+                self.usersCollectionView.reloadData()
+            }
+            return
         }
-        //        scrollTableViewUp()
-        //        refreshUsersTable()
+        filterUsersForSearchText(searchText)
+        
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        //        removeUsersTableFooter()
-        //        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
-        //            self?.usersTableView.reloadData()
-        //        }
-        //        usersTableView.isScrollEnabled = true
         filteredUsers = []
-        updateData(with: users)
+        DispatchQueue.main.async {
+            self.usersCollectionView.reloadData()
+        }
     }
     
-    //        private func scrollTableViewUp() {
-    //            if filteredUsers.count != 0 {
-    //                let indexPath = IndexPath(row: 0, section: 0)
-    //                usersCollectionView.scrollToRow(at: indexPath, at: .top, animated: true)
-    //            }
-    //        }
+    private func scrollTableViewUp() {
+        if filteredUsers.count != 0 {
+            let indexPath = IndexPath(row: 0, section: 0)
+            usersCollectionView.scrollToItem(at: indexPath, at: .top, animated: true)
+        }
+    }
 }
 
 extension UsersViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return users.count
+        return isFiltering ? filteredUsers.count : users.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        var selectedUser: User
+        if isFiltering {
+            selectedUser = filteredUsers[indexPath.row]
+        } else {
+            selectedUser = users[indexPath.row]
+        }
+        let detailsViewController = makeDetailsViewController(for: selectedUser)
+        
+        navigationController?.pushViewController(detailsViewController, animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionCell", for: indexPath) as? CustomCollectionViewCell else {
             return UICollectionViewCell()
         }
-        let user = users[indexPath.item]
-        cell.backgroundColor = .systemGreen
-        cell.configure(for: isGridView, user: user)
+        if isFiltering {
+            let user = filteredUsers[indexPath.item]
+            cell.configure(for: isGridView, user: user)
+        } else {
+            let user = users[indexPath.item]
+            cell.configure(for: isGridView, user: user)
+        }
         return cell
     }
 }
-
-
-
-
-
