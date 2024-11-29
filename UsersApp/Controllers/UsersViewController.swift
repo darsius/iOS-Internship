@@ -24,73 +24,100 @@ class UsersViewController: UIViewController {
         case list
     }
     
-    private var isGridView = false {
-        didSet {
-            updateLayout()
-        }
-    }
+    private var gridBarButtonItem = UIBarButtonItem()
+    private var listBarButtonItem = UIBarButtonItem()
+    
+    private var isGridView = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.fetchUsers()
         
-        self.setupNavigationBar()
+        listBarButtonItem = UIBarButtonItem(
+            image: UIImage(systemName: "list.bullet"),
+            style: .plain,
+            target: self,
+            action: #selector(switchToListLayout)
+        )
         
+        gridBarButtonItem = UIBarButtonItem(
+            image: UIImage(systemName: "square.grid.2x2"),
+            style: .plain,
+            target: self,
+            action: #selector(switchToGridLayout)
+        )
+        
+        self.setupNavigationBar()
         self.setUpSearchController()
+        
+        
         
         usersCollectionView.delegate = self
         usersCollectionView.dataSource = self
         usersCollectionView.register(CustomCollectionViewCell.self, forCellWithReuseIdentifier: "CollectionCell")
         
-        self.updateLayout()
+        self.switchToListLayout()
         
         //        self.setUpNavBar()
         
         //        observeNetworkChanges()
     }
     
-    private func updateLayout() {
+    private func updateToListLayout() {
+        listBarButtonItem.isEnabled = false
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 10
         layout.minimumInteritemSpacing = 10
-        
-        if isGridView {
-            let itemSize = (view.bounds.width - 30) / 2
-            layout.itemSize = CGSize(width: itemSize, height: itemSize)
-        } else {
-            layout.itemSize = CGSize(width: view.bounds.width - 20, height: 50)
-        }
-        
-        
+        layout.itemSize = CGSize(width: view.bounds.width - 20, height: 50)
+        applyLayout(layout)
+        gridBarButtonItem.isEnabled = true
+    }
+
+    private func updateToGridLayout() {
+        gridBarButtonItem.isEnabled = false
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumLineSpacing = 10
+        layout.minimumInteritemSpacing = 10
+        let itemSize = (view.bounds.width - 30) / 2
+        layout.itemSize = CGSize(width: itemSize, height: itemSize)
+        listBarButtonItem.isEnabled = true
+        applyLayout(layout)
+    }
+
+    private func applyLayout(_ layout: UICollectionViewFlowLayout) {
         UIView.animate(withDuration: 0.3, animations: {
             self.usersCollectionView.setCollectionViewLayout(layout, animated: true)
             self.usersCollectionView.setContentOffset(.zero, animated: true)
         })
-        
+
         let visibleIndexPaths = usersCollectionView.indexPathsForVisibleItems
-        
         usersCollectionView.reconfigureItems(at: visibleIndexPaths)
-        
     }
+
+    @objc private func switchToListLayout() {
+        isGridView = false
+        updateToListLayout()
+    }
+
+    @objc private func switchToGridLayout() {
+        isGridView = true
+        updateToGridLayout()
+    }
+    
     
     
     private func setupNavigationBar() {
         navigationItem.title = "Dynamic Layout"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(
-            title: "Toggle",
-            style: .plain,
-            target: self,
-            action: #selector(toggleLayout)
-        )
+        
+        listBarButtonItem.imageInsets = UIEdgeInsets(top: 0, left: 40, bottom: 0, right: 0)
+        
+        navigationItem.rightBarButtonItems = [gridBarButtonItem, listBarButtonItem]
     }
     
-    @objc private func toggleLayout() {
-        isGridView.toggle()
-        usersCollectionView.setContentOffset(CGPoint(x: 0, y: -usersCollectionView.adjustedContentInset.top), animated: true)
+    private func scrollUp() {
+        usersCollectionView.setContentOffset(CGPoint(x: 0, y: -usersCollectionView.adjustedContentInset.top), animated: false)
     }
-    
-    
     
     private func updateData(with users: [User]) {
         self.users = users
@@ -206,12 +233,12 @@ extension UsersViewController: UISearchBarDelegate {
         updateData(with: users)
     }
     
-//        private func scrollTableViewUp() {
-//            if filteredUsers.count != 0 {
-//                let indexPath = IndexPath(row: 0, section: 0)
-//                usersCollectionView.scrollToRow(at: indexPath, at: .top, animated: true)
-//            }
-//        }
+    //        private func scrollTableViewUp() {
+    //            if filteredUsers.count != 0 {
+    //                let indexPath = IndexPath(row: 0, section: 0)
+    //                usersCollectionView.scrollToRow(at: indexPath, at: .top, animated: true)
+    //            }
+    //        }
 }
 
 extension UsersViewController: UICollectionViewDelegate, UICollectionViewDataSource {
