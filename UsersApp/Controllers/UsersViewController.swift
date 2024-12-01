@@ -19,11 +19,6 @@ class UsersViewController: UIViewController {
         return searchController.isActive && !isSearchBarEmpty
     }
     
-    enum LayoutType {
-        case grid
-        case list
-    }
-    
     private var gridBarButtonItem = UIBarButtonItem()
     private var listBarButtonItem = UIBarButtonItem()
     
@@ -31,8 +26,6 @@ class UsersViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.fetchUsers()
         
         listBarButtonItem = UIBarButtonItem(
             image: UIImage(systemName: "list.bullet"),
@@ -48,20 +41,14 @@ class UsersViewController: UIViewController {
             action: #selector(switchToGridLayout)
         )
         
-        self.setupNavigationBar()
-        self.setUpSearchController()
+        self.fetchUsers()
         
-        
-        
-        usersCollectionView.delegate = self
-        usersCollectionView.dataSource = self
-        usersCollectionView.register(CustomCollectionViewCell.self, forCellWithReuseIdentifier: "CollectionCell")
+        self.setUpUI()
         
         self.switchToListLayout()
         
-        //        self.setUpNavBar()
         
-        //        observeNetworkChanges()
+        observeNetworkChanges()
     }
     
     private func updateToListLayout() {
@@ -82,19 +69,10 @@ class UsersViewController: UIViewController {
         layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
         let itemSize = (view.bounds.width - 30) / 2
         layout.itemSize = CGSize(width: itemSize, height: itemSize)
+        
+        layout.itemSize = CGSize(width: view.bounds.width * 0.45, height: view.bounds.width * 0.45)
         listBarButtonItem.isEnabled = true
         applyLayout(layout)
-    }
-    
-    private func applyLayout(_ layout: UICollectionViewFlowLayout) {
-        UIView.animate(withDuration: 0.3, animations: {
-            self.usersCollectionView.setCollectionViewLayout(layout, animated: true)
-            self.usersCollectionView.setContentOffset(.zero, animated: true)
-            self.usersCollectionView.layoutIfNeeded()
-        })
-        
-        let visibleIndexPaths = usersCollectionView.indexPathsForVisibleItems
-        usersCollectionView.reconfigureItems(at: visibleIndexPaths)
     }
     
     @objc private func switchToListLayout() {
@@ -107,20 +85,6 @@ class UsersViewController: UIViewController {
         isGridView = true
         updateToGridLayout()
         scrollUp()
-    }
-    
-    private func setupNavigationBar() {
-        let titleAttributes: [NSAttributedString.Key: Any] = [
-            .font: UIFont.systemFont(ofSize: 22)
-        ]
-        
-        navigationController?.navigationBar.backgroundColor = .systemYellow
-        navigationController?.navigationBar.titleTextAttributes = titleAttributes
-        navigationItem.title = "Users"
-        
-        listBarButtonItem.imageInsets = UIEdgeInsets(top: 0, left: 40, bottom: 0, right: 0)
-        
-        navigationItem.rightBarButtonItems = [gridBarButtonItem, listBarButtonItem]
     }
     
     private func scrollUp() {
@@ -166,19 +130,6 @@ class UsersViewController: UIViewController {
         
         return detailsViewController
     }
-    
-    
-    private func setUpSearchController() {
-        searchController.searchResultsUpdater = self
-        searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search User"
-        searchController.searchBar.barTintColor = .black
-        searchController.searchBar.delegate = self
-        
-        self.navigationItem.searchController = self.searchController
-        
-        definesPresentationContext = false
-    }
 }
 
 
@@ -206,13 +157,12 @@ extension UsersViewController: UISearchBarDelegate {
     private func refreshUsersTable() {
         DispatchQueue.main.async { [weak self] in
             self?.usersCollectionView.isScrollEnabled = true
-            //            self?.removeUsersTableFooter()
             self?.usersCollectionView.reloadData()
             self?.scrollTableViewUp()
         }
     }
     
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+    internal func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.isEmpty {
             filteredUsers = []
             DispatchQueue.main.async {
@@ -224,7 +174,7 @@ extension UsersViewController: UISearchBarDelegate {
         
     }
     
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+    internal func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         filteredUsers = []
         DispatchQueue.main.async {
             self.usersCollectionView.reloadData()
@@ -268,5 +218,51 @@ extension UsersViewController: UICollectionViewDelegate, UICollectionViewDataSou
             cell.configure(for: isGridView, user: user)
         }
         return cell
+    }
+}
+
+extension UsersViewController {
+    private func setUpNavBar() {
+        let titleAttributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont.systemFont(ofSize: 22)
+        ]
+        
+        navigationController?.navigationBar.backgroundColor = .systemYellow
+        navigationController?.navigationBar.titleTextAttributes = titleAttributes
+        navigationItem.title = "Users"
+        
+        listBarButtonItem.imageInsets = UIEdgeInsets(top: 0, left: 40, bottom: 0, right: 0)
+        
+        navigationItem.rightBarButtonItems = [gridBarButtonItem, listBarButtonItem]
+    }
+    
+    private func setUpSearchController() {
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search User"
+        searchController.searchBar.barTintColor = .black
+        searchController.searchBar.delegate = self
+        
+        self.navigationItem.searchController = self.searchController
+        
+        definesPresentationContext = false
+    }
+    
+    private func applyLayout(_ layout: UICollectionViewFlowLayout) {
+        UIView.animate(withDuration: 0.3, animations: {
+            self.usersCollectionView.setCollectionViewLayout(layout, animated: true)
+            self.usersCollectionView.setContentOffset(.zero, animated: true)
+            self.usersCollectionView.layoutIfNeeded()
+        })
+        
+        let visibleIndexPaths = usersCollectionView.indexPathsForVisibleItems
+        usersCollectionView.reconfigureItems(at: visibleIndexPaths)
+    }
+    
+    private func setUpUI() {
+        self.setUpNavBar()
+        self.setUpSearchController()
+        
+        usersCollectionView.register(CustomCollectionViewCell.self, forCellWithReuseIdentifier: "CollectionCell")
     }
 }

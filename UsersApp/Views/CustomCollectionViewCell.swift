@@ -106,9 +106,6 @@ class CustomCollectionViewCell: UICollectionViewCell {
                 }
             }
         }
-        //        print(imageView.frame.size.height / 2)
-        //        imageView.layer.cornerRadius = imageView.frame.size.height / 2
-        //        imageView.layer.masksToBounds = true
     }
     
     private func setupTimeLabel(with userTime: String) {
