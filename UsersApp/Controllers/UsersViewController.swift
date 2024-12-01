@@ -132,7 +132,6 @@ class UsersViewController: UIViewController {
     }
 }
 
-
 extension UsersViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         let searchBar = searchController.searchBar
@@ -154,14 +153,6 @@ extension UsersViewController: UISearchResultsUpdating {
     }}
 
 extension UsersViewController: UISearchBarDelegate {
-    private func refreshUsersTable() {
-        DispatchQueue.main.async { [weak self] in
-            self?.usersCollectionView.isScrollEnabled = true
-            self?.usersCollectionView.reloadData()
-            self?.scrollTableViewUp()
-        }
-    }
-    
     internal func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.isEmpty {
             filteredUsers = []
@@ -181,12 +172,6 @@ extension UsersViewController: UISearchBarDelegate {
         }
     }
     
-    private func scrollTableViewUp() {
-        if filteredUsers.count != 0 {
-            let indexPath = IndexPath(row: 0, section: 0)
-            usersCollectionView.scrollToItem(at: indexPath, at: .top, animated: true)
-        }
-    }
 }
 
 extension UsersViewController: UICollectionViewDelegate, UICollectionViewDataSource {
