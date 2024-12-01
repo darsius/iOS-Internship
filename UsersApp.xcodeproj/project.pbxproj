@@ -15,9 +15,16 @@
 		E427CF012B31C18700F9AC04 /* UserDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E427CEFD2B31C18700F9AC04 /* UserDetailsViewController.swift */; };
 		E437C2612ACCCD4B00DD8950 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E437C2602ACCCD4B00DD8950 /* User.swift */; };
 		E437C2632ACCCF3800DD8950 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E437C2622ACCCF3800DD8950 /* NetworkManager.swift */; };
+		E43FBCEC2C9DA428008D495E /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43FBCEB2C9DA428008D495E /* TabBarController.swift */; };
+		E43FBCEE2C9DB4B2008D495E /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E43FBCED2C9DB4B2008D495E /* MapViewController.xib */; };
+		E43FBCF12C9DE2B4008D495E /* UsersManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43FBCF02C9DE2B4008D495E /* UsersManager.swift */; };
 		E4431CB82B0A8E5D00820A44 /* UserCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4431CB72B0A8E5D00820A44 /* UserCellView.xib */; };
 		E447041B2AFD4FA400D5C5BF /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E447041A2AFD4FA400D5C5BF /* NetworkError.swift */; };
+		E45A03CD2C9EF29400DADA8A /* UserAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45A03CC2C9EF29400DADA8A /* UserAnnotation.swift */; };
+		E45ED0532CA0A9F800246A10 /* ViewControllerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45ED0522CA0A9F800246A10 /* ViewControllerHelper.swift */; };
+		E45ED0552CA0B07500246A10 /* CustomAlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45ED0542CA0B07500246A10 /* CustomAlertManager.swift */; };
 		E468D2842B4732FA0045A8AE /* PostalColde.swift in Sources */ = {isa = PBXBuildFile; fileRef = E468D2832B4732FA0045A8AE /* PostalColde.swift */; };
+		E46B5BF42C9A40D8005B7806 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46B5BF32C9A40D8005B7806 /* MapViewController.swift */; };
 		E4BE7A8E2B92494400B78D46 /* ImageDownloadError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BE7A8D2B92494400B78D46 /* ImageDownloadError.swift */; };
 		E4C1ABF72B88BD42009042A5 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C1ABF62B88BD42009042A5 /* NetworkMonitor.swift */; };
 		E4C1ABF92B88BD57009042A5 /* NetworkNotificationNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C1ABF82B88BD57009042A5 /* NetworkNotificationNames.swift */; };
@@ -40,9 +47,16 @@
 		E427CEFD2B31C18700F9AC04 /* UserDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetailsViewController.swift; sourceTree = "<group>"; };
 		E437C2602ACCCD4B00DD8950 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		E437C2622ACCCF3800DD8950 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		E43FBCEB2C9DA428008D495E /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		E43FBCED2C9DB4B2008D495E /* MapViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
+		E43FBCF02C9DE2B4008D495E /* UsersManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersManager.swift; sourceTree = "<group>"; };
 		E4431CB72B0A8E5D00820A44 /* UserCellView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserCellView.xib; sourceTree = "<group>"; };
 		E447041A2AFD4FA400D5C5BF /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		E45A03CC2C9EF29400DADA8A /* UserAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAnnotation.swift; sourceTree = "<group>"; };
+		E45ED0522CA0A9F800246A10 /* ViewControllerHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerHelper.swift; sourceTree = "<group>"; };
+		E45ED0542CA0B07500246A10 /* CustomAlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertManager.swift; sourceTree = "<group>"; };
 		E468D2832B4732FA0045A8AE /* PostalColde.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostalColde.swift; sourceTree = "<group>"; };
+		E46B5BF32C9A40D8005B7806 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		E4BE7A8D2B92494400B78D46 /* ImageDownloadError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloadError.swift; sourceTree = "<group>"; };
 		E4C1ABF62B88BD42009042A5 /* NetworkMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		E4C1ABF82B88BD57009042A5 /* NetworkNotificationNames.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkNotificationNames.swift; sourceTree = "<group>"; };
@@ -78,6 +92,16 @@
 			name = Errors;
 			sourceTree = "<group>";
 		};
+		E43FBCEF2C9DE298008D495E /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				E43FBCF02C9DE2B4008D495E /* UsersManager.swift */,
+				E45ED0522CA0A9F800246A10 /* ViewControllerHelper.swift */,
+				E45ED0542CA0B07500246A10 /* CustomAlertManager.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
 		E4BBFCEF2B0CFE4000027A26 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -109,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				E4E43DA72AFD1C9700A92706 /* AppDelegate */,
+				E43FBCEF2C9DE298008D495E /* Shared */,
 				E403E82E2B7D3A7A0008AAE2 /* Errors */,
 				E4E43DA32AFD14E500A92706 /* Extensions */,
 				E4E43DA62AFD1C7700A92706 /* Networking */,
@@ -154,6 +179,7 @@
 			children = (
 				E437C2602ACCCD4B00DD8950 /* User.swift */,
 				E468D2832B4732FA0045A8AE /* PostalColde.swift */,
+				E45A03CC2C9EF29400DADA8A /* UserAnnotation.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -167,6 +193,9 @@
 				E427CEFB2B31C18700F9AC04 /* UserDetailsViewController.xib */,
 				E4C1ABFC2B88C383009042A5 /* LoadingViewController.swift */,
 				E4C1ABFD2B88C383009042A5 /* LoadingViewController.xib */,
+				E46B5BF32C9A40D8005B7806 /* MapViewController.swift */,
+				E43FBCED2C9DB4B2008D495E /* MapViewController.xib */,
+				E43FBCEB2C9DA428008D495E /* TabBarController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -233,6 +262,7 @@
 				E427CEFF2B31C18700F9AC04 /* UserDetailsViewController.xib in Resources */,
 				E427CF002B31C18700F9AC04 /* UsersViewController.xib in Resources */,
 				E4C4A4FB2AC5CB6F00BAA03A /* Assets.xcassets in Resources */,
+				E43FBCEE2C9DB4B2008D495E /* MapViewController.xib in Resources */,
 				E427CEF92B31C0FE00F9AC04 /* UserDetailView.xib in Resources */,
 				E4431CB82B0A8E5D00820A44 /* UserCellView.xib in Resources */,
 			);
@@ -246,21 +276,27 @@
 			buildActionMask = 2147483647;
 			files = (
 				E437C2632ACCCF3800DD8950 /* NetworkManager.swift in Sources */,
+				E45ED0552CA0B07500246A10 /* CustomAlertManager.swift in Sources */,
 				E4C1ABF72B88BD42009042A5 /* NetworkMonitor.swift in Sources */,
 				E437C2612ACCCD4B00DD8950 /* User.swift in Sources */,
 				E468D2842B4732FA0045A8AE /* PostalColde.swift in Sources */,
+				E43FBCEC2C9DA428008D495E /* TabBarController.swift in Sources */,
 				E4C1ABFE2B88C383009042A5 /* LoadingViewController.swift in Sources */,
 				E4C4A5062AC5CC7C00BAA03A /* UserCellView.swift in Sources */,
 				E4C4A4F22AC5CB6E00BAA03A /* AppDelegate.swift in Sources */,
 				E447041B2AFD4FA400D5C5BF /* NetworkError.swift in Sources */,
 				E4BE7A8E2B92494400B78D46 /* ImageDownloadError.swift in Sources */,
 				E4E43DA52AFD152600A92706 /* UsersImageExtensions.swift in Sources */,
+				E43FBCF12C9DE2B4008D495E /* UsersManager.swift in Sources */,
 				E4C4A4F42AC5CB6E00BAA03A /* SceneDelegate.swift in Sources */,
 				E427CEFE2B31C18700F9AC04 /* UsersViewController.swift in Sources */,
 				E4C1ABFB2B88BD5F009042A5 /* NetworkInterfaceType.swift in Sources */,
 				E427CF012B31C18700F9AC04 /* UserDetailsViewController.swift in Sources */,
 				E4C1ABF92B88BD57009042A5 /* NetworkNotificationNames.swift in Sources */,
+				E45ED0532CA0A9F800246A10 /* ViewControllerHelper.swift in Sources */,
+				E45A03CD2C9EF29400DADA8A /* UserAnnotation.swift in Sources */,
 				E427CEF72B31C0EF00F9AC04 /* UserDetailView.swift in Sources */,
+				E46B5BF42C9A40D8005B7806 /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
