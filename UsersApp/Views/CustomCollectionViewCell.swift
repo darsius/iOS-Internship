@@ -7,20 +7,9 @@ class CustomCollectionViewCell: UICollectionViewCell {
     private let emailLb = UILabel()
     private let timeLb = UILabel()
     
-    private var imageTopConstraint: NSLayoutConstraint?
-    private var imageLeftConstraint: NSLayoutConstraint?
-    private var imageCenterConstraint: NSLayoutConstraint?
-    private var imageHeightConstraint: NSLayoutConstraint?
-    private var imageWidthConstraint: NSLayoutConstraint?
+    private var constraintsForListView: [NSLayoutConstraint] = []
+    private var constraintsForGridView: [NSLayoutConstraint] = []
     
-    private var nameLbRightConstraint: NSLayoutConstraint?
-    private var nameLbBelowConstraint: NSLayoutConstraint?
-    private var nameLbCenterConstraint: NSLayoutConstraint?
-    
-    private var emailLbRightConstraint: NSLayoutConstraint?
-    private var emailLbBelowConstraint: NSLayoutConstraint?
-    
-    private var timeLbRightConstraint: NSLayoutConstraint?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -36,6 +25,7 @@ class CustomCollectionViewCell: UICollectionViewCell {
     
     private func setupSubviews() {
         imageView.contentMode = .scaleAspectFill
+        imageView.layer.masksToBounds = true
         contentView.addSubview(imageView)
         
         nameLb.textAlignment = .left
@@ -60,37 +50,31 @@ class CustomCollectionViewCell: UICollectionViewCell {
         emailLb.translatesAutoresizingMaskIntoConstraints = false
         timeLb.translatesAutoresizingMaskIntoConstraints = false
         
-        imageTopConstraint = imageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 4)
-        imageLeftConstraint = imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10)
-        imageCenterConstraint = imageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor)
-        imageHeightConstraint = imageView.heightAnchor.constraint(equalToConstant: 40)
-        imageWidthConstraint =  imageView.widthAnchor.constraint(equalToConstant: 40)
-        
-        nameLbRightConstraint = nameLb.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 10)
-        nameLbBelowConstraint = nameLb.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 30)
-        nameLbCenterConstraint = nameLb.centerXAnchor.constraint(equalTo: contentView.centerXAnchor)
-        
-        emailLbRightConstraint = emailLb.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 10)
-        emailLbBelowConstraint = emailLb.topAnchor.constraint(equalTo: nameLb.bottomAnchor, constant: 4)
-        
-        timeLbRightConstraint = timeLb.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10)
-        
-        NSLayoutConstraint.activate([
-            imageTopConstraint!,
-            imageHeightConstraint!,
-            imageWidthConstraint!,
-            nameLbRightConstraint!,
-            nameLb.trailingAnchor.constraint(lessThanOrEqualTo: contentView.trailingAnchor, constant: -20),
-            emailLbRightConstraint!,
-            emailLbBelowConstraint!,
-            timeLbRightConstraint!,
+        constraintsForListView = [
+            imageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 4),
+            imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            imageView.heightAnchor.constraint(equalToConstant: 40),
+            imageView.widthAnchor.constraint(equalToConstant: 40),
+            
+            nameLb.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            nameLb.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 10),
+            
+            emailLb.topAnchor.constraint(equalTo: nameLb.bottomAnchor, constant: 4),
+            emailLb.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 10),
+            
+            timeLb.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
             timeLb.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10)
-        ])
+        ]
         
-        imageLeftConstraint?.isActive = true
-        imageCenterConstraint?.isActive = false
-        nameLbCenterConstraint?.isActive = false
-        nameLbBelowConstraint?.isActive = false
+        constraintsForGridView = [
+            imageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            imageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
+            imageView.heightAnchor.constraint(equalToConstant: 100),
+            imageView.widthAnchor.constraint(equalToConstant: 100),
+            
+            nameLb.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            nameLb.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 10),
+        ]
     }
     
     private func setupImageView(with urlString: String) {
@@ -109,15 +93,20 @@ class CustomCollectionViewCell: UICollectionViewCell {
     }
     
     private func setupTimeLabel(with userTime: String) {
+            guard let formattedTime = formatUserTime(userTime) else {
+                timeLb.text = "--:--"
+                return
+            }
+            timeLb.text = formattedTime
+        }
+        
+    private func formatUserTime(_ userTime: String) -> String? {
         let components = userTime.split(separator: ":")
         
         guard components.count == 2,
               let hours = Double(components[0]),
               let minutes = Double(components[1])
-        else {
-            print("invalid time as string")
-            return
-        }
+        else { return nil }
         
         let userTimeHours = hours + (minutes / 60)
         let currentTime = Date()
@@ -127,52 +116,26 @@ class CustomCollectionViewCell: UICollectionViewCell {
         dateFormatter.dateFormat = "HH:mm"
         dateFormatter.timeZone = userTimeZone
         
-        let userLocalTime = dateFormatter.string(from: currentTime)
-        
-        timeLb.text = userLocalTime
+        return dateFormatter.string(from: currentTime)
     }
     
     func configure(for isGridView: Bool, user: User) {
         
-        if isGridView {
-            imageLeftConstraint?.isActive = false
-            imageCenterConstraint?.isActive = true
-            imageTopConstraint?.constant = 20
-            imageHeightConstraint?.constant = 100
-            imageWidthConstraint?.constant = 100
-        } else {
-            imageCenterConstraint?.isActive = false
-            imageLeftConstraint?.isActive = true
-            imageTopConstraint?.constant = 4
-            imageHeightConstraint?.constant = 40
-            imageWidthConstraint?.constant = 40
-        }
-        
-        imageTopConstraint?.isActive = true
-        imageHeightConstraint?.isActive = true
-        imageWidthConstraint?.isActive = true
-        
-        nameLbRightConstraint?.isActive = !isGridView
-        nameLbBelowConstraint?.isActive = isGridView
-        nameLbCenterConstraint?.isActive = isGridView
-        
-        emailLbRightConstraint?.isActive = !isGridView
-        emailLbBelowConstraint?.isActive = !isGridView
-        emailLb.isHidden = isGridView
-        
-        timeLbRightConstraint?.isActive = !isGridView
-        timeLb.isHidden = isGridView
-        
-        let cornerRadius = isGridView ? 50.0 : 20.0
-        imageView.layer.cornerRadius = cornerRadius
-        imageView.layer.masksToBounds = true
+        NSLayoutConstraint.deactivate(isGridView ? constraintsForListView : constraintsForGridView)
+        NSLayoutConstraint.activate(isGridView ? constraintsForGridView : constraintsForListView)
         
         setupImageView(with: user.picture.medium)
-        setupTimeLabel(with: user.location.timezone.offset)
-        nameLb.text = isGridView ? "\(user.name.first)" : "\(user.name.first) \(user.name.last)"
-        emailLb.text = user.email
         
+        nameLb.text = isGridView ? "\(user.name.first)" : "\(user.name.first) \(user.name.last)"
         nameLb.textAlignment = isGridView ? .center : .left
+
+        emailLb.text = user.email
+        emailLb.isHidden = isGridView
+        
+        setupTimeLabel(with: user.location.timezone.offset)
+        timeLb.isHidden = isGridView
+        
+        imageView.layer.cornerRadius = isGridView ? 50.0 : 20.0
         
         contentView.setNeedsLayout()
         contentView.layoutIfNeeded()
