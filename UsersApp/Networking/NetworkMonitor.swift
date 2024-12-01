@@ -7,9 +7,9 @@ final class NetworkMonitor {
     static let shared = NetworkMonitor()
     
     private let monitor: NWPathMonitor
-    private (set) var isConnected = false
-    private (set) var isExpensive = false
-    private (set) var currentConnectionType: NWInterface.InterfaceType?
+    private(set) var isConnected = false
+    private(set) var isExpensive = false
+    private(set) var currentConnectionType: NWInterface.InterfaceType?
     private let networkQueue = DispatchQueue(label: "NetworkConnectivityMonitor")
     
     private init() {
