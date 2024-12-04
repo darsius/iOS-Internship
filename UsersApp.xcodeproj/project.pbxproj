@@ -19,15 +19,13 @@
 		E447041B2AFD4FA400D5C5BF /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E447041A2AFD4FA400D5C5BF /* NetworkError.swift */; };
 		E44C175E2CFA47BE00BB353D /* LayoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44C175D2CFA47BE00BB353D /* LayoutManager.swift */; };
 		E45A03CD2C9EF29400DADA8A /* UserAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45A03CC2C9EF29400DADA8A /* UserAnnotation.swift */; };
-		E468D2842B4732FA0045A8AE /* PostalColde.swift in Sources */ = {isa = PBXBuildFile; fileRef = E468D2832B4732FA0045A8AE /* PostalColde.swift */; };
+		E468D2842B4732FA0045A8AE /* PostalCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E468D2832B4732FA0045A8AE /* PostalCode.swift */; };
 		E46B5BF42C9A40D8005B7806 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46B5BF32C9A40D8005B7806 /* MapViewController.swift */; };
 		E482757F2CF0E5CB00323467 /* UsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E482757D2CF0E5CB00323467 /* UsersViewController.swift */; };
 		E48275802CF0E5CB00323467 /* UsersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E482757E2CF0E5CB00323467 /* UsersViewController.xib */; };
 		E48275832CF0E75900323467 /* UsersManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48275822CF0E75900323467 /* UsersManager.swift */; };
 		E48275852CF0E78200323467 /* CustomAlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48275842CF0E78200323467 /* CustomAlertManager.swift */; };
 		E48275872CF0E78B00323467 /* ViewControllerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48275862CF0E78B00323467 /* ViewControllerHelper.swift */; };
-		E48275902CF0E7BB00323467 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E482758C2CF0E7BB00323467 /* HeaderView.swift */; };
-		E48275912CF0E7BB00323467 /* HeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E482758D2CF0E7BB00323467 /* HeaderView.xib */; };
 		E4A93AA02CFCFC8B00AB82B6 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A93A9D2CFCFC8B00AB82B6 /* LoadingViewController.swift */; };
 		E4A93AA22CFCFDEE00AB82B6 /* LoadingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4A93AA12CFCFDEE00AB82B6 /* LoadingViewController.xib */; };
 		E4BE7A8E2B92494400B78D46 /* ImageDownloadError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BE7A8D2B92494400B78D46 /* ImageDownloadError.swift */; };
@@ -53,15 +51,13 @@
 		E447041A2AFD4FA400D5C5BF /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		E44C175D2CFA47BE00BB353D /* LayoutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutManager.swift; sourceTree = "<group>"; };
 		E45A03CC2C9EF29400DADA8A /* UserAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAnnotation.swift; sourceTree = "<group>"; };
-		E468D2832B4732FA0045A8AE /* PostalColde.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostalColde.swift; sourceTree = "<group>"; };
+		E468D2832B4732FA0045A8AE /* PostalCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostalCode.swift; sourceTree = "<group>"; };
 		E46B5BF32C9A40D8005B7806 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		E482757D2CF0E5CB00323467 /* UsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersViewController.swift; sourceTree = "<group>"; };
 		E482757E2CF0E5CB00323467 /* UsersViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UsersViewController.xib; sourceTree = "<group>"; };
 		E48275822CF0E75900323467 /* UsersManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersManager.swift; sourceTree = "<group>"; };
 		E48275842CF0E78200323467 /* CustomAlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertManager.swift; sourceTree = "<group>"; };
 		E48275862CF0E78B00323467 /* ViewControllerHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerHelper.swift; sourceTree = "<group>"; };
-		E482758C2CF0E7BB00323467 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
-		E482758D2CF0E7BB00323467 /* HeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderView.xib; sourceTree = "<group>"; };
 		E4A93A9D2CFCFC8B00AB82B6 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		E4A93AA12CFCFDEE00AB82B6 /* LoadingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingViewController.xib; sourceTree = "<group>"; };
 		E4BE7A8D2B92494400B78D46 /* ImageDownloadError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloadError.swift; sourceTree = "<group>"; };
@@ -112,8 +108,6 @@
 			children = (
 				E427CEF62B31C0EF00F9AC04 /* UserDetailView.swift */,
 				E427CEF82B31C0FE00F9AC04 /* UserDetailView.xib */,
-				E482758C2CF0E7BB00323467 /* HeaderView.swift */,
-				E482758D2CF0E7BB00323467 /* HeaderView.xib */,
 				E43938792CF8C33F0079AE5B /* CustomCollectionViewCell.swift */,
 			);
 			path = Views;
@@ -184,7 +178,7 @@
 			isa = PBXGroup;
 			children = (
 				E437C2602ACCCD4B00DD8950 /* User.swift */,
-				E468D2832B4732FA0045A8AE /* PostalColde.swift */,
+				E468D2832B4732FA0045A8AE /* PostalCode.swift */,
 				E45A03CC2C9EF29400DADA8A /* UserAnnotation.swift */,
 			);
 			path = Models;
@@ -265,7 +259,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E4A93AA22CFCFDEE00AB82B6 /* LoadingViewController.xib in Resources */,
-				E48275912CF0E7BB00323467 /* HeaderView.xib in Resources */,
 				E48275802CF0E5CB00323467 /* UsersViewController.xib in Resources */,
 				E427CEFF2B31C18700F9AC04 /* UserDetailsViewController.xib in Resources */,
 				E4C4A4FB2AC5CB6F00BAA03A /* Assets.xcassets in Resources */,
@@ -285,7 +278,7 @@
 				E48275832CF0E75900323467 /* UsersManager.swift in Sources */,
 				E4C1ABF72B88BD42009042A5 /* NetworkMonitor.swift in Sources */,
 				E437C2612ACCCD4B00DD8950 /* User.swift in Sources */,
-				E468D2842B4732FA0045A8AE /* PostalColde.swift in Sources */,
+				E468D2842B4732FA0045A8AE /* PostalCode.swift in Sources */,
 				E43FBCEC2C9DA428008D495E /* TabBarController.swift in Sources */,
 				E482757F2CF0E5CB00323467 /* UsersViewController.swift in Sources */,
 				E4C4A4F22AC5CB6E00BAA03A /* AppDelegate.swift in Sources */,
@@ -293,7 +286,6 @@
 				E48275852CF0E78200323467 /* CustomAlertManager.swift in Sources */,
 				E447041B2AFD4FA400D5C5BF /* NetworkError.swift in Sources */,
 				E4A93AA02CFCFC8B00AB82B6 /* LoadingViewController.swift in Sources */,
-				E48275902CF0E7BB00323467 /* HeaderView.swift in Sources */,
 				E439387A2CF8C33F0079AE5B /* CustomCollectionViewCell.swift in Sources */,
 				E48275872CF0E78B00323467 /* ViewControllerHelper.swift in Sources */,
 				E4BE7A8E2B92494400B78D46 /* ImageDownloadError.swift in Sources */,
