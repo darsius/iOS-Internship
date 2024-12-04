@@ -47,6 +47,11 @@ class UserDetailsViewController: UIViewController, UITextViewDelegate {
         configureNoteTextView()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        self.userImageView.layer.cornerRadius = self.userImageView.frame.size.width / 2
+    }
+    
     deinit {
         NotificationCenter.default.removeObserver(self, name: UITextView.textDidChangeNotification, object: noteTextView)
         
@@ -83,7 +88,6 @@ class UserDetailsViewController: UIViewController, UITextViewDelegate {
     }
     
     private func setUpImageView(with urlString: String) {
-        self.userImageView.layer.cornerRadius = self.userImageView.frame.size.width / 2
         self.userImageView.layer.masksToBounds = false
         self.userImageView.clipsToBounds = true
         userImageView.downloaded(from: urlString) { result in

@@ -70,3 +70,9 @@ extension User: Equatable {
         return user1.email.isEqual(user2.email)
     }
 }
+
+extension User: Hashable {
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(email)
+    }
+}

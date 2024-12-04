@@ -9,3 +9,5 @@ Tasks:
 4. Added a search functionality allowing users to filter the list by name. The search bar can be toggled based on user interaction and provides an intuitive way to search through the user list. Made the search bar be native to iOS devices.
 
 5. Refactored the app to a tab-based structure, adding a map view in the first tab that displays user locations with custom markers. Each marker shows the user’s name, and tapping on it leads to their details page, providing seamless navigation between the map and user data.
+
+6. Refactored the User List tab to enhance user experience by allowing instant switching between a list view and a grid view. The TableView was replaced with a CollectionView that adapts to two distinct layouts based on the user’s selection. Two buttons in the top-right corner of the navigation bar enable seamless toggling between these views.

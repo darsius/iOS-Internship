@@ -13,8 +13,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let rootViewController: UIViewController
         if NetworkMonitor.shared.isConnected && !NetworkMonitor.shared.isExpensive {
             if LoginManager.isLoggedIn() {
-                let usersViewController = UsersViewController()
-                rootViewController = UINavigationController(rootViewController: usersViewController)
+                let tabBarController = TabBarController()
+                rootViewController = UINavigationController(rootViewController: TabBarController)
             } else {
                 let loginViewController = LoginViewController()
                 rootViewController = UINavigationController(rootViewController: loginViewController)
