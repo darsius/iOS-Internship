@@ -12,6 +12,8 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var loginButton: UIButton!
     
+    private let refreshToken: TimeInterval = 3600
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -19,6 +21,12 @@ class LoginViewController: UIViewController {
         resetForm()
         handleKeyboardBehaviour()
         
+    }
+    
+    private func showLoginScreen() {
+        let loginViewController = LoginViewController()
+        loginViewController.modalPresentationStyle = .fullScreen
+        present(loginViewController, animated: true, completion: nil)
     }
     
     private func handleKeyboardBehaviour() {
@@ -81,11 +89,13 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func login(_ sender: Any) {
-        print(1)
         guard let email = self.emailTF.text?.trimmingCharacters(in: .whitespacesAndNewlines) else { return }
         guard let password = self.passwordTF.text?.trimmingCharacters(in: .whitespacesAndNewlines) else { return }
         
+        let currentTime = Date.now
         if email == LoginConstants.hardcodedEmail && password == LoginConstants.hardcodedPassword {
+            let expiration = currentTime.addingTimeInterval(refreshToken)
+            LoginManager.setLoggedIn(true, expiration: expiration)
             self.makeUsersViewController()
         } else {
             let alert = UIAlertController(
@@ -95,7 +105,11 @@ class LoginViewController: UIViewController {
                 title: "Try again", style: .default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
-        print(2)
+    }
+    
+    private func logout() {
+        LoginManager.setLoggedIn(false)
+        showLoginScreen()
     }
     
     private func invalidEmailFormat(_ value: String) -> String? {
