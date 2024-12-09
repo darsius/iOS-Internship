@@ -163,21 +163,6 @@ extension LoginViewController {
     private func handleKeyboardBehaviour() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
         view.addGestureRecognizer(tapGesture)
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification: )), name: UIResponder.keyboardWillShowNotification, object: nil)
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification: )), name: UIResponder.keyboardWillHideNotification, object: nil)
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification: )), name: UIResponder.keyboardWillChangeFrameNotification, object: self)
-    }
-    
-    @objc private func keyboardWillShow(notification: NSNotification) {
-        if notification.name == UIResponder.keyboardWillShowNotification ||
-        notification.name == UIResponder.keyboardWillChangeFrameNotification {
-            view.frame.origin.y = -40
-        } else {
-            view.frame.origin.y = 0
-        }
     }
     
     @objc private func handleTap(_ gesture: UITapGestureRecognizer) {

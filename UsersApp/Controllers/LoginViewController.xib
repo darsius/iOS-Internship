@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23094" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23084"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -24,7 +25,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DCv-C7-Byf">
-                    <rect key="frame" x="19.666666666666657" y="97" width="351" height="34"/>
+                    <rect key="frame" x="19.666666666666657" y="77" width="351" height="34"/>
                     <color key="backgroundColor" red="1" green="0.97254901960784312" blue="0.86274509803921573" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                     <textInputTraits key="textInputTraits" textContentType="email"/>
@@ -33,7 +34,7 @@
                     </connections>
                 </textField>
                 <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Dwv-ts-WQs">
-                    <rect key="frame" x="19.666666666666657" y="159" width="351" height="34"/>
+                    <rect key="frame" x="19.666666666666657" y="139" width="351" height="34"/>
                     <color key="backgroundColor" red="1" green="0.97254901960784312" blue="0.86274509803921573" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                     <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
@@ -42,7 +43,7 @@
                     </connections>
                 </textField>
                 <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Requiered" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qwy-hR-CON">
-                    <rect key="frame" x="19.666666666666671" y="195" width="66" height="22"/>
+                    <rect key="frame" x="19.666666666666671" y="175" width="66" height="22"/>
                     <color key="backgroundColor" systemColor="systemYellowColor"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="22" id="rwH-Xb-yZb"/>
@@ -55,7 +56,7 @@
                     </connections>
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NT5-sS-XAK">
-                    <rect key="frame" x="10" y="254.99999999999997" width="370" height="47.666666666666657"/>
+                    <rect key="frame" x="10" y="213" width="370" height="47.666666666666686"/>
                     <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="28"/>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                     <state key="normal" title="Log In"/>
@@ -67,7 +68,7 @@
                     </connections>
                 </button>
                 <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Z01-Ko-XV3">
-                    <rect key="frame" x="10" y="352.66666666666669" width="370" height="20"/>
+                    <rect key="frame" x="10" y="280.66666666666669" width="370" height="20"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7KS-ca-W6E">
                             <rect key="frame" x="0.0" y="9.6666666666666288" width="162.33333333333334" height="1"/>
@@ -98,7 +99,7 @@
                     </constraints>
                 </stackView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ODn-32-CcC">
-                    <rect key="frame" x="103.66666666666667" y="412.66666666666669" width="182.66666666666663" height="34.333333333333314"/>
+                    <rect key="frame" x="103.66666666666667" y="320.66666666666669" width="182.66666666666663" height="34.333333333333314"/>
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="plain" title="Sign Up With Google"/>
                     <connections>
@@ -106,7 +107,7 @@
                     </connections>
                 </button>
                 <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Requiered" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5DX-Ac-kPF">
-                    <rect key="frame" x="19.666666666666671" y="133" width="66" height="22"/>
+                    <rect key="frame" x="19.666666666666671" y="113" width="66" height="22"/>
                     <color key="backgroundColor" systemColor="systemYellowColor"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="22" id="IoO-Yq-e0I"/>
@@ -119,12 +120,12 @@
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemYellowColor"/>
             <constraints>
-                <constraint firstItem="NT5-sS-XAK" firstAttribute="top" secondItem="Dwv-ts-WQs" secondAttribute="bottom" constant="62" id="3dM-47-05y"/>
+                <constraint firstItem="NT5-sS-XAK" firstAttribute="top" secondItem="Dwv-ts-WQs" secondAttribute="bottom" constant="40" id="3dM-47-05y"/>
                 <constraint firstItem="5DX-Ac-kPF" firstAttribute="top" secondItem="DCv-C7-Byf" secondAttribute="bottom" constant="2" id="BXy-9h-gg9"/>
                 <constraint firstItem="Qwy-hR-CON" firstAttribute="leading" secondItem="Dwv-ts-WQs" secondAttribute="leading" id="DFe-pv-o6a"/>
                 <constraint firstItem="DCv-C7-Byf" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="DI8-yf-Smh"/>
                 <constraint firstItem="DCv-C7-Byf" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.9" id="IBS-AC-7rz"/>
-                <constraint firstItem="Z01-Ko-XV3" firstAttribute="top" secondItem="NT5-sS-XAK" secondAttribute="bottom" constant="50" id="Idl-Pt-Ui9"/>
+                <constraint firstItem="Z01-Ko-XV3" firstAttribute="top" secondItem="NT5-sS-XAK" secondAttribute="bottom" constant="20" id="Idl-Pt-Ui9"/>
                 <constraint firstItem="ODn-32-CcC" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="K2U-15-8aw"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="NT5-sS-XAK" secondAttribute="trailing" constant="10" id="ObE-dB-BE7">
                     <variation key="heightClass=regular-widthClass=regular" constant="200"/>
@@ -134,11 +135,11 @@
                     <variation key="heightClass=regular-widthClass=regular" constant="200"/>
                 </constraint>
                 <constraint firstItem="Dwv-ts-WQs" firstAttribute="width" secondItem="DCv-C7-Byf" secondAttribute="width" id="ecQ-PZ-M9x"/>
-                <constraint firstItem="DCv-C7-Byf" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="50" id="efj-VQ-2Zd">
-                    <variation key="heightClass=regular-widthClass=regular" constant="400"/>
+                <constraint firstItem="DCv-C7-Byf" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="30" id="efj-VQ-2Zd">
+                    <variation key="heightClass=regular-widthClass=regular" constant="300"/>
                 </constraint>
                 <constraint firstItem="Dwv-ts-WQs" firstAttribute="centerX" secondItem="DCv-C7-Byf" secondAttribute="centerX" id="fOV-wn-k2w"/>
-                <constraint firstItem="ODn-32-CcC" firstAttribute="top" secondItem="Z01-Ko-XV3" secondAttribute="bottom" constant="40" id="mfl-0O-SH2"/>
+                <constraint firstItem="ODn-32-CcC" firstAttribute="top" secondItem="Z01-Ko-XV3" secondAttribute="bottom" constant="20" id="mfl-0O-SH2"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Z01-Ko-XV3" secondAttribute="trailing" constant="10" id="qlQ-F3-xcs"/>
                 <constraint firstItem="Qwy-hR-CON" firstAttribute="top" secondItem="Dwv-ts-WQs" secondAttribute="bottom" constant="2" id="uWB-78-yd8"/>
                 <constraint firstItem="5DX-Ac-kPF" firstAttribute="leading" secondItem="DCv-C7-Byf" secondAttribute="leading" id="wn4-kV-drk"/>
