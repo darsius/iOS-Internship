@@ -7,62 +7,40 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-            guard let windowScene = (scene as? UIWindowScene) else { return }
-            let window = UIWindow(windowScene: windowScene)
-            
+        guard let windowScene = (scene as? UIWindowScene) else { return }
+        let window = UIWindow(windowScene: windowScene)
+        
         var rootViewController: UIViewController = UIViewController()
-            
-            if NetworkMonitor.shared.isConnected && !NetworkMonitor.shared.isExpensive {
-                LoginService.shared.checkLoginState { isLoggedIn in
-                    if isLoggedIn {
-                        print("User is signed in")
-                        rootViewController = TabBarController()
-                    } else {
-                        print("User is signed out")
-                        let loginViewController = LoginViewController()
-                        rootViewController = UINavigationController(rootViewController: loginViewController)
-                    }
-                    
-                    DispatchQueue.main.async {
-                        window.rootViewController = rootViewController
-                        window.makeKeyAndVisible()
-                    }
+        
+        if NetworkMonitor.shared.isConnected && !NetworkMonitor.shared.isExpensive {
+            LoginService.shared.checkLoginState { isLoggedIn in
+                if isLoggedIn {
+                    print("User is signed in")
+                    rootViewController = TabBarController()
+                } else {
+                    print("User is signed out")
+                    let loginViewController = LoginViewController()
+                    rootViewController = UINavigationController(rootViewController: loginViewController)
                 }
-            } else {
-                print("No network connection")
-                let loadingViewController = LoadingViewController()
-                rootViewController = loadingViewController
                 
-                window.rootViewController = rootViewController
-                window.makeKeyAndVisible()
+                DispatchQueue.main.async {
+                    window.rootViewController = rootViewController
+                    window.makeKeyAndVisible()
+                }
             }
+        } else {
+            print("No network connection")
+            let loadingViewController = LoadingViewController()
+            rootViewController = loadingViewController
             
-            self.window = window
+            window.rootViewController = rootViewController
+            window.makeKeyAndVisible()
         }
+        
+        self.window = window
+    }
     
-    //    func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-    //        guard let windowScene = (scene as? UIWindowScene) else { return }
-    //
-    //        window = UIWindow(windowScene: windowScene)
-    //
-    //        LoginService.shared.restorePreviousSignIn { isLoggedIn, user in
-    //            let rootViewController: UIViewController
-    //            if isLoggedIn, let _ = user {
-    //                print("User is signed in")
-    //                let usersViewController = UsersViewController()
-    //                rootViewController = UINavigationController(rootViewController: usersViewController)
-    //            } else {
-    //                print("User is signed out")
-    //                let loginViewController = LoginViewController()
-    //                rootViewController = loginViewController
-    //            }
-    //
-    //            DispatchQueue.main.async {
-    //                self.window?.rootViewController = rootViewController
-    //                self.window?.makeKeyAndVisible()
-    //            }
-    //        }
-    //    }
+    
     
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
