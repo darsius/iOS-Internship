@@ -20,6 +20,7 @@
 		E44229122D071A5300E5B437 /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44229112D071A5300E5B437 /* LoginManager.swift */; };
 		E442291D2D0721D000E5B437 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E442291B2D0721D000E5B437 /* LoginViewController.swift */; };
 		E442291E2D0721D000E5B437 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E442291C2D0721D000E5B437 /* LoginViewController.xib */; };
+		E44229212D072D7500E5B437 /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44229202D072D7500E5B437 /* LoginService.swift */; };
 		E447041B2AFD4FA400D5C5BF /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E447041A2AFD4FA400D5C5BF /* NetworkError.swift */; };
 		E44C175E2CFA47BE00BB353D /* LayoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44C175D2CFA47BE00BB353D /* LayoutManager.swift */; };
 		E45A03CD2C9EF29400DADA8A /* UserAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45A03CC2C9EF29400DADA8A /* UserAnnotation.swift */; };
@@ -58,6 +59,7 @@
 		E44229112D071A5300E5B437 /* LoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
 		E442291B2D0721D000E5B437 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		E442291C2D0721D000E5B437 /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		E44229202D072D7500E5B437 /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
 		E447041A2AFD4FA400D5C5BF /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		E44C175D2CFA47BE00BB353D /* LayoutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutManager.swift; sourceTree = "<group>"; };
 		E45A03CC2C9EF29400DADA8A /* UserAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAnnotation.swift; sourceTree = "<group>"; };
@@ -112,6 +114,14 @@
 			path = Constants;
 			sourceTree = "<group>";
 		};
+		E442291F2D072D5300E5B437 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				E44229202D072D7500E5B437 /* LoginService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 		E48275812CF0E73700323467 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
@@ -159,6 +169,7 @@
 				E403E82E2B7D3A7A0008AAE2 /* Errors */,
 				E4E43DA32AFD14E500A92706 /* Extensions */,
 				E4E43DA62AFD1C7700A92706 /* Networking */,
+				E442291F2D072D5300E5B437 /* Service */,
 				E4E43DA82AFD1CD500A92706 /* Models */,
 				E4E43DA92AFD1D1A00A92706 /* Controllers */,
 				E4BBFCEF2B0CFE4000027A26 /* Views */,
@@ -306,6 +317,7 @@
 				E48275832CF0E75900323467 /* UsersManager.swift in Sources */,
 				E4C1ABF72B88BD42009042A5 /* NetworkMonitor.swift in Sources */,
 				E437C2612ACCCD4B00DD8950 /* User.swift in Sources */,
+				E44229212D072D7500E5B437 /* LoginService.swift in Sources */,
 				E468D2842B4732FA0045A8AE /* PostalCode.swift in Sources */,
 				E44229122D071A5300E5B437 /* LoginManager.swift in Sources */,
 				E43FBCEC2C9DA428008D495E /* TabBarController.swift in Sources */,

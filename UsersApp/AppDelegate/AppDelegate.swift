@@ -10,18 +10,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         NetworkMonitor.shared.initiateConnectivityTracking()
         
-        GIDSignIn.sharedInstance.restorePreviousSignIn { user, error in
-            if let user = user {
-                print("Successfully restored previous sign-in for user: \(user.profile?.email ?? "")")
-                self.showSignedInState(for: user)
-            } else if let error = error {
-                print("Error restoring previous sign-in: \(error.localizedDescription)")
-                self.showSignedOutState()
-            } else {
-                print("No previous user found")
-                self.showSignedOutState()
-            }
-        }
         return true
     }
     
@@ -29,14 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         _ app: UIApplication,
         open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]
     ) -> Bool {
-        var handled: Bool
-        
-        handled = GIDSignIn.sharedInstance.handle(url)
-        if handled {
-            return true
-        }
-        
-        return false
+        return LoginService.shared.handleSignInURL(url)
     }
     
     // MARK: UISceneSession Lifecycle
@@ -51,19 +32,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the user discards a scene session.
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
-    }
-    
-    private func showSignedOutState() {
-        let loginViewController = LoginViewController()
-        loginViewController.modalPresentationStyle = .fullScreen
-        window?.rootViewController = loginViewController
-        window?.makeKeyAndVisible()
-    }
-    
-    private func showSignedInState(for user: GIDGoogleUser) {
-        let usersViewController = UsersViewController()
-        let navigationController = UINavigationController(rootViewController: usersViewController)
-        window?.rootViewController = navigationController
-        window?.makeKeyAndVisible()
     }
 }
