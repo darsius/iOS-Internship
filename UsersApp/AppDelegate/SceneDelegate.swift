@@ -7,21 +7,27 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
         
-        let tabBarController = TabBarController()
-        let loadingViewController = LoadingViewController()
-        
-        DispatchQueue.main.async {
-            if NetworkMonitor.shared.isConnected && !NetworkMonitor.shared.isExpensive {
-                window.rootViewController = tabBarController
+        let rootViewController: UIViewController
+        if NetworkMonitor.shared.isConnected && !NetworkMonitor.shared.isExpensive {
+            if LoginManager.isLoggedIn() {
+                print(1)
+                let tabBarViewController = TabBarController()
+                rootViewController = tabBarViewController
             } else {
-                window.rootViewController = loadingViewController
+                print(2)
+                let loginViewController = LoginViewController()
+                rootViewController = UINavigationController(rootViewController: loginViewController)
             }
+        } else {
+            print(3)
+            let loadingViewController = LoadingViewController()
+            rootViewController = loadingViewController
         }
-        
+
+        window.rootViewController = rootViewController
         window.makeKeyAndVisible()
         self.window = window
     }
