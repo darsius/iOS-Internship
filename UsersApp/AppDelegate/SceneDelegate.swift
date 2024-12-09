@@ -12,29 +12,31 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         var rootViewController: UIViewController = UIViewController()
         
-        if NetworkMonitor.shared.isConnected && !NetworkMonitor.shared.isExpensive {
-            LoginService.shared.checkLoginState { isLoggedIn in
-                if isLoggedIn {
-                    print("User is signed in")
-                    rootViewController = TabBarController()
-                } else {
-                    print("User is signed out")
-                    let loginViewController = LoginViewController()
-                    rootViewController = UINavigationController(rootViewController: loginViewController)
+        DispatchQueue.main.async{
+            if NetworkMonitor.shared.isConnected && !NetworkMonitor.shared.isExpensive {
+                LoginService.shared.checkLoginState { isLoggedIn in
+                    if isLoggedIn {
+                        print("User is signed in")
+                        rootViewController = TabBarController()
+                    } else {
+                        print("User is signed out")
+                        let loginViewController = LoginViewController()
+                        rootViewController = UINavigationController(rootViewController: loginViewController)
+                    }
+                    
+                    DispatchQueue.main.async {
+                        window.rootViewController = rootViewController
+                        window.makeKeyAndVisible()
+                    }
                 }
+            } else {
+                print("No network connection")
+                let loadingViewController = LoadingViewController()
+                rootViewController = loadingViewController
                 
-                DispatchQueue.main.async {
-                    window.rootViewController = rootViewController
-                    window.makeKeyAndVisible()
-                }
+                window.rootViewController = rootViewController
+                window.makeKeyAndVisible()
             }
-        } else {
-            print("No network connection")
-            let loadingViewController = LoadingViewController()
-            rootViewController = loadingViewController
-            
-            window.rootViewController = rootViewController
-            window.makeKeyAndVisible()
         }
         
         self.window = window
