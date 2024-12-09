@@ -6,23 +6,32 @@ class LoginService {
     
     private init() {}
     
-    func restorePreviousSignIn(completion: @escaping (Bool, GIDGoogleUser?) -> Void) {
+    func checkLoginState(completion: @escaping (Bool) -> Void) {
+        if LoginManager.isLoggedIn() {
+            print("User is logged in via credentials")
+            completion(true)
+            return
+        }
+        
         GIDSignIn.sharedInstance.restorePreviousSignIn { user, error in
-            if let user = user {
-                print("Successfully restored previous sign-in for user: \(user.profile?.email ?? "")")
-                completion(true, user)
-            } else if let error = error {
-                print("Error restoring previous sign-in: \(error.localizedDescription)")
-                completion(false, nil)
+            if let _ = user {
+                print("User is logged in via Google")
+                completion(true)
             } else {
-                print("No previous user found")
-                completion(false, nil)
+                print("No valid login session found")
+                completion(false)
             }
         }
     }
     
     func handleSignInURL(_ url: URL) -> Bool {
         return GIDSignIn.sharedInstance.handle(url)
+    }
+    
+    func logout() {
+        LoginManager.setLoggedIn(false)
+        GIDSignIn.sharedInstance.signOut()
+        print("Logged out")
     }
     
 }
