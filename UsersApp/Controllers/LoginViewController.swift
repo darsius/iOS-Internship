@@ -89,7 +89,7 @@ class LoginViewController: UIViewController {
         if email == LoginConstants.hardcodedEmail && password == LoginConstants.hardcodedPassword {
             let expiration = currentTime.addingTimeInterval(refreshToken)
             LoginManager.setLoggedIn(true, expiration: expiration)
-            self.makeUsersViewController()
+            self.makeTabBarViewController()
         } else {
             let alert = UIAlertController(
                 title: "Wrong email or password.",
@@ -104,7 +104,7 @@ class LoginViewController: UIViewController {
       GIDSignIn.sharedInstance.signIn(withPresenting: self) { [weak self] signInResult, error in
         guard let self = self, error == nil else { return }
           
-          self.makeUsersViewController()
+          self.makeTabBarViewController()
       }
     }
     
@@ -148,10 +148,10 @@ class LoginViewController: UIViewController {
         }
     }
     
-    private func makeUsersViewController() {
-        let usersViewController = UsersViewController()
+    private func makeTabBarViewController() {
+        let tabBarViewController = TabBarController()
         
-        let navController = UINavigationController(rootViewController: usersViewController)
+        let navController = tabBarViewController
         navController.modalPresentationStyle = .fullScreen
 
         present(navController, animated: true, completion: nil)
