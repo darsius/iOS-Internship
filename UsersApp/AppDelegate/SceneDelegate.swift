@@ -5,7 +5,8 @@ import Network
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
-    var usersCoordinator: UsersCoordinator?
+    var mapCoordinator: MapCoordinator?
+    var userCoordinator: UsersCoordinator?
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
@@ -13,8 +14,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let navigationController = UINavigationController()
         
-        usersCoordinator = UsersCoordinator(navigationController: navigationController)
-        usersCoordinator?.start()
+        self.mapCoordinator = MapCoordinator(navigationController: navigationController)
+        self.mapCoordinator?.start()
+        
+//        let userCoordinator = UsersCoordinator(navigationController: navigationController)
+//        userCoordinator.start()
+        
+        
         
         window.rootViewController = navigationController
         self.window = window

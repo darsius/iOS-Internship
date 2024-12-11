@@ -2,14 +2,17 @@ import UIKit
 import MapKit
 
 class MapViewController: UIViewController {
+    var onUserAnnotationSelected: ((User) -> Void)?
+    
     @IBOutlet private var mapView: MKMapView!
     private var users: [User] = []
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupMapView()
         fetchUsers()
+        setupMapView()
+        
     }
     
     private func setupMapView() {
@@ -115,8 +118,6 @@ extension MapViewController: MKMapViewDelegate {
         guard let annotation = view.annotation as? UserAnnotation else {
             return
         }
-        let detailsViewController = ViewControllerHelper
-            .makeDetailsViewController(for: annotation.user)
-        navigationController?.pushViewController(detailsViewController, animated: true)
+        onUserAnnotationSelected?(annotation.user)
     }
 }

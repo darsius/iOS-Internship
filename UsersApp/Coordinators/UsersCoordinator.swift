@@ -11,13 +11,13 @@ class UsersCoordinator: Coordinator {
     func start() {
         let usersViewController = UsersViewController()
         usersViewController.onUserSelected = { [weak self] user in
-            self?.showUserDetails(user: user)
+            self?.showUserDetails(for: user)
         }
         
         navigationController.setViewControllers([usersViewController], animated: false)
     }
     
-    func showUserDetails(user: User) {
+    func showUserDetails(for user: User) {
         let userDetailsViewController = UserDetailsViewController()
         userDetailsViewController.user = user
         navigationController.pushViewController(userDetailsViewController, animated: true)
