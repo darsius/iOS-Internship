@@ -179,7 +179,6 @@ extension UsersViewController: UICollectionViewDelegate, UICollectionViewDataSou
         } else {
             selectedUser = users[indexPath.row]
         }
-        print(selectedUser.name.first)
         onUserSelected?(selectedUser)
     }
     

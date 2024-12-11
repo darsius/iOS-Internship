@@ -18,6 +18,11 @@ class MapViewController: UIViewController {
     private func setupMapView() {
         mapView.delegate = self
         view.backgroundColor = .systemYellow
+        let titleAttributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont.systemFont(ofSize: 22)
+        ]
+        navigationController?.navigationBar.titleTextAttributes = titleAttributes
+        self.title = "Map"
     }
     
     private func fetchUsers() {

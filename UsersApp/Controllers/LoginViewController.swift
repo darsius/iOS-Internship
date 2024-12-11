@@ -89,7 +89,7 @@ class LoginViewController: UIViewController {
         if email == LoginConstants.hardcodedEmail && password == LoginConstants.hardcodedPassword {
             let expiration = currentTime.addingTimeInterval(refreshToken)
             LoginManager.setLoggedIn(true, expiration: expiration)
-            self.makeTabBarViewController()
+//            self.makeTabBarViewController()
         } else {
             let alert = UIAlertController(
                 title: "Wrong email or password.",
@@ -100,13 +100,13 @@ class LoginViewController: UIViewController {
         }
     }
     
-    @IBAction private func signInWithGoogle(sender: Any) {
-      GIDSignIn.sharedInstance.signIn(withPresenting: self) { [weak self] signInResult, error in
-        guard let self = self, error == nil else { return }
-          
-          self.makeTabBarViewController()
-      }
-    }
+//    @IBAction private func signInWithGoogle(sender: Any) {
+//      GIDSignIn.sharedInstance.signIn(withPresenting: self) { [weak self] signInResult, error in
+//        guard let self = self, error == nil else { return }
+//          
+//          self.makeTabBarViewController()
+//      }
+//    }
     
     // MARK: - Validation
     private func invalidEmailFormat(_ value: String) -> String? {
@@ -148,14 +148,14 @@ class LoginViewController: UIViewController {
         }
     }
     
-    private func makeTabBarViewController() {
-        let tabBarViewController = TabBarController()
-        
-        let navController = tabBarViewController
-        navController.modalPresentationStyle = .fullScreen
-
-        present(navController, animated: true, completion: nil)
-    }
+//    private func makeTabBarViewController() {
+//        let tabBarViewController = TabBarController()
+//        
+//        let navController = tabBarViewController
+//        navController.modalPresentationStyle = .fullScreen
+//
+//        present(navController, animated: true, completion: nil)
+//    }
 }
 
 // MARK: - Keyboard Behaviour
