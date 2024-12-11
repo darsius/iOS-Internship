@@ -5,41 +5,20 @@ import Network
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
+    var usersCoordinator: UsersCoordinator?
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
         
-        var rootViewController: UIViewController = UIViewController()
+        let navigationController = UINavigationController()
         
-        DispatchQueue.main.async{
-            if NetworkMonitor.shared.isConnected && !NetworkMonitor.shared.isExpensive {
-                LoginService.shared.checkLoginState { isLoggedIn in
-                    if isLoggedIn {
-                        print("User is signed in")
-                        rootViewController = TabBarController()
-                    } else {
-                        print("User is signed out")
-                        let loginViewController = LoginViewController()
-                        rootViewController = UINavigationController(rootViewController: loginViewController)
-                    }
-                    
-                    DispatchQueue.main.async {
-                        window.rootViewController = rootViewController
-                        window.makeKeyAndVisible()
-                    }
-                }
-            } else {
-                print("No network connection")
-                let loadingViewController = LoadingViewController()
-                rootViewController = loadingViewController
-                
-                window.rootViewController = rootViewController
-                window.makeKeyAndVisible()
-            }
-        }
+        usersCoordinator = UsersCoordinator(navigationController: navigationController)
+        usersCoordinator?.start()
         
+        window.rootViewController = navigationController
         self.window = window
+        window.makeKeyAndVisible()
     }
     
     

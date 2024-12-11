@@ -3,7 +3,7 @@ import UIKit
 
 class UsersViewController: UIViewController {
     
-    
+    var onUserSelected: ((User) -> Void)?
     
     @IBOutlet weak var usersCollectionView: UICollectionView!
     
@@ -123,13 +123,6 @@ class UsersViewController: UIViewController {
             }
         }
     }
-    
-    private func makeDetailsViewController(for user: User) -> UserDetailsViewController {
-        let detailsViewController = UserDetailsViewController()
-        detailsViewController.user = user
-        
-        return detailsViewController
-    }
 }
 
 extension UsersViewController: UISearchResultsUpdating {
@@ -186,9 +179,8 @@ extension UsersViewController: UICollectionViewDelegate, UICollectionViewDataSou
         } else {
             selectedUser = users[indexPath.row]
         }
-        let detailsViewController = makeDetailsViewController(for: selectedUser)
-        
-        navigationController?.pushViewController(detailsViewController, animated: true)
+        print(selectedUser.name.first)
+        onUserSelected?(selectedUser)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

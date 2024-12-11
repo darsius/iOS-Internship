@@ -69,7 +69,7 @@ class UserDetailsViewController: UIViewController, UITextViewDelegate {
         guard let user = user else {
             return
         }
-        
+                
         setUpImageView(with: user.picture.large)
         
         setUpDetailView(view: firstNameView, "First Name", user.name.first)
