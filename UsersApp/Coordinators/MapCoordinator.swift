@@ -21,7 +21,4 @@ class MapCoordinator: Coordinator {
         userDetailsViewController.user = user
         navigationController.pushViewController(userDetailsViewController, animated: true)
     }
-    
-    
-    
 }

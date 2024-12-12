@@ -5,22 +5,15 @@ import Network
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
-    var mainTabCoordinator: MainTabCoordinator?
+    var appCoordinator: AppCoordinator?
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
-        
-        
-        
-        mainTabCoordinator = MainTabCoordinator()
-               let tabBarController = mainTabCoordinator?.start() // Modify MainTabCoordinator to return its tabBarController
-
-               window.rootViewController = tabBarController
         self.window = window
-        window.makeKeyAndVisible()
-        self.window = window
-        window.makeKeyAndVisible()
+        
+        appCoordinator = AppCoordinator(window: window)
+        appCoordinator?.start()
     }
     
     
