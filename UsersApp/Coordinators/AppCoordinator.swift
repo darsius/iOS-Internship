@@ -14,17 +14,38 @@ class AppCoordinator: Coordinator {
     }
 
     func start() {
-        LoginService.shared.checkLoginState { [weak self] isLoggedIn in
-            guard let self = self else { return }
-            DispatchQueue.main.async {
-                if isLoggedIn {
-                    self.showMainFlow()
-                } else {
-                    self.showAuthFlow()
+        presentLoadingViewController()
+    }
+    
+    private func presentLoadingViewController() {
+        let loadingVC = LoadingViewController(nibName: "LoadingViewController", bundle: nil)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            if NetworkMonitor.shared.isConnected && !NetworkMonitor.shared.isExpensive {
+                self.handlePostLoading()
+            } else {
+                loadingVC.onLoadComplete = { [weak self] in
+                    guard let self = self else { return }
+                    self.handlePostLoading()
                 }
+                self.window.rootViewController = loadingVC
+                self.window.makeKeyAndVisible()
             }
         }
     }
+    
+    private func handlePostLoading() {
+            LoginService.shared.checkLoginState { [weak self] isLoggedIn in
+                guard let self = self else { return }
+                DispatchQueue.main.async {
+                    if isLoggedIn {
+                        self.showMainFlow()
+                    } else {
+                        self.showAuthFlow()
+                    }
+                }
+            }
+        }
 
     func showAuthFlow() {
         authCoordinator = AuthCoordinator(navigationController: navigationController)

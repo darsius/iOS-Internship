@@ -2,7 +2,7 @@ import UIKit
 
 class MainTabCoordinator {
     
-    private var tabBarController: UITabBarController!
+    var tabBarController: UITabBarController!
     private var mapCoordinator: MapCoordinator!
     private var usersCoordinator: UsersCoordinator!
     private var childCoordinators: [Coordinator] = []
