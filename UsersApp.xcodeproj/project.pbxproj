@@ -21,6 +21,7 @@
 		E442291E2D0721D000E5B437 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E442291C2D0721D000E5B437 /* LoginViewController.xib */; };
 		E44229212D072D7500E5B437 /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44229202D072D7500E5B437 /* LoginService.swift */; };
 		E447041B2AFD4FA400D5C5BF /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E447041A2AFD4FA400D5C5BF /* NetworkError.swift */; };
+		E44CB0672D0F46090064E7AA /* MainTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44CB0662D0F46090064E7AA /* MainTabViewController.swift */; };
 		E454FBE22D09BDC0001BB5E1 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E454FBE12D09BDC0001BB5E1 /* Coordinator.swift */; };
 		E454FBE42D09BDDE001BB5E1 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E454FBE32D09BDDE001BB5E1 /* AppCoordinator.swift */; };
 		E454FBE62D09BDEE001BB5E1 /* AuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E454FBE52D09BDEE001BB5E1 /* AuthCoordinator.swift */; };
@@ -64,6 +65,7 @@
 		E442291C2D0721D000E5B437 /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		E44229202D072D7500E5B437 /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
 		E447041A2AFD4FA400D5C5BF /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		E44CB0662D0F46090064E7AA /* MainTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabViewController.swift; sourceTree = "<group>"; };
 		E454FBE12D09BDC0001BB5E1 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		E454FBE32D09BDDE001BB5E1 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		E454FBE52D09BDEE001BB5E1 /* AuthCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCoordinator.swift; sourceTree = "<group>"; };
@@ -251,6 +253,7 @@
 				E442291C2D0721D000E5B437 /* LoginViewController.xib */,
 				E46B5BF32C9A40D8005B7806 /* MapViewController.swift */,
 				E43FBCED2C9DB4B2008D495E /* MapViewController.xib */,
+				E44CB0662D0F46090064E7AA /* MainTabViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -350,6 +353,7 @@
 				E454FBEA2D09BE09001BB5E1 /* MapCoordinator.swift in Sources */,
 				E454FBE62D09BDEE001BB5E1 /* AuthCoordinator.swift in Sources */,
 				E4A93AA02CFCFC8B00AB82B6 /* LoadingViewController.swift in Sources */,
+				E44CB0672D0F46090064E7AA /* MainTabViewController.swift in Sources */,
 				E439387A2CF8C33F0079AE5B /* CustomCollectionViewCell.swift in Sources */,
 				E48275872CF0E78B00323467 /* ViewControllerHelper.swift in Sources */,
 				E4BE7A8E2B92494400B78D46 /* ImageDownloadError.swift in Sources */,

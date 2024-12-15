@@ -8,7 +8,7 @@ class MainTabCoordinator {
     private var childCoordinators: [Coordinator] = []
     
     func start() -> UITabBarController {
-        tabBarController = UITabBarController()
+        tabBarController = MainTabViewController()
         
         let mapNavController = UINavigationController()
         mapCoordinator = MapCoordinator(navigationController: mapNavController)
@@ -18,7 +18,7 @@ class MainTabCoordinator {
             image: UIImage(systemName: "map"),
             selectedImage: UIImage(systemName: "map.fill")
         )
-        childCoordinators.append(mapCoordinator) // Retain the coordinator
+        childCoordinators.append(mapCoordinator)
         
         let usersNavController = UINavigationController()
         usersCoordinator = UsersCoordinator(navigationController: usersNavController)
@@ -28,19 +28,10 @@ class MainTabCoordinator {
             image: UIImage(systemName: "person.3"),
             selectedImage: UIImage(systemName: "person.3.fill")
         )
-        childCoordinators.append(usersCoordinator) // Retain the coordinator
+        childCoordinators.append(usersCoordinator)
         
-        tabBarController.viewControllers = [mapNavController, usersNavController]
-        tabBarController.selectedIndex = 0
-        setupTabBarAppearance()
+        tabBarController.setViewControllers([mapNavController, usersNavController], animated: false)
         
         return tabBarController
-    }
-    
-    private func setupTabBarAppearance() {
-        tabBarController.tabBar.tintColor = .black
-        tabBarController.tabBar.unselectedItemTintColor = .systemGray
-        tabBarController.tabBar.barTintColor = .systemYellow
-        tabBarController.tabBar.backgroundColor = .systemYellow
     }
 }
